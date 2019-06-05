@@ -24,6 +24,7 @@ public class MemoryGridActivity extends AppCompatActivity {
     ImageButton cardFlip1;
     ImageButton cardFlip2;
     TextView strCard1;
+    int numCards;
     int points;
     private ArrayList<Character> cards;
 
@@ -34,12 +35,17 @@ public class MemoryGridActivity extends AppCompatActivity {
         setCards();
     }
 
+    /**
+     * This is a setup method. It initializes points to 0, sets the gridview, sets the adapter,
+     * and gets the cards based on the size that is brought through the intent.
+     */
     private void setCards() {
+        points = 0;
+        numCards = getIntent().getExtras().getInt("size");
         gv = findViewById(R.id.memory_grid_view);
         cards = new ArrayList<>();
-        SetCards setCards = new SetCards(getIntent().getExtras().getInt("size"));
+        SetCards setCards = new SetCards(numCards);
         cards = setCards.getCards();
-        System.out.println(cards.size());
         adapter = new MyAdapter(cards, this);
         gv.setAdapter(adapter);
     }
@@ -118,6 +124,12 @@ public class MemoryGridActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * If taps = 0, it will set the current card ands its char value to global vars.
+     * If taps < 0, then
+     * @param card
+     * @param chr
+     */
     private void setTaps(ImageButton card, TextView chr) {
         if (taps == 0) {
             cardFlip1 = card;
@@ -130,7 +142,10 @@ public class MemoryGridActivity extends AppCompatActivity {
                 points++;
                 strCard1.setVisibility(View.INVISIBLE);
                 chr.setVisibility(View.INVISIBLE);
-                //TODO:Winning screen
+                points += taps;
+                if (points >= numCards) {
+                    //TODO:Winning screen
+                }
                 taps = 0;
             } else {
                 Handler handler = new Handler();
@@ -143,9 +158,12 @@ public class MemoryGridActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Sets both cards to invisible and resets the taps to 0.
+     */
     private void flipBack() {
         cardFlip1.setVisibility(View.VISIBLE);
         cardFlip2.setVisibility(View.VISIBLE);
-        taps = 0;
+        taps=0;
     }
 }
