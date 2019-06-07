@@ -6,16 +6,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/memory_timer"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/memory_grid_view"
+        android:textColor="@color/teal"
+        android:text="Time"
+        android:textAlignment="center"
+        android:background="@drawable/boarder"
+        android:textSize="20sp"/>
+
     <GridView
         android:id="@+id/memory_grid_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="30dp"
         android:gravity="center"
         android:columnWidth="75dp"
         android:numColumns="auto_fit"
         android:verticalSpacing="5dp"
         android:horizontalSpacing="5dp"
         android:stretchMode="spacingWidthUniform"
+        android:background="@drawable/greybackground"
         />
 
 </android.support.constraint.ConstraintLayout>
