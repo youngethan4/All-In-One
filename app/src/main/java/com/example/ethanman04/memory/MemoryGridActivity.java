@@ -3,8 +3,10 @@ package com.example.ethanman04.memory;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.SystemClock;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,6 +19,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.ethanman04.allone.AppActivity;
+import com.example.ethanman04.allone.PreferenceKeys;
 import com.example.ethanman04.allone.R;
 
 import java.util.ArrayList;
@@ -37,6 +40,7 @@ public class MemoryGridActivity extends AppCompatActivity {
     private long startTime;
     private boolean won;
     private ArrayList<Character> cards;
+    private boolean is30;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +57,11 @@ public class MemoryGridActivity extends AppCompatActivity {
     private void setCards() {
         points = 0;
         numCards = getIntent().getExtras().getInt("size");
+
+        //Used later when getting the high score
+        if (numCards == 30) is30 = true;
+        else is30 = false;
+
         gv = findViewById(R.id.memory_grid_view);
         cards = new ArrayList<>();
         SetCards setCards = new SetCards(numCards);
@@ -229,14 +238,43 @@ public class MemoryGridActivity extends AppCompatActivity {
     private void showWinningScreen(){
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(false);
+
+        //Using shared preferences for the high score. Need two based on if it is 30 or 20 cards.
+        long highScore;
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        if (is30) {
+            highScore = sp.getLong(PreferenceKeys.MEMORY_HIGH_SCORE_30, 0);
+        }
+        else {
+            highScore = sp.getLong(PreferenceKeys.MEMORY_HIGH_SCORE_20, 0);
+        }
+
         millisecondTime = SystemClock.uptimeMillis() - startTime;
-        int seconds = (int) (millisecondTime / 1000);
-        int minutes = seconds / 60;
-        seconds = seconds % 60;
-        String textTimer = "" + minutes + ":" + String.format(Locale.ENGLISH,"%02d", seconds);
-        String score = "Your Time: " + textTimer;
-        builder.setTitle(score);
-        builder.setMessage("Would you like to play again?");
+        if (millisecondTime < highScore || highScore == 0.0) {
+            builder.setTitle("New High Score!!!");
+            SharedPreferences.Editor editor = sp.edit();
+            if (is30) {
+                editor.putLong(PreferenceKeys.MEMORY_HIGH_SCORE_30, millisecondTime);
+            }
+            else {
+                editor.putLong(PreferenceKeys.MEMORY_HIGH_SCORE_20, millisecondTime);
+            }
+            editor.apply();
+        }
+        else {
+            String textTimer = millisToString(millisecondTime);
+            String score = "Your Time: " + textTimer;
+            builder.setTitle(score);
+        }
+        if (is30) {
+            highScore = sp.getLong(PreferenceKeys.MEMORY_HIGH_SCORE_30, 0);
+        }
+        else {
+            highScore = sp.getLong(PreferenceKeys.MEMORY_HIGH_SCORE_20, 0);
+        }
+        String highScoreTime = millisToString(highScore);
+        String message = "Your high score is: " + highScoreTime + "\nWould you like to play again?";
+        builder.setMessage(message);
 
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
@@ -266,13 +304,18 @@ public class MemoryGridActivity extends AppCompatActivity {
             @Override
             public void run() {
                 millisecondTime = SystemClock.uptimeMillis() - startTime;
-                int seconds = (int) (millisecondTime / 1000);
-                int minutes = seconds / 60;
-                seconds = seconds % 60;
-                String setTextTimer = "" + minutes + ":" + String.format(Locale.ENGLISH,"%02d", seconds);
+                String setTextTimer = millisToString(millisecondTime);
                 textViewTimer.setText(setTextTimer);
                 if (!won) handler.post(this);
             }
         });
+    }
+
+    private String millisToString(long millis) {
+        int seconds = (int) (millis / 1000);
+        int minutes = seconds / 60;
+        seconds = seconds % 60;
+        String setTextTimer = "" + minutes + ":" + String.format(Locale.ENGLISH,"%02d", seconds);
+        return setTextTimer;
     }
 }
