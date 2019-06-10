@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+
+    <item
+        android:id="@+id/memory_options_theme"
+        android:title="Change Theme" />
+
+    <item
+        android:id="@+id/memory_options_music"
+        android:title="Mute Music"
+        android:checkable="true" />
+
+    <item
+        android:id="@+id/memory_options_sound"
+        android:title="Mute Sound"
+        android:checkable="true" />
+
+</menu>

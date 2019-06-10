@@ -46,6 +46,7 @@ public class MemoryGridActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_memory_grid);
+        getSupportActionBar().hide();
         setCards();
         startTimer();
     }
@@ -89,7 +90,7 @@ public class MemoryGridActivity extends AppCompatActivity {
         @Override
         public int getItemViewType(int position)
         {
-            return R.layout.layout_card;
+            return R.layout.layout_memory_card;
         }
 
         @Override
@@ -107,7 +108,7 @@ public class MemoryGridActivity extends AppCompatActivity {
 
             if (convertView == null) {
                 final LayoutInflater layoutInflater = LayoutInflater.from(con);
-                convertView = layoutInflater.inflate(R.layout.layout_card, null);
+                convertView = layoutInflater.inflate(R.layout.layout_memory_card, null);
 
                 final ImageButton ib = convertView.findViewById(R.id.memory_card);
                 final TextView tv = convertView.findViewById(R.id.memory_card_text);
@@ -294,6 +295,9 @@ public class MemoryGridActivity extends AppCompatActivity {
         builder.create().show();
     }
 
+    /**
+     * Starts the timer using the system clock to record how long the game takes.
+     */
     private void startTimer(){
         won = false;
         startTime = SystemClock.uptimeMillis();
@@ -311,6 +315,11 @@ public class MemoryGridActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Helper method to convert millis to a string value
+     * @param millis
+     * @return users time in string format
+     */
     private String millisToString(long millis) {
         int seconds = (int) (millis / 1000);
         int minutes = seconds / 60;
