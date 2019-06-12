@@ -27,9 +27,8 @@ public class MemoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_memory);
 
-//        if (getSupportActionBar() != null) {
-            getSupportActionBar().show();
-//        }
+        Toolbar myToolbar = findViewById(R.id.memory_toolbar);
+        setSupportActionBar(myToolbar);
         setClicks();
         setHighScore();
     }

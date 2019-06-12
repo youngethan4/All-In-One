@@ -22,6 +22,7 @@
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:textSize="50sp"
+        android:background="@drawable/memory_boarder_red"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="20 Cards" />
@@ -41,6 +42,7 @@
         android:layout_below="@+id/memory_button1"
         android:layout_marginTop="30dp"
         android:layout_centerHorizontal="true"
+        android:background="@drawable/memory_boarder_red"
         android:textSize="50sp"
         android:text="30 Cards" />
 
@@ -52,4 +54,16 @@
         android:layout_below="@+id/memory_button2"
         android:layout_centerHorizontal="true"
         android:text="TextView" />
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/memory_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/memory_boarder_actionbar"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:title="@string/app_name"
+        app:titleTextColor="@color/white"
+        app:titleMarginStart="50sp"/>
+
 </RelativeLayout>

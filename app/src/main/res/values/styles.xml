@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.DayNight.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -11,17 +11,12 @@
 
     <style name="action_bar_wh" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
         <item name="titleTextStyle">@style/action_bar_text</item>
-        <item name="actionOverflowButtonStyle">@style/MyCustomTheme</item>
         <item name="background">@color/colorPrimary</item>
     </style>
 
     <style name="action_bar_text" parent="@style/TextAppearance.AppCompat.Medium">
-        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textColor">@color/white</item>
         <item name="android:textSize">20sp</item>
-    </style>
-
-    <style name="MyCustomTheme">
-        <item name="android:color">@color/colorAccent</item>
     </style>
 
 </resources>

@@ -16,7 +16,7 @@
         android:textColor="@color/teal"
         android:text="Time"
         android:textAlignment="center"
-        android:background="@drawable/boarder"
+        android:background="@drawable/memory_boarder_teal"
         android:textSize="20sp"/>
 
     <GridView

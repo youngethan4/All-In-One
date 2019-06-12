@@ -47,10 +47,6 @@ public class MemoryGridActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_memory_grid);
 
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().hide();
-        }
-
         setCards();
         startTimer();
     }
