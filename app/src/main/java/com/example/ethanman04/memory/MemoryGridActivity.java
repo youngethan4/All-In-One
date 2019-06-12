@@ -231,8 +231,11 @@ public class MemoryGridActivity extends AppCompatActivity {
                 dialog.dismiss();
             }
         });
+        AlertDialog dialog = builder.create();
+        dialog.show();
 
-        builder.create().show();
+        dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(getResources().getColor(R.color.teal));
+        dialog.getButton(DialogInterface.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.teal));
     }
 
     /**
@@ -293,8 +296,11 @@ public class MemoryGridActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        AlertDialog dialog = builder.create();
+        dialog.show();
 
-        builder.create().show();
+        dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(getResources().getColor(R.color.teal));
+        dialog.getButton(DialogInterface.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.teal));
     }
 
     /**
