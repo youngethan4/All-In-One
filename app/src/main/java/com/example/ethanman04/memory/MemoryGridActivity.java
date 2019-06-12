@@ -133,6 +133,8 @@ public class MemoryGridActivity extends AppCompatActivity {
             ib = b;
             tv = v;
 
+            ib.setMaxWidth(240);
+
             ib.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

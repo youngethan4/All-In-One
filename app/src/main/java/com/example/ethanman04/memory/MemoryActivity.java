@@ -2,9 +2,12 @@ package com.example.ethanman04.memory;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.preference.PreferenceManager;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -29,8 +32,25 @@ public class MemoryActivity extends AppCompatActivity {
 
         Toolbar myToolbar = findViewById(R.id.memory_toolbar);
         setSupportActionBar(myToolbar);
+        Drawable drawable = myToolbar.getOverflowIcon();
+        if(drawable != null) {
+            drawable = DrawableCompat.wrap(drawable);
+            DrawableCompat.setTint(drawable.mutate(), getResources().getColor(R.color.white));
+            myToolbar.setOverflowIcon(drawable);
+        }
+
+        setTheme(R.style.TealTheme);
+
         setClicks();
         setHighScore();
+    }
+
+    @Override
+    public Resources.Theme getTheme() {
+        Resources.Theme theme = super.getTheme();
+        theme.applyStyle(R.style.TealTheme, true);
+        // you could also use a switch if you have many themes that could apply
+        return theme;
     }
 
     /**

@@ -12,7 +12,8 @@
         <activity android:name="com.example.ethanman04.memory.MemoryGridActivity"
             android:screenOrientation= "portrait"
             ></activity>
-        <activity android:name="com.example.ethanman04.memory.MemoryActivity" />
+        <activity android:name="com.example.ethanman04.memory.MemoryActivity"
+            android:screenOrientation= "portrait"/>
         <activity android:name=".AppActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
