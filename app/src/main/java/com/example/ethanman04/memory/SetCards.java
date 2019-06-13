@@ -14,6 +14,10 @@ public class SetCards {
         numCards = 0;
     }
 
+    /**
+     * Generates cards based on the number needed (30 or 20) then uses collections to shuffle them
+     * @return list of cards
+     */
     public ArrayList getCards() {
         ArrayList<Character> arrList = new ArrayList<>();
         for (int i = 0; i < numCards/2; i++) {
