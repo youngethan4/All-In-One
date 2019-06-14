@@ -39,12 +39,14 @@ public class MemoryActivity extends AppCompatActivity {
             myToolbar.setOverflowIcon(drawable);
         }
 
-        setTheme(R.style.TealTheme);
-
         setClicks();
         setHighScore();
     }
 
+    /**
+     * Sets the theme based on what is in the shared preference key
+     * @return the theme
+     */
     @Override
     public Resources.Theme getTheme() {
         Resources.Theme theme = super.getTheme();
@@ -166,6 +168,8 @@ public class MemoryActivity extends AppCompatActivity {
 
         switch(item.getItemId()) {
             case R.id.memory_options_theme:
+                Intent intent = new Intent(MemoryActivity.this, ThemeActivity.class);
+                startActivity(intent);
                 break;
             case R.id.memory_options_music:
                 if (muteMusic) {
