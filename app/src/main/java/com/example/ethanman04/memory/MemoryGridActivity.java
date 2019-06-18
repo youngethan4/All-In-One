@@ -41,12 +41,14 @@ public class MemoryGridActivity extends AppCompatActivity {
     private boolean won;
     private ArrayList<Character> cards;
     private boolean is30;
+    SharedPreferences sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_memory_grid);
 
+        sp = PreferenceManager.getDefaultSharedPreferences(this);
         setCards();
         startTimer();
     }
@@ -133,6 +135,10 @@ public class MemoryGridActivity extends AppCompatActivity {
             ib = b;
             tv = v;
 
+            //Sets the card image
+            int drawable = sp.getInt(PreferenceKeys.MEMORY_THEME, R.drawable.blue);
+            ib.setImageDrawable(getResources().getDrawable(drawable));
+
             ib.setMaxWidth(240);
 
             ib.setOnClickListener(new View.OnClickListener() {
@@ -148,7 +154,7 @@ public class MemoryGridActivity extends AppCompatActivity {
     }
 
     /**
-     * If taps = 0, it will set the current card ands its char value to global vars.
+     * If taps = 0, it will set the current teal ands its char value to global vars.
      * If taps > 0, then the game will see if the two chars match. If they do, it starts a delayed
      * thread that will make the chars invisible. The game will also see if this was the winning match.
      * If the two chars do not match, then another delayed thread will start to flip the cards back over.
