@@ -23,6 +23,7 @@ public class ThemeActivity extends AppCompatActivity {
     private HashMap<String, Integer> hashMap;
     private ImageView view;
     private int saveTheme;
+    private int color;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,58 +77,72 @@ public class ThemeActivity extends AppCompatActivity {
             case 0:
                 view.setImageDrawable(getResources().getDrawable( hashMap.get("blue")));
                 saveTheme = hashMap.get("blue");
+                color = R.color.blue;
                 break;
             case 1:
                 view.setImageDrawable(getResources().getDrawable(hashMap.get("brown")));
                 saveTheme = hashMap.get("brown");
+                color = R.color.brown;
                 break;
             case 2:
                 view.setImageDrawable(getResources().getDrawable(hashMap.get("dark_blue")));
                 saveTheme = hashMap.get("dark_blue");
+                color = R.color.dark_blue;
                 break;
             case 3:
                 view.setImageDrawable(getResources().getDrawable(hashMap.get("green")));
                 saveTheme = hashMap.get("green");
+                color = R.color.green;
                 break;
             case 4:
                 view.setImageDrawable(getResources().getDrawable(hashMap.get("grey")));
                 saveTheme = hashMap.get("grey");
+                color = R.color.grey;
                 break;
             case 5:
                 view.setImageDrawable(getResources().getDrawable(hashMap.get("lime")));
                 saveTheme = hashMap.get("lime");
+                color = R.color.lime;
                 break;
             case 6:
                 view.setImageDrawable(getResources().getDrawable(hashMap.get("orange")));
                 saveTheme = hashMap.get("orange");
+                color = R.color.orange;
                 break;
             case 7:
                 view.setImageDrawable(getResources().getDrawable(hashMap.get("pink")));
                 saveTheme = hashMap.get("pink");
+                color = R.color.pink;
                 break;
             case 8:
                 view.setImageDrawable(getResources().getDrawable(hashMap.get("purple")));
                 saveTheme = hashMap.get("purple");
+                color = R.color.purple;
                 break;
             case 9:
                 view.setImageDrawable(getResources().getDrawable(hashMap.get("purple_spotted")));
                 saveTheme = hashMap.get("purple_spotted");
+                color = R.color.purple_spotted;
                 break;
             case 10:
                 view.setImageDrawable(getResources().getDrawable(hashMap.get("rainbow")));
                 saveTheme = hashMap.get("rainbow");
+                color = R.color.rainbow;
                 break;
             case 11:
                 view.setImageDrawable(getResources().getDrawable(hashMap.get("red_pink")));
                 saveTheme = hashMap.get("red_pink");
+                color = R.color.red_pink;
                 break;
             case 12:
                 view.setImageDrawable(getResources().getDrawable(hashMap.get("teal")));
                 saveTheme = hashMap.get("teal");
+                color = R.color.teal;
                 break;
             case 13:
                 view.setImageDrawable(getResources().getDrawable(hashMap.get("white_green")));
                 saveTheme = hashMap.get("white_green");
+                color = R.color.white_green;
                 break;
         }
     }
@@ -151,6 +166,7 @@ public class ThemeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 editor.putInt(PreferenceKeys.MEMORY_THEME, saveTheme);
+                editor.putInt(PreferenceKeys.MEMORY_THEME_COLOR, color);
                 editor.apply();
                 Intent intent = new Intent(ThemeActivity.this, MemoryActivity.class);
                 startActivity(intent);

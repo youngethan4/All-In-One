@@ -317,6 +317,9 @@ public class MemoryGridActivity extends AppCompatActivity {
         startTime = SystemClock.uptimeMillis();
         final TextView textViewTimer = findViewById(R.id.memory_timer);
 
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        textViewTimer.setTextColor(sp.getInt(PreferenceKeys.MEMORY_THEME_COLOR, R.color.blue));
+
         final Handler handler = new Handler();
         handler.post(new Runnable() {
             @Override
