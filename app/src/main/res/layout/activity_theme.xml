@@ -16,6 +16,7 @@
         android:layout_marginTop="25dp"
         android:background="@drawable/memory_boarder_teal"
         android:layout_marginEnd="100dp"
+        android:textAllCaps="false"
         android:text="Save" />
 
     <Button
@@ -27,6 +28,7 @@
         android:layout_marginTop="25dp"
         android:background="@drawable/memory_boarder_teal"
         android:layout_below="@+id/memory_theme_spinner"
+        android:textAllCaps="false"
         android:text="Cancel" />
 
     <!--<com.google.android.gms.ads.AdView-->
@@ -52,4 +54,16 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
         android:src="@drawable/dark_blue" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="60dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_alignEnd="@+id/memory_theme_spinner"
+        android:layout_alignTop="@+id/memory_theme_spinner"
+        app:srcCompat="@drawable/drop_down" />
+
+
 </RelativeLayout>

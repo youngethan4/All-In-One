@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:background="@drawable/greybackground">
+    tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/memory_welcome"
@@ -26,6 +25,7 @@
         android:background="@drawable/memory_boarder_teal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textAllCaps="false"
         android:text="20 Cards" />
 
     <TextView
@@ -45,6 +45,7 @@
         android:layout_centerHorizontal="true"
         android:background="@drawable/memory_boarder_teal"
         android:textSize="50sp"
+        android:textAllCaps="false"
         android:text="30 Cards" />
 
     <TextView

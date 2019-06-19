@@ -240,8 +240,8 @@ public class MemoryGridActivity extends AppCompatActivity {
         AlertDialog dialog = builder.create();
         dialog.show();
 
-        dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(getResources().getColor(R.color.teal));
-        dialog.getButton(DialogInterface.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.teal));
+        dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(getResources().getColor(sp.getInt(PreferenceKeys.MEMORY_THEME_COLOR, R.color.blue)));
+        dialog.getButton(DialogInterface.BUTTON_POSITIVE).setTextColor(getResources().getColor(sp.getInt(PreferenceKeys.MEMORY_THEME_COLOR, R.color.blue)));
     }
 
     /**
@@ -304,9 +304,9 @@ public class MemoryGridActivity extends AppCompatActivity {
         });
         AlertDialog dialog = builder.create();
         dialog.show();
+        dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(getResources().getColor(sp.getInt(PreferenceKeys.MEMORY_THEME_COLOR, R.color.blue)));
+        dialog.getButton(DialogInterface.BUTTON_POSITIVE).setTextColor(getResources().getColor(sp.getInt(PreferenceKeys.MEMORY_THEME_COLOR, R.color.blue)));
 
-        dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(getResources().getColor(R.color.teal));
-        dialog.getButton(DialogInterface.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.teal));
     }
 
     /**
@@ -318,7 +318,8 @@ public class MemoryGridActivity extends AppCompatActivity {
         final TextView textViewTimer = findViewById(R.id.memory_timer);
 
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
-        textViewTimer.setTextColor(sp.getInt(PreferenceKeys.MEMORY_THEME_COLOR, R.color.blue));
+        textViewTimer.setTextColor(getResources().getColor(sp.getInt(PreferenceKeys.MEMORY_THEME_COLOR, R.color.blue)));
+        textViewTimer.setBackground(getResources().getDrawable(sp.getInt(PreferenceKeys.MEMORY_THEME_BOARDER, R.drawable.memory_boarder_blue)));
 
         final Handler handler = new Handler();
         handler.post(new Runnable() {

@@ -38,7 +38,6 @@ public class MemoryActivity extends AppCompatActivity {
             DrawableCompat.setTint(drawable.mutate(), getResources().getColor(R.color.white));
             myToolbar.setOverflowIcon(drawable);
         }
-
         setClicks();
         setHighScore();
     }
@@ -50,7 +49,8 @@ public class MemoryActivity extends AppCompatActivity {
     @Override
     public Resources.Theme getTheme() {
         Resources.Theme theme = super.getTheme();
-        theme.applyStyle(R.style.TealTheme, true);
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        theme.applyStyle(sp.getInt(PreferenceKeys.MEMORY_THEME_STYE, R.style.BlueTheme), true);
         // you could also use a switch if you have many themes that could apply
         return theme;
     }
@@ -62,6 +62,12 @@ public class MemoryActivity extends AppCompatActivity {
     private void setClicks(){
         Button b = findViewById(R.id.memory_button1);
         Button b2 = findViewById(R.id.memory_button2);
+        TextView tv = findViewById(R.id.memory_welcome);
+
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        b.setBackground(getResources().getDrawable(sp.getInt(PreferenceKeys.MEMORY_THEME_BOARDER, R.drawable.memory_boarder_blue)));
+        b2.setBackground(getResources().getDrawable(sp.getInt(PreferenceKeys.MEMORY_THEME_BOARDER, R.drawable.memory_boarder_blue)));
+        tv.setTextColor(getResources().getColor(sp.getInt(PreferenceKeys.MEMORY_THEME_COLOR, R.color.blue)));
 
         b.setOnClickListener(new View.OnClickListener() {
             @Override
