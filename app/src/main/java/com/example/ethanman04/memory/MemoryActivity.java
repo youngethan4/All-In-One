@@ -3,8 +3,6 @@ package com.example.ethanman04.memory;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.preference.PreferenceManager;
 import android.support.v4.graphics.drawable.DrawableCompat;
@@ -25,6 +23,8 @@ import java.util.Locale;
 
 public class MemoryActivity extends AppCompatActivity {
 
+    private SetSound setSound;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +38,9 @@ public class MemoryActivity extends AppCompatActivity {
             DrawableCompat.setTint(drawable.mutate(), getResources().getColor(R.color.white));
             myToolbar.setOverflowIcon(drawable);
         }
+        setSound = new SetSound();
+        setSound.startMusic(MemoryActivity.this);
+
         setClicks();
         setHighScore();
     }
@@ -72,6 +75,7 @@ public class MemoryActivity extends AppCompatActivity {
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                setSound.startButtonNoise(MemoryActivity.this);
                 Intent intent = new Intent(MemoryActivity.this, MemoryGridActivity.class);
                 intent.putExtra("size", 20);
                 startActivity(intent);
@@ -82,6 +86,7 @@ public class MemoryActivity extends AppCompatActivity {
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                setSound.startButtonNoise(MemoryActivity.this);
                 Intent intent = new Intent(MemoryActivity.this, MemoryGridActivity.class);
                 intent.putExtra("size", 30);
                 startActivity(intent);
@@ -94,6 +99,7 @@ public class MemoryActivity extends AppCompatActivity {
      */
     @Override
     public void onBackPressed(){
+        setSound.startButtonNoise(MemoryActivity.this);
         Intent intent = new Intent(MemoryActivity.this, AppActivity.class);
         startActivity(intent);
     }
@@ -174,23 +180,30 @@ public class MemoryActivity extends AppCompatActivity {
 
         switch(item.getItemId()) {
             case R.id.memory_options_theme:
-                Intent intent = new Intent(MemoryActivity.this, ThemeActivity.class);
+                setSound.startButtonNoise(MemoryActivity.this);
+                Intent intent = new Intent(MemoryActivity.this, MemoryThemeActivity.class);
                 startActivity(intent);
                 break;
             case R.id.memory_options_music:
                 if (muteMusic) {
                     item.setChecked(false);
                     editor.putBoolean(PreferenceKeys.MEMORY_MUSIC_CHECKED, false);
+                    editor.apply();
+                    setSound.startMusic(MemoryActivity.this);
+                    setSound.startButtonNoise(MemoryActivity.this);
                 }
                 else {
+                    setSound.stopMusic();
                     item.setChecked(true);
                     editor.putBoolean(PreferenceKeys.MEMORY_MUSIC_CHECKED, true);
+                    setSound.startButtonNoise(MemoryActivity.this);
                 }
                 break;
             case R.id.memory_options_sound:
                 if (muteSound) {
                     item.setChecked(false);
                     editor.putBoolean(PreferenceKeys.MEMORY_SOUND_CHECKED, false);
+                    setSound.startButtonNoise(MemoryActivity.this);
                 }
                 else {
                     item.setChecked(true);
@@ -200,5 +213,19 @@ public class MemoryActivity extends AppCompatActivity {
         }
         editor.apply();
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onDestroy()
+    {
+        super.onDestroy();
+        //setSound.stopMusic();
+    }
+
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+        //setSound.startMusic(MemoryActivity.this);
     }
 }

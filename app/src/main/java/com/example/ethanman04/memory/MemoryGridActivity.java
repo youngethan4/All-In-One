@@ -27,8 +27,8 @@ import java.util.Locale;
 
 public class MemoryGridActivity extends AppCompatActivity {
 
-    private static GridView gv;
-    private static MyAdapter adapter;
+    private GridView gv;
+    private MyAdapter adapter;
     private static int taps;
     private ImageButton cardFlip1;
     private ImageButton cardFlip2;
@@ -42,12 +42,14 @@ public class MemoryGridActivity extends AppCompatActivity {
     private ArrayList<Character> cards;
     private boolean is30;
     SharedPreferences sp;
+    private SetSound setSound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_memory_grid);
 
+        setSound = new SetSound();
         sp = PreferenceManager.getDefaultSharedPreferences(this);
         setCards();
         startTimer();
@@ -144,6 +146,7 @@ public class MemoryGridActivity extends AppCompatActivity {
             ib.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    setSound.startCardNoise(MemoryGridActivity.this);
                     if (taps < 2) {
                         ib.setVisibility(View.INVISIBLE);
                         setTaps(ib, tv);
@@ -197,6 +200,7 @@ public class MemoryGridActivity extends AppCompatActivity {
      * Sets both cards to invisible and resets taps to 0.
      */
     private void flipover(){
+        setSound.startFailNoise(MemoryGridActivity.this);
         strCard1.setVisibility(View.INVISIBLE);
         strCard2.setVisibility(View.INVISIBLE);
         taps = 0;
@@ -213,6 +217,7 @@ public class MemoryGridActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed(){
+        setSound.startButtonNoise(MemoryGridActivity.this);
         showAlertBackPress();
     }
 
@@ -228,12 +233,14 @@ public class MemoryGridActivity extends AppCompatActivity {
         builder.setPositiveButton("Continue", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                setSound.startButtonNoise(MemoryGridActivity.this);
                 finish();
             }
         });
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                setSound.startButtonNoise(MemoryGridActivity.this);
                 dialog.dismiss();
             }
         });
@@ -291,6 +298,7 @@ public class MemoryGridActivity extends AppCompatActivity {
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                setSound.startButtonNoise(MemoryGridActivity.this);
                 Intent intent = new Intent(MemoryGridActivity.this, MemoryActivity.class);
                 startActivity(intent);
             }
@@ -298,6 +306,7 @@ public class MemoryGridActivity extends AppCompatActivity {
         builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                setSound.startButtonNoise(MemoryGridActivity.this);
                 Intent intent = new Intent(MemoryGridActivity.this, AppActivity.class);
                 startActivity(intent);
             }
@@ -342,7 +351,6 @@ public class MemoryGridActivity extends AppCompatActivity {
         int seconds = (int) (millis / 1000);
         int minutes = seconds / 60;
         seconds = seconds % 60;
-        String setTextTimer = "" + minutes + ":" + String.format(Locale.ENGLISH,"%02d", seconds);
-        return setTextTimer;
+        return "" + minutes + ":" + String.format(Locale.ENGLISH,"%02d", seconds);
     }
 }
