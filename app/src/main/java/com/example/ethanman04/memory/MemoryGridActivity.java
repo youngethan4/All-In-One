@@ -49,7 +49,7 @@ public class MemoryGridActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_memory_grid);
 
-        setSound = new SetSound();
+        setSound = SetSound.getInstance();
         sp = PreferenceManager.getDefaultSharedPreferences(this);
         setCards();
         startTimer();
@@ -352,5 +352,19 @@ public class MemoryGridActivity extends AppCompatActivity {
         int minutes = seconds / 60;
         seconds = seconds % 60;
         return "" + minutes + ":" + String.format(Locale.ENGLISH,"%02d", seconds);
+    }
+
+    @Override
+    protected void onPause()
+    {
+        super.onPause();
+        setSound.pauseMusic();
+    }
+
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+        setSound.resumeMusic();
     }
 }

@@ -8,6 +8,12 @@ import com.example.ethanman04.allone.PreferenceKeys;
 import com.example.ethanman04.allone.R;
 
 class SetSound {
+
+    private static SetSound instance = new SetSound();
+    public static SetSound getInstance(){
+        return  instance;
+    }
+
     private MediaPlayer music;
 
      void startButtonNoise(Context context){
@@ -45,5 +51,13 @@ class SetSound {
 
     void stopMusic() {
          music.stop();
+    }
+
+    void pauseMusic(){
+         music.pause();
+    }
+
+    void resumeMusic(){
+         music.start();
     }
 }

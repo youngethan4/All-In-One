@@ -38,7 +38,7 @@ public class MemoryActivity extends AppCompatActivity {
             DrawableCompat.setTint(drawable.mutate(), getResources().getColor(R.color.white));
             myToolbar.setOverflowIcon(drawable);
         }
-        setSound = new SetSound();
+        setSound = SetSound.getInstance();
         setSound.startMusic(MemoryActivity.this);
 
         setClicks();
@@ -216,16 +216,16 @@ public class MemoryActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onDestroy()
+    protected void onPause()
     {
-        super.onDestroy();
-        //setSound.stopMusic();
+        super.onPause();
+        setSound.pauseMusic();
     }
 
     @Override
     protected void onResume()
     {
         super.onResume();
-        //setSound.startMusic(MemoryActivity.this);
+        setSound.resumeMusic();
     }
 }

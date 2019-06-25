@@ -36,7 +36,7 @@ public class MemoryThemeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_theme);
 
-        setSound = new SetSound();
+        setSound = SetSound.getInstance();
         generateHash();
         setSpinner();
         setButtons();
@@ -271,5 +271,19 @@ public class MemoryThemeActivity extends AppCompatActivity {
         setSound.startButtonNoise(MemoryThemeActivity.this);
         Intent intent = new Intent(MemoryThemeActivity.this, MemoryActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    protected void onPause()
+    {
+        super.onPause();
+        setSound.pauseMusic();
+    }
+
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+        setSound.resumeMusic();
     }
 }
