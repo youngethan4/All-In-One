@@ -9,6 +9,7 @@ import com.example.ethanman04.allone.R;
 
 class SetSound {
 
+    //Makes an instance of SetSound that can always be accessed.
     private static SetSound instance = new SetSound();
     public static SetSound getInstance(){
         return  instance;
@@ -16,6 +17,10 @@ class SetSound {
 
     private MediaPlayer music;
 
+    /**
+     * Plays a tapping sound based on if the shared preference to mute noise is not true.
+     * @param context
+     */
      void startButtonNoise(Context context){
          SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
          if (!sp.getBoolean(PreferenceKeys.MEMORY_SOUND_CHECKED, false)) {
@@ -24,6 +29,10 @@ class SetSound {
          }
     }
 
+    /**
+     * Plays a card sound based on if the shared preference to mute noise is not true.
+     * @param context
+     */
     void startCardNoise(Context context){
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
         if (!sp.getBoolean(PreferenceKeys.MEMORY_SOUND_CHECKED, false)) {
@@ -32,7 +41,11 @@ class SetSound {
         }
     }
 
-    void startFailNoise(Context context){
+    /**
+     * Plays a card match sound based on if the shared preference to mute noise is not true.
+     * @param context
+     */
+    void startMatchNoise(Context context){
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
         if (!sp.getBoolean(PreferenceKeys.MEMORY_SOUND_CHECKED, false)) {
             MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.card_fail);
@@ -40,6 +53,10 @@ class SetSound {
         }
     }
 
+    /**
+     * Starts the background music on a loop based on if the shared preference to mute music is not true.
+     * @param context
+     */
     void startMusic(Context context){
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
         if (!sp.getBoolean(PreferenceKeys.MEMORY_MUSIC_CHECKED, false)) {
@@ -49,14 +66,23 @@ class SetSound {
         }
     }
 
+    /**
+     * Stops the music.
+     */
     void stopMusic() {
          music.stop();
     }
 
+    /**
+     * Pauses the music.
+     */
     void pauseMusic(){
          music.pause();
     }
 
+    /**
+     * Resumes the music.
+     */
     void resumeMusic(){
          music.start();
     }

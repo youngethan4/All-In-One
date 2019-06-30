@@ -215,6 +215,9 @@ public class MemoryActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * When the activity is paused, the music will as well.
+     */
     @Override
     protected void onPause()
     {
@@ -222,6 +225,9 @@ public class MemoryActivity extends AppCompatActivity {
         setSound.pauseMusic();
     }
 
+    /**
+     * Once the activity is resumed, the music will also be resumed.
+     */
     @Override
     protected void onResume()
     {

@@ -75,7 +75,9 @@ public class MemoryGridActivity extends AppCompatActivity {
         gv.setAdapter(adapter);
     }
 
-
+    /**
+     * The adaper for the grid view being used.
+     */
     public class MyAdapter extends BaseAdapter {
         ArrayList<Character> cd;
         Context con;
@@ -129,6 +131,9 @@ public class MemoryGridActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * The view holder for each card.
+     */
     public class ViewHolder {
         ImageButton ib;
         TextView tv;
@@ -140,9 +145,11 @@ public class MemoryGridActivity extends AppCompatActivity {
             //Sets the card image
             int drawable = sp.getInt(PreferenceKeys.MEMORY_THEME, R.drawable.blue);
             ib.setImageDrawable(getResources().getDrawable(drawable));
-
             ib.setMaxWidth(240);
 
+            //Only continues to the setTaps method if the user has tapped on 2 cards or less.
+            //These two that the user tapped on must flip back over or disappear before the user can
+            //select another two cards.
             ib.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -200,7 +207,7 @@ public class MemoryGridActivity extends AppCompatActivity {
      * Sets both cards to invisible and resets taps to 0.
      */
     private void flipover(){
-        setSound.startFailNoise(MemoryGridActivity.this);
+        setSound.startMatchNoise(MemoryGridActivity.this);
         strCard1.setVisibility(View.INVISIBLE);
         strCard2.setVisibility(View.INVISIBLE);
         taps = 0;
@@ -354,6 +361,9 @@ public class MemoryGridActivity extends AppCompatActivity {
         return "" + minutes + ":" + String.format(Locale.ENGLISH,"%02d", seconds);
     }
 
+    /**
+     * When the activity is paused, the music will as well.
+     */
     @Override
     protected void onPause()
     {
@@ -361,6 +371,9 @@ public class MemoryGridActivity extends AppCompatActivity {
         setSound.pauseMusic();
     }
 
+    /**
+     * Once the activity is resumed, the music will also be resumed.
+     */
     @Override
     protected void onResume()
     {
