@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.ethanman04.memory.MemoryThemeActivity">
+    tools:context="com.example.ethanman04.memory.MemoryThemeActivity"
+    android:background="@color/white">
 
     <Button
         android:id="@+id/memory_theme_save"
@@ -17,6 +18,7 @@
         android:background="@drawable/memory_boarder_teal"
         android:layout_marginEnd="100dp"
         android:textAllCaps="false"
+        android:textColor="@color/black"
         android:text="Save" />
 
     <Button
@@ -29,6 +31,7 @@
         android:background="@drawable/memory_boarder_teal"
         android:layout_below="@+id/memory_theme_spinner"
         android:textAllCaps="false"
+        android:textColor="@color/black"
         android:text="Cancel" />
 
     <!--<com.google.android.gms.ads.AdView-->
@@ -44,6 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:layout_centerHorizontal="true"
+        android:textColor="@color/black"
         android:background="@drawable/memory_boarder_teal"
         android:layout_below="@+id/memory_theme_image_view"/>
 

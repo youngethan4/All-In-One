@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto">
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    card_view:layout_constraintCircleRadius="10dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -14,8 +15,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_alignLeft="@+id/memory_card"
-            android:layout_alignRight="@+id/memory_card"
+            android:layout_alignStart="@+id/memory_card"
+            android:layout_alignEnd="@+id/memory_card"
             android:text="A"
             android:textAlignment="center"
             android:textSize="50sp"/>
@@ -25,13 +26,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:background="@color/colorPrimary"
+            android:background="@drawable/memory_card_corners"
             android:layout_alignParentStart="true"
             android:adjustViewBounds="true"
             android:maxWidth="65dp"
-            android:padding="2dp"
+            android:padding="7dp"
             android:scaleType="fitCenter"
-            card_view:srcCompat="@drawable/teal" />
+            card_view:srcCompat="@drawable/blue" />
 
     </RelativeLayout>
 

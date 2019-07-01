@@ -49,6 +49,7 @@ public class MemoryThemeActivity extends AppCompatActivity {
                 "Purple Spotted","Rainbow","Red Pink","Teal","White Green"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, themes);
         spinner.setAdapter(adapter);
+
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {

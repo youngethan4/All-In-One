@@ -182,14 +182,14 @@ public class MemoryGridActivity extends AppCompatActivity {
             strCard2 = chr;
             if (strCard1.getText().toString().trim().equals(chr.getText().toString().trim())) {
                 points += taps;
-                if (points >= numCards) {
-                    won = true;
-                    showWinningScreen();
-                }
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     public void run() {
                         flipover();
+                        if (points >= numCards) {
+                            won = true;
+                            showWinningScreen();
+                        }
                     }
                 }, 500);   //.5 seconds
             } else {
@@ -217,6 +217,7 @@ public class MemoryGridActivity extends AppCompatActivity {
      * Sets both cards to invisible and resets the taps to 0.
      */
     private void flipBack() {
+        setSound.startNonMatchNoise(MemoryGridActivity.this);
         cardFlip1.setVisibility(View.VISIBLE);
         cardFlip2.setVisibility(View.VISIBLE);
         taps=0;

@@ -54,7 +54,6 @@ public class MemoryActivity extends AppCompatActivity {
         Resources.Theme theme = super.getTheme();
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         theme.applyStyle(sp.getInt(PreferenceKeys.MEMORY_THEME_STYE, R.style.BlueTheme), true);
-        // you could also use a switch if you have many themes that could apply
         return theme;
     }
 
