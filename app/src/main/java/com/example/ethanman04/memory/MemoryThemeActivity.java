@@ -279,6 +279,6 @@ public class MemoryThemeActivity extends AppCompatActivity {
     protected void onResume()
     {
         super.onResume();
-        setSound.resumeMusic();
+        setSound.resumeMusic(this);
     }
 }

@@ -4,6 +4,7 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
+import android.media.SoundPool;
 import android.preference.PreferenceManager;
 import android.util.SparseIntArray;
 
@@ -31,7 +32,7 @@ class SetSound {
      void startButtonNoise(Context context){
          SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
          if (!sp.getBoolean(PreferenceKeys.MEMORY_SOUND_CHECKED, false)) {
-             MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.button);
+             MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.tap_long);
              mediaPlayer.start();
          }
     }
@@ -43,7 +44,7 @@ class SetSound {
     void startCardNoise(Context context){
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
         if (!sp.getBoolean(PreferenceKeys.MEMORY_SOUND_CHECKED, false)) {
-            MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.card_button);
+            MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.possible_card_tap);
             mediaPlayer.start();
         }
     }
@@ -55,7 +56,7 @@ class SetSound {
     void startMatchNoise(Context context){
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
         if (!sp.getBoolean(PreferenceKeys.MEMORY_SOUND_CHECKED, false)) {
-            MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.card_fail);
+            MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.maybe_match);
             mediaPlayer.start();
         }
     }
@@ -70,6 +71,21 @@ class SetSound {
         if (!sp.getBoolean(PreferenceKeys.MEMORY_SOUND_CHECKED, false)) {
             MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.card_fail);
             mediaPlayer.start();
+        }
+    }
+
+    /**
+     * Plays a winning soundtrack based on if the shared preference
+     * to mute noise is not true.
+     * @param context
+     */
+    void startWinningNoise(Context context){
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+        if (!sp.getBoolean(PreferenceKeys.MEMORY_SOUND_CHECKED, false)) {
+            MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.win);
+            mediaPlayer.start();
+            MediaPlayer mediaPlayer2 = MediaPlayer.create(context, R.raw.cheer);
+            mediaPlayer2.start();
         }
     }
 
@@ -132,9 +148,12 @@ class SetSound {
     /**
      * Resumes the music.
      */
-    void resumeMusic(){
-        if (music != null){
+    void resumeMusic(Context context){
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+
+        if (!sp.getBoolean(PreferenceKeys.MEMORY_MUSIC_CHECKED, false) || music != null) {
             music.start();
         }
+
     }
 }

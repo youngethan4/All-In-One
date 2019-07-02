@@ -187,8 +187,16 @@ public class MemoryGridActivity extends AppCompatActivity {
                     public void run() {
                         flipover();
                         if (points >= numCards) {
+                            setSound.pauseMusic();
                             won = true;
                             showWinningScreen();
+                            Handler h = new Handler();
+                            h.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    setSound.startWinningNoise(MemoryGridActivity.this);
+                                }
+                            }, 50);
                         }
                     }
                 }, 500);   //.5 seconds
@@ -261,6 +269,7 @@ public class MemoryGridActivity extends AppCompatActivity {
 
     /**
      * Shows an alert dialog box to see if the user would like to play again or return to the app list.
+     * This method will also start playing winning music.
      */
     private void showWinningScreen(){
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -379,6 +388,6 @@ public class MemoryGridActivity extends AppCompatActivity {
     protected void onResume()
     {
         super.onResume();
-        setSound.resumeMusic();
+        setSound.resumeMusic(this);
     }
 }
