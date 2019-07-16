@@ -1,25 +1,22 @@
 package com.example.ethanman04.memory;
 
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
-import android.media.SoundPool;
 import android.preference.PreferenceManager;
 import android.util.SparseIntArray;
-
 import com.example.ethanman04.allone.PreferenceKeys;
 import com.example.ethanman04.allone.R;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Random;
 
-class SetSound {
+public class SetSound {
 
     //Makes an instance of SetSound that can always be accessed.
-    private static SetSound instance = new SetSound();
-    public static SetSound getInstance(){
+    private static SetSound instance;
+    public static synchronized SetSound getInstance(){
+        if (instance == null){
+            instance = new SetSound();
+        }
         return  instance;
     }
 
@@ -101,6 +98,11 @@ class SetSound {
         }
     }
 
+    /**
+     * Adds all the songs to a sparseintarray and then selects one to play randomly.
+     * Once the song is completed, the method recursively calls itself.
+     * @param context
+     */
     void shuffelMusic(Context context){
         final Context c = context;
 
@@ -124,7 +126,6 @@ class SetSound {
                 shuffelMusic(c);
             }
         });
-
     }
 
     /**
