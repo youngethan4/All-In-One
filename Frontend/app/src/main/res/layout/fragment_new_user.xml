@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.ethanman04.Login.NewUserFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/new_user_first_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:backgroundTint="@color/blue"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text=""
+            android:textSize="30dp"
+            android:hint="First Name"/>
+
+        <EditText
+            android:id="@+id/new_user_last_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/new_user_first_name"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/blue"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text=""
+            android:textSize="30dp"
+            android:hint="Last Name"/>
+
+        <EditText
+            android:id="@+id/new_user_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/new_user_last_name"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/blue"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text=""
+            android:textSize="30dp"
+            android:hint="Create Username"/>
+
+        <EditText
+            android:id="@+id/new_user_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/new_user_username"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/blue"
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            android:text=""
+            android:textSize="30dp"
+            android:hint="Enter Email"/>
+
+        <EditText
+            android:id="@+id/new_user_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/new_user_email"
+            android:backgroundTint="@color/blue"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:text=""
+            android:textSize="30dp"
+            android:hint="Create Password"/>
+
+        <EditText
+            android:id="@+id/new_user_confirm_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/new_user_password"
+            android:backgroundTint="@color/blue"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:text=""
+            android:textSize="30dp"
+            android:hint="Confirm Password"/>
+
+        <Button
+            android:id="@+id/new_user_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/new_user_confirm_password"
+            android:textAllCaps="false"
+            android:textSize="30sp"
+            android:ems="5"
+            android:background="@drawable/memory_boarder_blue"
+            android:text="Create" />
+
+
+    </RelativeLayout>
+
+
+
+</FrameLayout>

@@ -5,23 +5,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context="com.example.ethanman04.Login.LoginActivity">
 
-    <android.support.design.widget.TabLayout
+    <android.support.v4.view.ViewPager
+        android:id="@+id/login_view_pager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="2dp">
+        android:layout_height="match_parent" >
 
-        <android.support.design.widget.TabItem
-            android:layout_width="wrap_content"
+        <android.support.design.widget.TabLayout
+            android:id="@+id/login_tab_layout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Login" />
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="2dp">
 
-        <android.support.design.widget.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="New User" />
-
-    </android.support.design.widget.TabLayout>
+        </android.support.design.widget.TabLayout>
+    </android.support.v4.view.ViewPager>
 </RelativeLayout>
