@@ -1,14 +1,17 @@
 package com.example.ethanman04.Login;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.ethanman04.allone.R;
+import com.example.ethanman04.memory.MemoryActivity;
 
 
 /**
@@ -32,8 +35,8 @@ public class LoginTabFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
 
     public LoginTabFragment() {
-        // Required empty public constructor
     }
+
 
     /**
      * Use this factory method to create a new instance of
@@ -65,8 +68,16 @@ public class LoginTabFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_login_tab, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_login_tab, container, false);
+        Button loginButton = rootView.findViewById(R.id.login_button);
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), MemoryActivity.class);
+                startActivity(intent);
+            }
+        });
+        return rootView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

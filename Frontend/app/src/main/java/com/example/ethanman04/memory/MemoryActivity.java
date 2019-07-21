@@ -99,8 +99,10 @@ public class MemoryActivity extends AppCompatActivity {
     @Override
     public void onBackPressed(){
         setSound.startButtonNoise(MemoryActivity.this);
-        Intent intent = new Intent(MemoryActivity.this, AppActivity.class);
-        startActivity(intent);
+        Intent a = new Intent(Intent.ACTION_MAIN);
+        a.addCategory(Intent.CATEGORY_HOME);
+        a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(a);
     }
 
     /**
