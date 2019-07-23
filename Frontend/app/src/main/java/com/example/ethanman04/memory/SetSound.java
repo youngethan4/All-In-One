@@ -13,7 +13,7 @@ public class SetSound {
 
     //Makes an instance of SetSound that can always be accessed.
     private static SetSound instance;
-    public static synchronized SetSound getInstance(){
+    static synchronized SetSound getInstance(){
         if (instance == null){
             instance = new SetSound();
         }
@@ -29,8 +29,14 @@ public class SetSound {
      void startButtonNoise(Context context){
          SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
          if (!sp.getBoolean(PreferenceKeys.MEMORY_SOUND_CHECKED, false)) {
-             MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.tap_long);
+             final MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.tap_long);
              mediaPlayer.start();
+             mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                 @Override
+                 public void onCompletion(MediaPlayer mp) {
+                     mediaPlayer.release();
+                 }
+             });
          }
     }
 
@@ -41,8 +47,14 @@ public class SetSound {
     void startCardNoise(Context context){
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
         if (!sp.getBoolean(PreferenceKeys.MEMORY_SOUND_CHECKED, false)) {
-            MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.possible_card_tap);
+            final MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.possible_card_tap);
             mediaPlayer.start();
+            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    mediaPlayer.release();
+                }
+            });
         }
     }
 
@@ -53,8 +65,14 @@ public class SetSound {
     void startMatchNoise(Context context){
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
         if (!sp.getBoolean(PreferenceKeys.MEMORY_SOUND_CHECKED, false)) {
-            MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.maybe_match);
+            final MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.maybe_match);
             mediaPlayer.start();
+            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    mediaPlayer.release();
+                }
+            });
         }
     }
 
@@ -66,8 +84,14 @@ public class SetSound {
     void startNonMatchNoise(Context context){
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
         if (!sp.getBoolean(PreferenceKeys.MEMORY_SOUND_CHECKED, false)) {
-            MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.card_fail);
+            final MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.card_fail);
             mediaPlayer.start();
+            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    mediaPlayer.release();
+                }
+            });
         }
     }
 
@@ -79,10 +103,22 @@ public class SetSound {
     void startWinningNoise(Context context){
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
         if (!sp.getBoolean(PreferenceKeys.MEMORY_SOUND_CHECKED, false)) {
-            MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.win);
+            final MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.win);
             mediaPlayer.start();
-            MediaPlayer mediaPlayer2 = MediaPlayer.create(context, R.raw.cheer);
+            final MediaPlayer mediaPlayer2 = MediaPlayer.create(context, R.raw.cheer);
             mediaPlayer2.start();
+            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    mediaPlayer.release();
+                }
+            });
+            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    mediaPlayer2.release();
+                }
+            });
         }
     }
 
@@ -94,7 +130,12 @@ public class SetSound {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
 
         if (!sp.getBoolean(PreferenceKeys.MEMORY_MUSIC_CHECKED, false)) {
-            shuffelMusic(context);
+            if (music == null) {
+                shuffelMusic(context);
+            }
+            else {
+                resumeMusic(context);
+            }
         }
     }
 
@@ -103,7 +144,7 @@ public class SetSound {
      * Once the song is completed, the method recursively calls itself.
      * @param context
      */
-    void shuffelMusic(Context context){
+    private void shuffelMusic(Context context){
         final Context c = context;
 
         SparseIntArray songs = new SparseIntArray();
@@ -123,7 +164,11 @@ public class SetSound {
         music.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mp) {
-                shuffelMusic(c);
+                SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(c);
+
+                if (!sp.getBoolean(PreferenceKeys.MEMORY_MUSIC_CHECKED, false)) {
+                    shuffelMusic(c);
+                }
             }
         });
     }
@@ -134,6 +179,8 @@ public class SetSound {
     void stopMusic() {
         if (music != null) {
             music.stop();
+            music.release();
+            music = null;
         }
     }
 
@@ -152,7 +199,7 @@ public class SetSound {
     void resumeMusic(Context context){
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
 
-        if (!sp.getBoolean(PreferenceKeys.MEMORY_MUSIC_CHECKED, false) || music != null) {
+        if (!sp.getBoolean(PreferenceKeys.MEMORY_MUSIC_CHECKED, false) && music != null) {
             music.start();
         }
 

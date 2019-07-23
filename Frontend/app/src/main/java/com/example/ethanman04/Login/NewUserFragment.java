@@ -8,7 +8,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.example.ethanman04.allone.Endpoints;
 import com.example.ethanman04.allone.R;
+import com.example.ethanman04.allone.VolleyRequests;
+
+import org.json.JSONObject;
 
 
 /**
@@ -67,6 +75,24 @@ public class NewUserFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_new_user, container, false);
+    }
+
+    private void sendCreateAccountRequest(){
+        JSONObject jsonObject = new JSONObject();
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, Endpoints.getInstance().getCreateUserEndpoint(), jsonObject, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                //TODO: Create user response.
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+
+        VolleyRequests.getInstance(getActivity()).addToRequestQueue(jsonObjectRequest);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

@@ -94,7 +94,7 @@ public class MemoryActivity extends AppCompatActivity {
     }
 
     /**
-     * Sets the Android back button to go to AppActivity from this
+     * Sets the Android back button to go to the home screen
      */
     @Override
     public void onBackPressed(){

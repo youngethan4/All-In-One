@@ -32,11 +32,12 @@ public class LoginTabFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    private View rootView;
+
     private OnFragmentInteractionListener mListener;
 
     public LoginTabFragment() {
     }
-
 
     /**
      * Use this factory method to create a new instance of
@@ -68,7 +69,14 @@ public class LoginTabFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_login_tab, container, false);
+        rootView = inflater.inflate(R.layout.fragment_login_tab, container, false);
+
+        login();
+
+        return rootView;
+    }
+
+    public void login(){
         Button loginButton = rootView.findViewById(R.id.login_button);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,7 +85,6 @@ public class LoginTabFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        return rootView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

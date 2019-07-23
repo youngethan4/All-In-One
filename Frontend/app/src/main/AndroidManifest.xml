@@ -11,8 +11,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.example.ethanman04.Login.LoginActivity" />
-        <activity android:name="com.example.ethanman04.memory.MemoryThemeActivity" />
+        <activity
+            android:name="com.example.ethanman04.Login.LoginActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.example.ethanman04.memory.MemoryThemeActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name="com.example.ethanman04.memory.MemoryGridActivity"
             android:screenOrientation="portrait" />
