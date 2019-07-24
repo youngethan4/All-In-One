@@ -18,7 +18,6 @@ import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.example.ethanman04.allone.AppActivity;
 import com.example.ethanman04.allone.PreferenceKeys;
 import com.example.ethanman04.allone.R;
 
@@ -316,7 +315,7 @@ public class MemoryGridActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 setSound.startButtonNoise(MemoryGridActivity.this);
-                Intent intent = new Intent(MemoryGridActivity.this, MemoryActivity.class);
+                Intent intent = new Intent(MemoryGridActivity.this, MemoryGridActivity.class);
                 startActivity(intent);
             }
         });
@@ -324,7 +323,7 @@ public class MemoryGridActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 setSound.startButtonNoise(MemoryGridActivity.this);
-                Intent intent = new Intent(MemoryGridActivity.this, AppActivity.class);
+                Intent intent = new Intent(MemoryGridActivity.this, MemoryActivity.class);
                 startActivity(intent);
             }
         });

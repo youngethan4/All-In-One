@@ -15,7 +15,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.ethanman04.allone.AppActivity;
 import com.example.ethanman04.allone.PreferenceKeys;
 import com.example.ethanman04.allone.R;
 

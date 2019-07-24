@@ -9,9 +9,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.example.ethanman04.allone.Endpoints;
 import com.example.ethanman04.allone.R;
+import com.example.ethanman04.allone.VolleyRequests;
 import com.example.ethanman04.memory.MemoryActivity;
+
+import org.json.JSONObject;
+
+import java.math.BigInteger;
+import java.nio.charset.Charset;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 
 /**
@@ -33,6 +48,7 @@ public class LoginTabFragment extends Fragment {
     private String mParam2;
 
     private View rootView;
+    private AccountHelper accountHelper;
 
     private OnFragmentInteractionListener mListener;
 
@@ -70,21 +86,60 @@ public class LoginTabFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_login_tab, container, false);
-
+        accountHelper = new AccountHelper();
         login();
 
         return rootView;
     }
 
-    public void login(){
+    /**
+     * This method checks the login credential before a request is even called to make sure of valid characters.
+     */
+    private void login(){
         Button loginButton = rootView.findViewById(R.id.login_button);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), MemoryActivity.class);
-                startActivity(intent);
+                boolean validUsername = accountHelper.checkUsername(rootView.findViewById(R.id.login_username).toString().trim());
+                if (!validUsername) displayError();
+                String hashPass = accountHelper.hashPass(rootView.findViewById(R.id.login_password).toString());
+                if (hashPass == null) displayError();
+
+                if (validUsername && hashPass != null) {
+                    sendLoginRequest();
+                }
             }
         });
+    }
+
+    /**
+     * Changes the error text field to say the username or password is incorrect.
+     */
+    private void displayError(){
+        TextView error = rootView.findViewById(R.id.login_error);
+        String setText = "Invalid Username or Password";
+        error.setText(setText);
+    }
+
+    /**
+     * Send a request to the backend with the credentials. The response will contain either true with their id or false.
+     */
+    private void sendLoginRequest(){
+        JSONObject jsonObject = new JSONObject();
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, Endpoints.getInstance().getLoginUserEndpoint(), jsonObject, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                //TODO: Create user response.
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+
+        VolleyRequests.getInstance(getActivity()).addToRequestQueue(jsonObjectRequest);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

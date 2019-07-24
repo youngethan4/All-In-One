@@ -105,9 +105,15 @@
             android:background="@drawable/memory_boarder_blue"
             android:text="Create" />
 
-
+        <TextView
+            android:id="@+id/new_user_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="error"
+            android:textColor="@color/red_pink"
+            android:layout_marginTop="10dp"
+            android:visibility="invisible"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/new_user_button"/>
     </RelativeLayout>
-
-
-
 </FrameLayout>

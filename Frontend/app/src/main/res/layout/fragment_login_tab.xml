@@ -56,5 +56,16 @@
             android:textColor="@color/blue"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/login_password"/>
+
+        <TextView
+            android:id="@+id/login_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Login Error"
+            android:textColor="@color/red_pink"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/login_button"
+            android:visibility="invisible"/>
     </RelativeLayout>
 </FrameLayout>

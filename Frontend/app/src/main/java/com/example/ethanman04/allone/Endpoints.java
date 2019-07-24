@@ -13,10 +13,15 @@ public class Endpoints {
 
     private Endpoints(){}
 
-    private String url = "http://173.22.77.190:3000/";
-    private String createUserEndpoint = url + "api/create/user";
+    private String url = "http://173.22.77.190:3000/api/";
+    private String createUserEndpoint = url + "create/user";
+    private String loginUserEndpoint = url + "login/user";
 
     final public String getCreateUserEndpoint() {
         return createUserEndpoint;
+    }
+
+    final public String getLoginUserEndpoint(){
+        return loginUserEndpoint;
     }
 }

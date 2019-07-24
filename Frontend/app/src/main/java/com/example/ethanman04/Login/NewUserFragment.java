@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -36,6 +38,8 @@ public class NewUserFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private View rootView;
+    private AccountHelper accountHelper;
 
     private OnFragmentInteractionListener mListener;
 
@@ -73,10 +77,85 @@ public class NewUserFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        rootView = inflater.inflate(R.layout.fragment_new_user, container, false);
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_new_user, container, false);
+        accountHelper = new AccountHelper();
+        create();
+
+        return rootView;
     }
 
+    /**
+     * At the time the create button is pressed, this method checks over all of the fields.
+     */
+    private void create(){
+        Button createButton = rootView.findViewById(R.id.new_user_button);
+        createButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String firstName = rootView.findViewById(R.id.new_user_first_name).toString().trim();
+                String lastName = rootView.findViewById(R.id.new_user_last_name).toString().trim();
+                String username = rootView.findViewById(R.id.new_user_username).toString().trim();
+                String email = rootView.findViewById(R.id.new_user_email).toString().trim();
+                String pass = rootView.findViewById(R.id.new_user_password).toString();
+                boolean firstNameValid = accountHelper.checkName(firstName);
+                if (!firstNameValid) displayError(0);
+                boolean lastNameValid = accountHelper.checkName(lastName);
+                if (!lastNameValid) displayError(1);
+                boolean usernameValid = accountHelper.checkUsername(username);
+                if (!usernameValid) displayError(2);
+                boolean emailValid = accountHelper.checkEmail(email);
+                if (!emailValid) displayError(3);
+                String passHash = accountHelper.hashPass(pass);
+                boolean passMatch = false;
+                if(passHash == null) displayError(4);
+                else {
+                    if (pass.equals(rootView.findViewById(R.id.new_user_confirm_password).toString())){
+                        passMatch = true;
+                    }
+                    else displayError(5);
+                }
+                if (passMatch && firstNameValid && lastNameValid && usernameValid && emailValid && passHash != null)
+                    sendCreateAccountRequest();
+            }
+        });
+    }
+
+    /**
+     * Displays an error depending on the input int
+     * @param n
+     */
+    private void displayError(int n){
+        TextView error = rootView.findViewById(R.id.new_user_error);
+        String setError;
+        switch (n) {
+            case 0:
+                setError = "Letters only in first name.";
+                break;
+            case 1:
+                setError = "Letters only in last name.";
+                break;
+            case 2:
+                setError = "Letters and numbers only in username.";
+                break;
+            case 3:
+                setError = "Invalid email format.";
+                break;
+            case 4:
+                setError = "Unsupported character in password.";
+                break;
+            case 5:
+                setError = "Passwords do not match.";
+                break;
+            default:
+                setError = "Error";
+        }
+        error.setText(setError);
+    }
+
+    /**
+     * Send the account info to put into the database
+     */
     private void sendCreateAccountRequest(){
         JSONObject jsonObject = new JSONObject();
 

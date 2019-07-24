@@ -23,7 +23,6 @@
         <activity
             android:name="com.example.ethanman04.memory.MemoryActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".AppActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
