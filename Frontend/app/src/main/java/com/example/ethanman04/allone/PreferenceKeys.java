@@ -10,4 +10,6 @@ public class PreferenceKeys {
     public static final String MEMORY_THEME_COLOR = "THEME_COLOR";
     public static final String MEMORY_THEME_BOARDER = "THEME_BOARDER";
     public static final String MEMORY_THEME_STYE = "THEME_STYLE";
+
+    public static final String LOGGED_IN_USER = "USER_LOGGED_IN";
 }

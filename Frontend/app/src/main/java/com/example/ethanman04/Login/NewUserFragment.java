@@ -1,8 +1,11 @@
 package com.example.ethanman04.Login;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,10 +18,14 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.ethanman04.allone.Endpoints;
+import com.example.ethanman04.allone.PreferenceKeys;
 import com.example.ethanman04.allone.R;
 import com.example.ethanman04.allone.VolleyRequests;
+import com.example.ethanman04.memory.MemoryActivity;
 
 import org.json.JSONObject;
+
+import java.util.HashMap;
 
 
 /**
@@ -115,8 +122,16 @@ public class NewUserFragment extends Fragment {
                     }
                     else displayError(5);
                 }
-                if (passMatch && firstNameValid && lastNameValid && usernameValid && emailValid && passHash != null)
-                    sendCreateAccountRequest();
+                if (passMatch && firstNameValid && lastNameValid && usernameValid && emailValid && passHash != null) {
+                    HashMap<String,String> hashMap = new HashMap<>();
+                    hashMap.put("firstname", firstName);
+                    hashMap.put("lastnamw", lastName);
+                    hashMap.put("username", username);
+                    hashMap.put("email", email);
+                    hashMap.put("password", passHash);
+                    sendCreateAccountRequest(new JSONObject(hashMap));
+                }
+
             }
         });
     }
@@ -156,18 +171,26 @@ public class NewUserFragment extends Fragment {
     /**
      * Send the account info to put into the database
      */
-    private void sendCreateAccountRequest(){
-        JSONObject jsonObject = new JSONObject();
-
+    private void sendCreateAccountRequest(JSONObject jsonObject){
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, Endpoints.getInstance().getCreateUserEndpoint(), jsonObject, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                //TODO: Create user response.
+                SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getContext());
+                SharedPreferences.Editor editor = sp.edit();
+                try {
+                    editor.putInt(PreferenceKeys.LOGGED_IN_USER, response.getInt("userid"));
+                }
+                catch(Exception e) {
+                    e.printStackTrace();
+                }
+                editor.apply();
+                Intent intent = new Intent(getActivity(), MemoryActivity.class);
+                startActivity(intent);
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                error.printStackTrace();
             }
         });
 

@@ -2,8 +2,10 @@ package com.example.ethanman04.Login;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +19,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.ethanman04.allone.Endpoints;
+import com.example.ethanman04.allone.PreferenceKeys;
 import com.example.ethanman04.allone.R;
 import com.example.ethanman04.allone.VolleyRequests;
 import com.example.ethanman04.memory.MemoryActivity;
@@ -27,6 +30,7 @@ import java.math.BigInteger;
 import java.nio.charset.Charset;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.HashMap;
 
 
 /**
@@ -100,13 +104,17 @@ public class LoginTabFragment extends Fragment {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean validUsername = accountHelper.checkUsername(rootView.findViewById(R.id.login_username).toString().trim());
+                String username = rootView.findViewById(R.id.login_username).toString().trim();
+                boolean validUsername = accountHelper.checkUsername(username);
                 if (!validUsername) displayError();
                 String hashPass = accountHelper.hashPass(rootView.findViewById(R.id.login_password).toString());
                 if (hashPass == null) displayError();
 
                 if (validUsername && hashPass != null) {
-                    sendLoginRequest();
+                    HashMap<String, String> hashMap = new HashMap<>();
+                    hashMap.put("username", username);
+                    hashMap.put("password", hashPass);
+                    sendLoginRequest(new JSONObject(hashMap));
                 }
             }
         });
@@ -124,18 +132,27 @@ public class LoginTabFragment extends Fragment {
     /**
      * Send a request to the backend with the credentials. The response will contain either true with their id or false.
      */
-    private void sendLoginRequest(){
-        JSONObject jsonObject = new JSONObject();
-
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, Endpoints.getInstance().getLoginUserEndpoint(), jsonObject, new Response.Listener<JSONObject>() {
+    private void sendLoginRequest(JSONObject jsonObject){
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, Endpoints.getInstance().getLoginUserEndpoint(),
+                jsonObject, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                //TODO: Create user response.
+                SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getContext());
+                SharedPreferences.Editor editor = sp.edit();
+                try {
+                    editor.putInt(PreferenceKeys.LOGGED_IN_USER, response.getInt("userid"));
+                }
+                catch(Exception e) {
+                    e.printStackTrace();
+                }
+                editor.apply();
+                Intent intent = new Intent(getActivity(), MemoryActivity.class);
+                startActivity(intent);
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                error.printStackTrace();
             }
         });
 
