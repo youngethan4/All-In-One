@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -100,11 +101,17 @@ public class NewUserFragment extends Fragment {
         createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String firstName = rootView.findViewById(R.id.new_user_first_name).toString().trim();
-                String lastName = rootView.findViewById(R.id.new_user_last_name).toString().trim();
-                String username = rootView.findViewById(R.id.new_user_username).toString().trim();
-                String email = rootView.findViewById(R.id.new_user_email).toString().trim();
-                String pass = rootView.findViewById(R.id.new_user_password).toString();
+                rootView.findViewById(R.id.new_user_error).setVisibility(View.INVISIBLE);
+                EditText firstNameEditText = rootView.findViewById(R.id.new_user_first_name);
+                String firstName = firstNameEditText.getText().toString().trim();
+                EditText lastNameEditText = rootView.findViewById(R.id.new_user_last_name);
+                String lastName = lastNameEditText.getText().toString().trim();
+                EditText usernameEditText = rootView.findViewById(R.id.new_user_username);
+                String username = usernameEditText.getText().toString().trim();
+                EditText emailEditText = rootView.findViewById(R.id.new_user_email);
+                String email = emailEditText.getText().toString().trim();
+                EditText passEditText = rootView.findViewById(R.id.new_user_password);
+                String pass = passEditText.getText().toString();
                 boolean firstNameValid = accountHelper.checkName(firstName);
                 if (!firstNameValid) displayError(0);
                 boolean lastNameValid = accountHelper.checkName(lastName);
@@ -166,6 +173,7 @@ public class NewUserFragment extends Fragment {
                 setError = "Error";
         }
         error.setText(setError);
+        error.setVisibility(View.VISIBLE);
     }
 
     /**

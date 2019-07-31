@@ -9,6 +9,7 @@ import java.math.BigInteger;
 import java.nio.charset.Charset;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.regex.Pattern;
 
 class AccountHelper {
 
@@ -39,7 +40,7 @@ class AccountHelper {
      */
     String hashPass(String pass){
         MessageDigest digest;
-        if (pass.matches("[!#-&0-9@-Za-z]")){
+        if (pass.matches("[0-9A-Za-z]")){
             try
             {
                 digest = MessageDigest.getInstance("MD5");
@@ -52,7 +53,6 @@ class AccountHelper {
             {
                 e.printStackTrace();
             }
-            return null;
         }
         return null;
     }
