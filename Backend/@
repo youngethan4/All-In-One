@@ -7,17 +7,13 @@ var  url = require('url');
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 
-var conJSON = require('./app/pass.json');//(mysql);
-//var o = conJSON.getConInfo;
-//console.log(JSON.stringify(conJSON));
-
-console.log("\n#########################################");
-console.log(conJSON[0]);
-
-
-//console.log("conJSON : "+o);
-//console.log("Type of conJSON : "+typeof(o));
-var con = mysql.createConnection(conJSON); //Try this later once I get a feel of node js.
+var conJSON = require('./app/pass.js');//(mysql);
+var o = conJSON.getConInfo;
+console.log(JSON.stringify(conJSON));
+console.log(conJSON);
+console.log("conJSON : "+o);
+console.log("Type of conJSON : "+typeof(o));
+var con = mysql.createConnection(JSON.parse(conJSON.conInfo)); //Try this later once I get a feel of node js.
 //require('./app/routes/user.routes.js')(app, con);
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
@@ -46,13 +42,11 @@ app.post("/api/create/user", (req, res) => {
     con.query(sql, function(err, result){
       if(err) throw err;
       console.log("registered!");
-      var jsonReturn = {"message":"User registered."};
+      var jsonReturn = {message:"User registered."};
       res.json(jsonReturn);
     });
   }
   catch (err){
     console.log("Registering new user error.");
-    var retJsonObj = {"message":"Rip"};
-    res.json(retJsonObj);
   }
 });

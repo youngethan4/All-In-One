@@ -52,7 +52,5 @@ app.post("/api/create/user", (req, res) => {
   }
   catch (err){
     console.log("Registering new user error.");
-    var retJsonObj = {"message":"Rip"};
-    res.json(retJsonObj);
   }
 });
