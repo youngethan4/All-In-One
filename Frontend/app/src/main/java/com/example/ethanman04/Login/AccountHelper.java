@@ -9,26 +9,25 @@ import java.math.BigInteger;
 import java.nio.charset.Charset;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.regex.Pattern;
 
 class AccountHelper {
 
      AccountHelper(){}
 
      boolean checkUsername(String username){
-        if (username.matches("[0-9A-Za-z]"))
+        if (username.matches("[0-9A-Za-z]+"))
             return true;
         return false;
     }
 
     boolean checkName(String name){
-        if (name.matches("[A-Za-z]"))
+        if (name.matches("[A-Za-z]+"))
             return true;
         return false;
     }
 
     boolean checkEmail(String email){
-         if (email.matches("[0-9A-Za-z]@[A-za-z].[A-Za-z]")){
+         if (email.matches("[0-9A-Za-z]+@[A-za-z]+\\.[A-Za-z]+")){
              return true;
          }
          return false;
@@ -40,7 +39,7 @@ class AccountHelper {
      */
     String hashPass(String pass){
         MessageDigest digest;
-        if (pass.matches("[0-9A-Za-z]")){
+        if (pass.matches("[0-9A-Za-z!@#$%^&*()_+=?|:;]+")){
             try
             {
                 digest = MessageDigest.getInstance("MD5");

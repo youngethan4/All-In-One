@@ -104,10 +104,12 @@ public class LoginTabFragment extends Fragment {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String username = rootView.findViewById(R.id.login_username).toString().trim();
+                EditText usernameEditText = rootView.findViewById(R.id.login_username);
+                String username = usernameEditText.getText().toString().trim();
+                EditText passEditText = rootView.findViewById(R.id.login_password);
                 boolean validUsername = accountHelper.checkUsername(username);
                 if (!validUsername) displayError();
-                String hashPass = accountHelper.hashPass(rootView.findViewById(R.id.login_password).toString());
+                String hashPass = accountHelper.hashPass(passEditText.getText().toString());
                 if (hashPass == null) displayError();
 
                 if (validUsername && hashPass != null) {

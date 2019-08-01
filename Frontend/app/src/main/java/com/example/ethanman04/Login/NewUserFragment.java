@@ -124,7 +124,8 @@ public class NewUserFragment extends Fragment {
                 boolean passMatch = false;
                 if(passHash == null) displayError(4);
                 else {
-                    if (pass.equals(rootView.findViewById(R.id.new_user_confirm_password).toString())){
+                    EditText confirm = rootView.findViewById(R.id.new_user_confirm_password);
+                    if (pass.equals(confirm.getText().toString())){
                         passMatch = true;
                     }
                     else displayError(5);
@@ -132,7 +133,7 @@ public class NewUserFragment extends Fragment {
                 if (passMatch && firstNameValid && lastNameValid && usernameValid && emailValid && passHash != null) {
                     HashMap<String,String> hashMap = new HashMap<>();
                     hashMap.put("firstname", firstName);
-                    hashMap.put("lastnamw", lastName);
+                    hashMap.put("lastname", lastName);
                     hashMap.put("username", username);
                     hashMap.put("email", email);
                     hashMap.put("password", passHash);
