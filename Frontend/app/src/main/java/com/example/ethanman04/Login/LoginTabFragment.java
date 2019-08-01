@@ -26,10 +26,6 @@ import com.example.ethanman04.memory.MemoryActivity;
 
 import org.json.JSONObject;
 
-import java.math.BigInteger;
-import java.nio.charset.Charset;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 
 
@@ -104,17 +100,17 @@ public class LoginTabFragment extends Fragment {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText usernameEditText = rootView.findViewById(R.id.login_username);
-                String username = usernameEditText.getText().toString().trim();
+                EditText emailEditText = rootView.findViewById(R.id.login_email);
+                String email = emailEditText.getText().toString().trim();
                 EditText passEditText = rootView.findViewById(R.id.login_password);
-                boolean validUsername = accountHelper.checkUsername(username);
-                if (!validUsername) displayError();
+                boolean validemail = accountHelper.emailSupportedFormat(email);
+                if (!validemail) displayError();
                 String hashPass = accountHelper.hashPass(passEditText.getText().toString());
                 if (hashPass == null) displayError();
 
-                if (validUsername && hashPass != null) {
+                if (validemail && hashPass != null) {
                     HashMap<String, String> hashMap = new HashMap<>();
-                    hashMap.put("username", username);
+                    hashMap.put("email", email);
                     hashMap.put("password", hashPass);
                     sendLoginRequest(new JSONObject(hashMap));
                 }
@@ -127,12 +123,13 @@ public class LoginTabFragment extends Fragment {
      */
     private void displayError(){
         TextView error = rootView.findViewById(R.id.login_error);
-        String setText = "Invalid Username or Password";
+        String setText = "Invalid email or password.";
         error.setText(setText);
     }
 
     /**
-     * Send a request to the backend with the credentials. The response will contain either true with their id or false.
+     * Send a request to the backend with the credentials. The response will contain the userid.
+     * If the user id comes back as 0, it is not a valid login.
      */
     private void sendLoginRequest(JSONObject jsonObject){
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, Endpoints.getInstance().getLoginUserEndpoint(),
@@ -141,15 +138,21 @@ public class LoginTabFragment extends Fragment {
             public void onResponse(JSONObject response) {
                 SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getContext());
                 SharedPreferences.Editor editor = sp.edit();
+                int userID = 0;
                 try {
-                    editor.putInt(PreferenceKeys.LOGGED_IN_USER, response.getInt("userid"));
+                     userID = response.getInt("userid");
                 }
                 catch(Exception e) {
                     e.printStackTrace();
                 }
-                editor.apply();
-                Intent intent = new Intent(getActivity(), MemoryActivity.class);
-                startActivity(intent);
+
+                if (userID < 2){
+                    editor.putInt(PreferenceKeys.LOGGED_IN_USER, userID);
+                    editor.apply();
+                    Intent intent = new Intent(getActivity(), MemoryActivity.class);
+                    startActivity(intent);
+                }
+                else displayError();
             }
         }, new Response.ErrorListener() {
             @Override

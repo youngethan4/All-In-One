@@ -36,7 +36,7 @@
             android:backgroundTint="@color/blue"/>
 
         <EditText
-            android:id="@+id/login_username"
+            android:id="@+id/login_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -44,7 +44,7 @@
             android:textSize="30sp"
             android:ems="10"
             android:layout_above="@+id/login_password"
-            android:hint="Username"
+            android:hint="Email"
             android:inputType="textPersonName"
             android:backgroundTint="@color/blue"/>
 

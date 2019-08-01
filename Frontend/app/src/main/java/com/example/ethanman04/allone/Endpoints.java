@@ -15,8 +15,8 @@ public class Endpoints {
 
     private String internal = "http://192.168.0.25:3000/api/";
     private String url = "http://173.22.77.190:3000/api/";
-    private String createUserEndpoint = internal + "create/user";
-    private String loginUserEndpoint = internal + "login/user";
+    private String createUserEndpoint = url + "create/user";
+    private String loginUserEndpoint = url + "login/user";
 
     final public String getCreateUserEndpoint() {
         return createUserEndpoint;
