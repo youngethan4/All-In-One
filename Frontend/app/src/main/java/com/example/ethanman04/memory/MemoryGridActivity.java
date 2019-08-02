@@ -144,7 +144,7 @@ public class MemoryGridActivity extends AppCompatActivity {
             //Sets the card image
             int drawable = sp.getInt(PreferenceKeys.MEMORY_THEME, R.drawable.blue);
             ib.setImageDrawable(getResources().getDrawable(drawable));
-            ib.setMaxWidth(240);
+            ib.setMaxWidth(230);
 
             //Only continues to the setTaps method if the user has tapped on 2 cards or less.
             //These two that the user tapped on must flip back over or disappear before the user can

@@ -100,6 +100,7 @@ public class LoginTabFragment extends Fragment {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                rootView.findViewById(R.id.login_error).setVisibility(View.INVISIBLE);
                 EditText emailEditText = rootView.findViewById(R.id.login_email);
                 String email = emailEditText.getText().toString().trim();
                 EditText passEditText = rootView.findViewById(R.id.login_password);
@@ -125,6 +126,7 @@ public class LoginTabFragment extends Fragment {
         TextView error = rootView.findViewById(R.id.login_error);
         String setText = "Invalid email or password.";
         error.setText(setText);
+        error.setVisibility(View.VISIBLE);
     }
 
     /**
@@ -132,7 +134,7 @@ public class LoginTabFragment extends Fragment {
      * If the user id comes back as 0, it is not a valid login.
      */
     private void sendLoginRequest(JSONObject jsonObject){
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, Endpoints.getInstance().getLoginUserEndpoint(),
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, Endpoints.getInstance().getLoginUserEndpoint(),
                 jsonObject, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
@@ -146,13 +148,14 @@ public class LoginTabFragment extends Fragment {
                     e.printStackTrace();
                 }
 
-                if (userID < 2){
+                if (userID > 2){
                     editor.putInt(PreferenceKeys.LOGGED_IN_USER, userID);
                     editor.apply();
                     Intent intent = new Intent(getActivity(), MemoryActivity.class);
                     startActivity(intent);
+                } else{
+                    displayError();
                 }
-                else displayError();
             }
         }, new Response.ErrorListener() {
             @Override

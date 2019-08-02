@@ -36,7 +36,7 @@ class AccountHelper {
     }
 
     boolean passLongEnough(String pass){
-        if (pass.length() <= 8)
+        if (pass.length() >= 8)
             return true;
         return false;
     }
