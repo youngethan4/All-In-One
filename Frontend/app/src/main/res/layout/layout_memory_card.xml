@@ -32,7 +32,7 @@
             android:maxWidth="65dp"
             android:padding="7dp"
             android:scaleType="fitCenter"
-            card_view:srcCompat="@drawable/blue" />
+            card_view:srcCompat="@drawable/card_blue" />
 
     </RelativeLayout>
 

@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.ethanman04.Login.ProfileActivity;
 import com.example.ethanman04.allone.PreferenceKeys;
 import com.example.ethanman04.allone.R;
 
@@ -179,10 +180,15 @@ public class MemoryActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = sp.edit();
 
         switch(item.getItemId()) {
+            case R.id.memory_options_profile:
+                setSound.startButtonNoise(MemoryActivity.this);
+                Intent intent = new Intent(MemoryActivity.this, ProfileActivity.class);
+                startActivity(intent);
+                break;
             case R.id.memory_options_theme:
                 setSound.startButtonNoise(MemoryActivity.this);
-                Intent intent = new Intent(MemoryActivity.this, MemoryThemeActivity.class);
-                startActivity(intent);
+                Intent i = new Intent(MemoryActivity.this, MemoryThemeActivity.class);
+                startActivity(i);
                 break;
             case R.id.memory_options_music:
                 if (muteMusic) {

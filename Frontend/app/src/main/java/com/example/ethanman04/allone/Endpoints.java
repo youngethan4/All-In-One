@@ -17,6 +17,7 @@ public class Endpoints {
     private String url = "http://173.22.77.190:3000/api/";
     private String createUserEndpoint = url + "create/user";
     private String loginUserEndpoint = url + "login/user";
+    private String editProfileEndpoint = url + "edit/profile";
 
     final public String getCreateUserEndpoint() {
         return createUserEndpoint;
@@ -24,5 +25,9 @@ public class Endpoints {
 
     final public String getLoginUserEndpoint(){
         return loginUserEndpoint;
+    }
+
+    final public String updateUserProfileEndpoint() {
+        return editProfileEndpoint;
     }
 }

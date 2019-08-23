@@ -13,7 +13,7 @@ public class SetSound {
 
     //Makes an instance of SetSound that can always be accessed.
     private static SetSound instance;
-    static synchronized SetSound getInstance(){
+    public static synchronized SetSound getInstance(){
         if (instance == null){
             instance = new SetSound();
         }
@@ -187,7 +187,7 @@ public class SetSound {
     /**
      * Pauses the music.
      */
-    void pauseMusic(){
+    public void pauseMusic(){
         if (music != null) {
             music.pause();
         }
@@ -196,7 +196,7 @@ public class SetSound {
     /**
      * Resumes the music.
      */
-    void resumeMusic(Context context){
+    public void resumeMusic(Context context){
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
 
         if (!sp.getBoolean(PreferenceKeys.MEMORY_MUSIC_CHECKED, false) && music != null) {

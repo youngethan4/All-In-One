@@ -141,15 +141,21 @@ public class LoginTabFragment extends Fragment {
                 SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getContext());
                 SharedPreferences.Editor editor = sp.edit();
                 int userID = 0;
+                String username = null;
+                int icon = R.drawable.avatar_dolphin;
                 try {
                      userID = response.getInt("userid");
+                     username = response.getString("username");
+                     icon = response.getInt("icon");
                 }
                 catch(Exception e) {
                     e.printStackTrace();
                 }
 
                 if (userID > 2){
-                    editor.putInt(PreferenceKeys.LOGGED_IN_USER, userID);
+                    editor.putInt(PreferenceKeys.LOGGED_IN_USER_ID, userID);
+                    editor.putString(PreferenceKeys.LOGGED_IN_USER_USERNAME, username);
+                    editor.putInt(PreferenceKeys.LOGGED_IN_USER_ICON, icon);
                     editor.apply();
                     Intent intent = new Intent(getActivity(), MemoryActivity.class);
                     startActivity(intent);

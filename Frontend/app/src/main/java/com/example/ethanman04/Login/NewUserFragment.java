@@ -156,13 +156,15 @@ public class NewUserFragment extends Fragment {
             displayError("Passwords do not match.");
         }
 
+        //Create a json and pass it to the sendCreateAccountRequest method.
         if (passOK && firstNameValid && lastNameValid && usernameValid && emailValid) {
-            HashMap<String,String> hashMap = new HashMap<>();
+            HashMap<String,Object> hashMap = new HashMap<>();
             hashMap.put("firstname", firstName);
             hashMap.put("lastname", lastName);
             hashMap.put("username", username);
             hashMap.put("email", email);
             hashMap.put("password", passHash);
+            hashMap.put("icon", R.drawable.avatar_dolphin);
             sendCreateAccountRequest(new JSONObject(hashMap));
         }
         checkingFields = false;
@@ -174,7 +176,6 @@ public class NewUserFragment extends Fragment {
      */
     private void displayError(String setError){
         TextView error = rootView.findViewById(R.id.new_user_error);
-
         error.setText(setError);
         error.setVisibility(View.VISIBLE);
     }
@@ -182,7 +183,7 @@ public class NewUserFragment extends Fragment {
     /**
      * Send the account info to put into the database
      */
-    private void sendCreateAccountRequest(JSONObject jsonObject){
+    private void sendCreateAccountRequest(final JSONObject jsonObject){
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, Endpoints.getInstance().getCreateUserEndpoint(), jsonObject, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
@@ -191,11 +192,13 @@ public class NewUserFragment extends Fragment {
                 int userID = 0;
                 try {
                     userID = response.getInt("userid");
+                    editor.putInt(PreferenceKeys.LOGGED_IN_USER_ICON, R.drawable.avatar_dolphin);
+                    editor.putString(PreferenceKeys.LOGGED_IN_USER_USERNAME, jsonObject.getString("username"));
                 }
                 catch(Exception e) {
                     e.printStackTrace();
                 }
-                editor.putInt(PreferenceKeys.LOGGED_IN_USER, userID);
+                editor.putInt(PreferenceKeys.LOGGED_IN_USER_ID, userID);
                 editor.apply();
                 if (userID > 2){
                     Intent intent = new Intent(getActivity(), MemoryActivity.class);

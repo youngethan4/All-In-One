@@ -77,7 +77,7 @@ public class MemoryGridActivity extends AppCompatActivity {
     /**
      * The adaper for the grid view being used.
      */
-    public class MyAdapter extends BaseAdapter {
+    private class MyAdapter extends BaseAdapter {
         ArrayList<Character> cd;
         Context con;
 
@@ -133,16 +133,16 @@ public class MemoryGridActivity extends AppCompatActivity {
     /**
      * The view holder for each card.
      */
-    public class ViewHolder {
+    private class ViewHolder {
         ImageButton ib;
         TextView tv;
 
-        public ViewHolder(ImageButton b, TextView v) {
+        private ViewHolder(ImageButton b, TextView v) {
             ib = b;
             tv = v;
 
             //Sets the card image
-            int drawable = sp.getInt(PreferenceKeys.MEMORY_THEME, R.drawable.blue);
+            int drawable = sp.getInt(PreferenceKeys.MEMORY_THEME, R.drawable.card_blue);
             ib.setImageDrawable(getResources().getDrawable(drawable));
             ib.setMaxWidth(230);
 
@@ -163,7 +163,7 @@ public class MemoryGridActivity extends AppCompatActivity {
     }
 
     /**
-     * If taps = 0, it will set the current teal ands its char value to global vars.
+     * If taps = 0, it will set the current card_teal ands its char value to global vars.
      * If taps > 0, then the game will see if the two chars match. If they do, it starts a delayed
      * thread that will make the chars invisible. The game will also see if this was the winning match.
      * If the two chars do not match, then another delayed thread will start to flip the cards back over.

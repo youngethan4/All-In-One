@@ -11,5 +11,7 @@ public class PreferenceKeys {
     public static final String MEMORY_THEME_BOARDER = "THEME_BOARDER";
     public static final String MEMORY_THEME_STYE = "THEME_STYLE";
 
-    public static final String LOGGED_IN_USER = "USER_LOGGED_IN";
+    public static final String LOGGED_IN_USER_ID = "USER_LOGGED_IN";
+    public static final String LOGGED_IN_USER_USERNAME = "USERNAME";
+    public static final String LOGGED_IN_USER_ICON = "ICON";
 }
