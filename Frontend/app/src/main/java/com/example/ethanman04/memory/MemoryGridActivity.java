@@ -315,8 +315,8 @@ public class MemoryGridActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 setSound.startButtonNoise(MemoryGridActivity.this);
-                Intent intent = new Intent(MemoryGridActivity.this, MemoryGridActivity.class);
-                startActivity(intent);
+                finish();
+                startActivity(getIntent());
             }
         });
         builder.setNegativeButton("No", new DialogInterface.OnClickListener() {

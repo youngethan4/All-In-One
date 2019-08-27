@@ -3,6 +3,7 @@ package com.example.ethanman04.Login;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.preference.PreferenceManager;
@@ -48,9 +49,45 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
+        setupTheme();
         getIcon();
         setupGridView();
         setListeners();
+    }
+
+    /**
+     * Sets the color accents in the activity to the proper theme.
+     */
+    private void setupTheme(){
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        Button save = findViewById(R.id.edit_profile_save);
+        Button cancel = findViewById(R.id.edit_profile_cancel);
+        View line = findViewById(R.id.edit_profile_line);
+        EditText username = findViewById(R.id.edit_profile_username_edit);
+        EditText newPass = findViewById(R.id.edit_profile_new_password_edit);
+        EditText confirmPass = findViewById(R.id.edit_profile_confirm_password_edit);
+        EditText currentPass = findViewById(R.id.edit_profile_current_password_edit);
+        int[][] states = new int[][] {
+                new int[] { android.R.attr.state_enabled}, // enabled
+                new int[] {-android.R.attr.state_enabled}, // disabled
+                new int[] {-android.R.attr.state_checked}, // unchecked
+                new int[] { android.R.attr.state_pressed}  // pressed
+        };
+
+        int[] colors = new int[] {
+                getResources().getColor(sp.getInt(PreferenceKeys.MEMORY_THEME_COLOR, R.color.blue)),
+                getResources().getColor(sp.getInt(PreferenceKeys.MEMORY_THEME_COLOR, R.color.blue)),
+                getResources().getColor(sp.getInt(PreferenceKeys.MEMORY_THEME_COLOR, R.color.blue)),
+                getResources().getColor(sp.getInt(PreferenceKeys.MEMORY_THEME_COLOR, R.color.blue))
+        };
+
+        save.setBackgroundResource(sp.getInt(PreferenceKeys.MEMORY_THEME_BOARDER, R.drawable.memory_boarder_blue));
+        cancel.setBackgroundResource(sp.getInt(PreferenceKeys.MEMORY_THEME_BOARDER, R.drawable.memory_boarder_blue));
+        line.setBackgroundColor(getResources().getColor(sp.getInt(PreferenceKeys.MEMORY_THEME_COLOR, R.color.blue)));
+        username.setBackgroundTintList(new ColorStateList(states, colors));
+        newPass.setBackgroundTintList(new ColorStateList(states, colors));
+        confirmPass.setBackgroundTintList(new ColorStateList(states, colors));
+        currentPass.setBackgroundTintList(new ColorStateList(states, colors));
     }
 
     /**
