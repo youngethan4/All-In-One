@@ -6,6 +6,10 @@
 
 
     <item
+        android:id="@+id/memory_options_profile"
+        android:title="Edit Profile" />
+
+    <item
         android:id="@+id/memory_options_theme"
         android:title="Change Theme" />
 

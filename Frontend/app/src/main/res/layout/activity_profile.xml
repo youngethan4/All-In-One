@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.ethanman04.Login.ProfileActivity">
+
+    <TextView
+        android:id="@+id/edit_profile_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="Edit Profile"
+        android:textColor="@color/black"
+        android:textSize="35sp" />
+
+    <Button
+        android:id="@+id/edit_profile_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:background="@drawable/memory_boarder_blue"
+        android:textSize="15sp"
+        android:textAllCaps="false"
+        android:ems="6"
+        android:text="Cancel" />
+
+    <Button
+        android:id="@+id/edit_profile_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/memory_boarder_blue"
+        android:textSize="15sp"
+        android:ems="6"
+        android:textAllCaps="false"
+        android:text="Save" />
+
+    <View
+        android:id="@+id/edit_profile_line"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="@color/blue"
+        android:layout_below="@+id/edit_profile_title"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/edit_profile_line">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/edit_profile_username_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="25dp"
+                android:text="Username:"
+                android:textColor="@color/black"
+                android:textSize="25sp" />
+
+            <EditText
+                android:id="@+id/edit_profile_username_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:layout_marginTop="25dp"
+                android:inputType="textPersonName"
+                android:backgroundTint="@color/blue"
+                android:layout_toEndOf="@+id/edit_profile_username_view"
+                android:layout_alignParentTop="true"/>
+
+            <TextView
+                android:id="@+id/edit_profile_change_icon_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Change Profile Icon"
+                android:layout_marginTop="15dp"
+                android:textColor="@color/black"
+                android:layout_centerHorizontal="true"
+                android:textSize="25sp"
+                android:layout_below="@+id/edit_profile_username_edit" />
+
+            <TextView
+                android:id="@+id/edit_profile_current_icon_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Current"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="30dp"
+                android:textColor="@color/black"
+                android:layout_alignStart="@+id/edit_profile_username_view"
+                android:textSize="20sp"
+                android:layout_below="@+id/edit_profile_change_icon_view" />
+
+            <ImageView
+                android:id="@+id/edit_profile_current_icon"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_below="@+id/edit_profile_current_icon_view"
+                android:layout_alignStart="@+id/edit_profile_username_view"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="10dp"
+                app:srcCompat="@drawable/avatar_dolphin" />
+
+            <GridView
+                android:id="@+id/edit_profile_icons_gv"
+                android:layout_width="250dp"
+                android:layout_height="200dp"
+                android:layout_below="@+id/edit_profile_change_icon_view"
+                android:numColumns="4"
+                android:layout_alignParentEnd="true"/>
+
+            <TextView
+                android:id="@+id/edit_profile_change_password_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Change Password"
+                android:layout_marginTop="15dp"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/edit_profile_icons_gv" />
+
+            <EditText
+                android:id="@+id/edit_profile_current_password_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:backgroundTint="@color/blue"
+                android:inputType="textPassword"
+                android:hint="Current Password"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/edit_profile_change_password_view"/>
+
+            <EditText
+                android:id="@+id/edit_profile_new_password_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/blue"
+                android:ems="10"
+                android:inputType="textPassword"
+                android:hint="New Password"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/edit_profile_current_password_edit"/>
+
+            <EditText
+                android:id="@+id/edit_profile_confirm_password_edit"
+                android:layout_width="wrap_content"
+                android:backgroundTint="@color/blue"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPassword"
+                android:hint="Confirm New Password"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/edit_profile_new_password_edit"/>
+
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

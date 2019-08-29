@@ -57,7 +57,7 @@
         android:layout_height="400dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
-        android:src="@drawable/dark_blue" />
+        android:src="@drawable/card_dark_blue" />
 
     <ImageView
         android:id="@+id/imageView"

@@ -18,7 +18,6 @@ import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.example.ethanman04.allone.AppActivity;
 import com.example.ethanman04.allone.PreferenceKeys;
 import com.example.ethanman04.allone.R;
 
@@ -78,7 +77,7 @@ public class MemoryGridActivity extends AppCompatActivity {
     /**
      * The adaper for the grid view being used.
      */
-    public class MyAdapter extends BaseAdapter {
+    private class MyAdapter extends BaseAdapter {
         ArrayList<Character> cd;
         Context con;
 
@@ -134,18 +133,18 @@ public class MemoryGridActivity extends AppCompatActivity {
     /**
      * The view holder for each card.
      */
-    public class ViewHolder {
+    private class ViewHolder {
         ImageButton ib;
         TextView tv;
 
-        public ViewHolder(ImageButton b, TextView v) {
+        private ViewHolder(ImageButton b, TextView v) {
             ib = b;
             tv = v;
 
             //Sets the card image
-            int drawable = sp.getInt(PreferenceKeys.MEMORY_THEME, R.drawable.blue);
+            int drawable = sp.getInt(PreferenceKeys.MEMORY_THEME, R.drawable.card_blue);
             ib.setImageDrawable(getResources().getDrawable(drawable));
-            ib.setMaxWidth(240);
+            ib.setMaxWidth(230);
 
             //Only continues to the setTaps method if the user has tapped on 2 cards or less.
             //These two that the user tapped on must flip back over or disappear before the user can
@@ -164,7 +163,7 @@ public class MemoryGridActivity extends AppCompatActivity {
     }
 
     /**
-     * If taps = 0, it will set the current teal ands its char value to global vars.
+     * If taps = 0, it will set the current card_teal ands its char value to global vars.
      * If taps > 0, then the game will see if the two chars match. If they do, it starts a delayed
      * thread that will make the chars invisible. The game will also see if this was the winning match.
      * If the two chars do not match, then another delayed thread will start to flip the cards back over.
@@ -316,15 +315,15 @@ public class MemoryGridActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 setSound.startButtonNoise(MemoryGridActivity.this);
-                Intent intent = new Intent(MemoryGridActivity.this, MemoryActivity.class);
-                startActivity(intent);
+                finish();
+                startActivity(getIntent());
             }
         });
         builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 setSound.startButtonNoise(MemoryGridActivity.this);
-                Intent intent = new Intent(MemoryGridActivity.this, AppActivity.class);
+                Intent intent = new Intent(MemoryGridActivity.this, MemoryActivity.class);
                 startActivity(intent);
             }
         });

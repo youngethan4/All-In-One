@@ -77,141 +77,141 @@ public class MemoryThemeActivity extends AppCompatActivity {
     private void changeImage(int pos){
         switch(pos){
             case 0:
-                view.setImageDrawable(getResources().getDrawable(R.drawable.blue));
+                view.setImageDrawable(getResources().getDrawable(R.drawable.card_blue));
                 cancelButton.setBackground(getResources().getDrawable(R.drawable.memory_boarder_blue));
                 saveButton.setBackground(getResources().getDrawable(R.drawable.memory_boarder_blue));
                 spinner.setBackground(getResources().getDrawable(R.drawable.memory_boarder_blue));
-                saveTheme = R.drawable.blue;
+                saveTheme = R.drawable.card_blue;
                 color = R.color.blue;
                 boarder = R.drawable.memory_boarder_blue;
                 style = R.style.BlueTheme;
                 break;
             case 1:
-                view.setImageDrawable(getResources().getDrawable(R.drawable.brown));
+                view.setImageDrawable(getResources().getDrawable(R.drawable.card_brown));
                 cancelButton.setBackground(getResources().getDrawable(R.drawable.memory_boarder_brown));
                 saveButton.setBackground(getResources().getDrawable(R.drawable.memory_boarder_brown));
                 spinner.setBackground(getResources().getDrawable(R.drawable.memory_boarder_brown));
-                saveTheme = R.drawable.brown;
+                saveTheme = R.drawable.card_brown;
                 color = R.color.brown;
                 boarder = R.drawable.memory_boarder_brown;
                 style = R.style.BrownTheme;
                 break;
             case 2:
-                view.setImageDrawable(getResources().getDrawable(R.drawable.dark_blue));
+                view.setImageDrawable(getResources().getDrawable(R.drawable.card_dark_blue));
                 cancelButton.setBackground(getResources().getDrawable(R.drawable.memory_boarder_darkblue));
                 saveButton.setBackground(getResources().getDrawable(R.drawable.memory_boarder_darkblue));
                 spinner.setBackground(getResources().getDrawable(R.drawable.memory_boarder_darkblue));
-                saveTheme = R.drawable.dark_blue;
+                saveTheme = R.drawable.card_dark_blue;
                 color = R.color.dark_blue;
                 boarder = R.drawable.memory_boarder_darkblue;
                 style = R.style.DarkBlueTheme;
                 break;
             case 3:
-                view.setImageDrawable(getResources().getDrawable(R.drawable.green));
+                view.setImageDrawable(getResources().getDrawable(R.drawable.card_green));
                 cancelButton.setBackground(getResources().getDrawable(R.drawable.memory_boarder_green));
                 saveButton.setBackground(getResources().getDrawable(R.drawable.memory_boarder_green));
                 spinner.setBackground(getResources().getDrawable(R.drawable.memory_boarder_green));
-                saveTheme = R.drawable.green;
+                saveTheme = R.drawable.card_green;
                 color = R.color.green;
                 boarder = R.drawable.memory_boarder_green;
                 style = R.style.GreenTheme;
                 break;
             case 4:
-                view.setImageDrawable(getResources().getDrawable(R.drawable.grey));
+                view.setImageDrawable(getResources().getDrawable(R.drawable.card_grey));
                 cancelButton.setBackground(getResources().getDrawable(R.drawable.memory_boarder_grey));
                 saveButton.setBackground(getResources().getDrawable(R.drawable.memory_boarder_grey));
                 spinner.setBackground(getResources().getDrawable(R.drawable.memory_boarder_grey));
-                saveTheme = R.drawable.grey;
+                saveTheme = R.drawable.card_grey;
                 color = R.color.grey;
                 boarder = R.drawable.memory_boarder_grey;
                 style = R.style.GreyTheme;
                 break;
             case 5:
-                view.setImageDrawable(getResources().getDrawable(R.drawable.lime));
+                view.setImageDrawable(getResources().getDrawable(R.drawable.card_lime));
                 cancelButton.setBackground(getResources().getDrawable(R.drawable.memory_boarder_lime));
                 saveButton.setBackground(getResources().getDrawable(R.drawable.memory_boarder_lime));
                 spinner.setBackground(getResources().getDrawable(R.drawable.memory_boarder_lime));
-                saveTheme = R.drawable.lime;
+                saveTheme = R.drawable.card_lime;
                 color = R.color.lime;
                 boarder = R.drawable.memory_boarder_lime;
                 style = R.style.LimeTheme;
                 break;
             case 6:
-                view.setImageDrawable(getResources().getDrawable(R.drawable.orange));
+                view.setImageDrawable(getResources().getDrawable(R.drawable.card_orange));
                 cancelButton.setBackground(getResources().getDrawable(R.drawable.memory_boarder_orange));
                 saveButton.setBackground(getResources().getDrawable(R.drawable.memory_boarder_orange));
                 spinner.setBackground(getResources().getDrawable(R.drawable.memory_boarder_orange));
-                saveTheme = R.drawable.orange;
+                saveTheme = R.drawable.card_orange;
                 color = R.color.orange;
                 boarder = R.drawable.memory_boarder_orange;
                 style = R.style.OrangeTheme;
                 break;
             case 7:
-                view.setImageDrawable(getResources().getDrawable(R.drawable.pink));
+                view.setImageDrawable(getResources().getDrawable(R.drawable.card_pink));
                 cancelButton.setBackground(getResources().getDrawable(R.drawable.memory_boarder_pink));
                 saveButton.setBackground(getResources().getDrawable(R.drawable.memory_boarder_pink));
                 spinner.setBackground(getResources().getDrawable(R.drawable.memory_boarder_pink));
-                saveTheme = R.drawable.pink;
+                saveTheme = R.drawable.card_pink;
                 color = R.color.pink;
                 boarder = R.drawable.memory_boarder_pink;
                 style = R.style.PinkTheme;
                 break;
             case 8:
-                view.setImageDrawable(getResources().getDrawable(R.drawable.purple));
+                view.setImageDrawable(getResources().getDrawable(R.drawable.card_purple));
                 cancelButton.setBackground(getResources().getDrawable(R.drawable.memory_boarder_purple));
                 saveButton.setBackground(getResources().getDrawable(R.drawable.memory_boarder_purple));
                 spinner.setBackground(getResources().getDrawable(R.drawable.memory_boarder_purple));
-                saveTheme = R.drawable.purple;
+                saveTheme = R.drawable.card_purple;
                 color = R.color.purple;
                 boarder = R.drawable.memory_boarder_purple;
                 style = R.style.PurpleTheme;
                 break;
             case 9:
-                view.setImageDrawable(getResources().getDrawable(R.drawable.purple_spotted));
+                view.setImageDrawable(getResources().getDrawable(R.drawable.card_purple_spotted));
                 cancelButton.setBackground(getResources().getDrawable(R.drawable.memory_boarder_purplespotted));
                 saveButton.setBackground(getResources().getDrawable(R.drawable.memory_boarder_purplespotted));
                 spinner.setBackground(getResources().getDrawable(R.drawable.memory_boarder_purplespotted));
-                saveTheme = R.drawable.purple_spotted;
+                saveTheme = R.drawable.card_purple_spotted;
                 color = R.color.purple_spotted;
                 boarder = R.drawable.memory_boarder_purplespotted;
                 style = R.style.PurpleSpottedTheme;
                 break;
             case 10:
-                view.setImageDrawable(getResources().getDrawable(R.drawable.rainbow));
+                view.setImageDrawable(getResources().getDrawable(R.drawable.card_rainbow));
                 cancelButton.setBackground(getResources().getDrawable(R.drawable.memory_boarder_rainbow));
                 saveButton.setBackground(getResources().getDrawable(R.drawable.memory_boarder_rainbow));
                 spinner.setBackground(getResources().getDrawable(R.drawable.memory_boarder_rainbow));
-                saveTheme = R.drawable.rainbow;
+                saveTheme = R.drawable.card_rainbow;
                 color = R.color.rainbow;
                 boarder = R.drawable.memory_boarder_rainbow;
                 style = R.style.RainbowTheme;
                 break;
             case 11:
-                view.setImageDrawable(getResources().getDrawable(R.drawable.red_pink));
+                view.setImageDrawable(getResources().getDrawable(R.drawable.card_red_pink));
                 cancelButton.setBackground(getResources().getDrawable(R.drawable.memory_boarder_redpink));
                 saveButton.setBackground(getResources().getDrawable(R.drawable.memory_boarder_redpink));
                 spinner.setBackground(getResources().getDrawable(R.drawable.memory_boarder_redpink));
-                saveTheme = R.drawable.red_pink;
+                saveTheme = R.drawable.card_red_pink;
                 color = R.color.red_pink;
                 boarder = R.drawable.memory_boarder_redpink;
                 style = R.style.RedPinkTheme;
                 break;
             case 12:
-                view.setImageDrawable(getResources().getDrawable(R.drawable.teal));
+                view.setImageDrawable(getResources().getDrawable(R.drawable.card_teal));
                 cancelButton.setBackground(getResources().getDrawable(R.drawable.memory_boarder_teal));
                 saveButton.setBackground(getResources().getDrawable(R.drawable.memory_boarder_teal));
                 spinner.setBackground(getResources().getDrawable(R.drawable.memory_boarder_teal));
-                saveTheme = R.drawable.teal;
+                saveTheme = R.drawable.card_teal;
                 color = R.color.teal;
                 boarder = R.drawable.memory_boarder_teal;
                 style = R.style.TealTheme;
                 break;
             case 13:
-                view.setImageDrawable(getResources().getDrawable(R.drawable.white_green));
+                view.setImageDrawable(getResources().getDrawable(R.drawable.card_white_green));
                 cancelButton.setBackground(getResources().getDrawable(R.drawable.memory_boarder_whitegreen));
                 saveButton.setBackground(getResources().getDrawable(R.drawable.memory_boarder_whitegreen));
                 spinner.setBackground(getResources().getDrawable(R.drawable.memory_boarder_whitegreen));
-                saveTheme = R.drawable.white_green;
+                saveTheme = R.drawable.card_white_green;
                 color = R.color.white_green;
                 boarder = R.drawable.memory_boarder_whitegreen;
                 style = R.style.WhiteGreenTheme;

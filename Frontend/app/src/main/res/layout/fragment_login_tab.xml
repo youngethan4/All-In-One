@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.ethanman04.Login.LoginTabFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/login_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/login_password"
+            android:layout_marginTop="30dp"
+            android:text="Login"
+            android:ems="5"
+            android:textSize="30sp"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:background="@drawable/memory_boarder_blue"/>
+
+        <EditText
+            android:id="@+id/login_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:ems="10"
+            android:textSize="30sp"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:backgroundTint="@color/blue"/>
+
+        <EditText
+            android:id="@+id/login_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            android:textSize="30sp"
+            android:ems="10"
+            android:layout_above="@+id/login_password"
+            android:hint="Email"
+            android:inputType="textPersonName"
+            android:backgroundTint="@color/blue"/>
+
+        <TextView
+            android:id="@+id/login_trouble"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Trouble logging in?"
+            android:textColor="@color/blue"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/login_password"/>
+
+        <TextView
+            android:id="@+id/login_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Login Error"
+            android:textColor="@color/red_pink"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/login_button"
+            android:visibility="invisible"/>
+    </RelativeLayout>
+</FrameLayout>

@@ -1,25 +1,22 @@
 package com.example.ethanman04.memory;
 
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
-import android.media.SoundPool;
 import android.preference.PreferenceManager;
 import android.util.SparseIntArray;
-
 import com.example.ethanman04.allone.PreferenceKeys;
 import com.example.ethanman04.allone.R;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Random;
 
-class SetSound {
+public class SetSound {
 
     //Makes an instance of SetSound that can always be accessed.
-    private static SetSound instance = new SetSound();
-    public static SetSound getInstance(){
+    private static SetSound instance;
+    public static synchronized SetSound getInstance(){
+        if (instance == null){
+            instance = new SetSound();
+        }
         return  instance;
     }
 
@@ -32,8 +29,14 @@ class SetSound {
      void startButtonNoise(Context context){
          SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
          if (!sp.getBoolean(PreferenceKeys.MEMORY_SOUND_CHECKED, false)) {
-             MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.tap_long);
+             final MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.tap_long);
              mediaPlayer.start();
+             mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                 @Override
+                 public void onCompletion(MediaPlayer mp) {
+                     mediaPlayer.release();
+                 }
+             });
          }
     }
 
@@ -44,8 +47,14 @@ class SetSound {
     void startCardNoise(Context context){
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
         if (!sp.getBoolean(PreferenceKeys.MEMORY_SOUND_CHECKED, false)) {
-            MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.possible_card_tap);
+            final MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.possible_card_tap);
             mediaPlayer.start();
+            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    mediaPlayer.release();
+                }
+            });
         }
     }
 
@@ -56,8 +65,14 @@ class SetSound {
     void startMatchNoise(Context context){
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
         if (!sp.getBoolean(PreferenceKeys.MEMORY_SOUND_CHECKED, false)) {
-            MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.maybe_match);
+            final MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.maybe_match);
             mediaPlayer.start();
+            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    mediaPlayer.release();
+                }
+            });
         }
     }
 
@@ -69,8 +84,14 @@ class SetSound {
     void startNonMatchNoise(Context context){
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
         if (!sp.getBoolean(PreferenceKeys.MEMORY_SOUND_CHECKED, false)) {
-            MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.card_fail);
+            final MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.card_fail);
             mediaPlayer.start();
+            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    mediaPlayer.release();
+                }
+            });
         }
     }
 
@@ -81,11 +102,23 @@ class SetSound {
      */
     void startWinningNoise(Context context){
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
-        if (!sp.getBoolean(PreferenceKeys.MEMORY_SOUND_CHECKED, false)) {
-            MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.win);
+        if (!sp.getBoolean(PreferenceKeys.MEMORY_MUSIC_CHECKED, false)) {
+            final MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.win);
             mediaPlayer.start();
-            MediaPlayer mediaPlayer2 = MediaPlayer.create(context, R.raw.cheer);
+            final MediaPlayer mediaPlayer2 = MediaPlayer.create(context, R.raw.cheer);
             mediaPlayer2.start();
+            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    mediaPlayer.release();
+                }
+            });
+            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    mediaPlayer2.release();
+                }
+            });
         }
     }
 
@@ -97,11 +130,21 @@ class SetSound {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
 
         if (!sp.getBoolean(PreferenceKeys.MEMORY_MUSIC_CHECKED, false)) {
-            shuffelMusic(context);
+            if (music == null) {
+                shuffelMusic(context);
+            }
+            else {
+                resumeMusic(context);
+            }
         }
     }
 
-    void shuffelMusic(Context context){
+    /**
+     * Adds all the songs to a sparseintarray and then selects one to play randomly.
+     * Once the song is completed, the method recursively calls itself.
+     * @param context
+     */
+    private void shuffelMusic(Context context){
         final Context c = context;
 
         SparseIntArray songs = new SparseIntArray();
@@ -121,10 +164,13 @@ class SetSound {
         music.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mp) {
-                shuffelMusic(c);
+                SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(c);
+
+                if (!sp.getBoolean(PreferenceKeys.MEMORY_MUSIC_CHECKED, false)) {
+                    shuffelMusic(c);
+                }
             }
         });
-
     }
 
     /**
@@ -133,13 +179,15 @@ class SetSound {
     void stopMusic() {
         if (music != null) {
             music.stop();
+            music.release();
+            music = null;
         }
     }
 
     /**
      * Pauses the music.
      */
-    void pauseMusic(){
+    public void pauseMusic(){
         if (music != null) {
             music.pause();
         }
@@ -148,10 +196,10 @@ class SetSound {
     /**
      * Resumes the music.
      */
-    void resumeMusic(Context context){
+    public void resumeMusic(Context context){
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
 
-        if (!sp.getBoolean(PreferenceKeys.MEMORY_MUSIC_CHECKED, false) || music != null) {
+        if (!sp.getBoolean(PreferenceKeys.MEMORY_MUSIC_CHECKED, false) && music != null) {
             music.start();
         }
 

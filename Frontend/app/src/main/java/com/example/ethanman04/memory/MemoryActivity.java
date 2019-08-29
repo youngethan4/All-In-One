@@ -15,7 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.ethanman04.allone.AppActivity;
+import com.example.ethanman04.Login.ProfileActivity;
 import com.example.ethanman04.allone.PreferenceKeys;
 import com.example.ethanman04.allone.R;
 
@@ -94,13 +94,15 @@ public class MemoryActivity extends AppCompatActivity {
     }
 
     /**
-     * Sets the Android back button to go to AppActivity from this
+     * Sets the Android back button to go to the home screen
      */
     @Override
     public void onBackPressed(){
         setSound.startButtonNoise(MemoryActivity.this);
-        Intent intent = new Intent(MemoryActivity.this, AppActivity.class);
-        startActivity(intent);
+        Intent a = new Intent(Intent.ACTION_MAIN);
+        a.addCategory(Intent.CATEGORY_HOME);
+        a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(a);
     }
 
     /**
@@ -178,10 +180,15 @@ public class MemoryActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = sp.edit();
 
         switch(item.getItemId()) {
+            case R.id.memory_options_profile:
+                setSound.startButtonNoise(MemoryActivity.this);
+                Intent intent = new Intent(MemoryActivity.this, ProfileActivity.class);
+                startActivity(intent);
+                break;
             case R.id.memory_options_theme:
                 setSound.startButtonNoise(MemoryActivity.this);
-                Intent intent = new Intent(MemoryActivity.this, MemoryThemeActivity.class);
-                startActivity(intent);
+                Intent i = new Intent(MemoryActivity.this, MemoryThemeActivity.class);
+                startActivity(i);
                 break;
             case R.id.memory_options_music:
                 if (muteMusic) {
