@@ -10,54 +10,39 @@
     <TextView
         android:id="@+id/memory_welcome"
         android:layout_centerHorizontal="true"
-        android:layout_alignTop="@+id/memory_button1"
+        android:layout_alignTop="@+id/memory_button_singleplayer"
         android:layout_marginTop="-150dp"
         android:textSize="50sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Welcome to\nMemory!"
+        android:textColor="@color/blue"
         android:textAlignment="center"/>
 
     <Button
-        android:id="@+id/memory_button1"
+        android:id="@+id/memory_button_singleplayer"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:textSize="50sp"
-        android:background="@drawable/memory_boarder_teal"
+        android:background="@drawable/memory_boarder_blue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAllCaps="false"
         android:textColor="@color/black"
-        android:text="20 Cards" />
-
-    <TextView
-        android:id="@+id/memory_high_score_20"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/memory_button1"
-        android:layout_centerHorizontal="true"
-        android:text="TextView" />
+        android:text="Singleplayer" />
 
     <Button
-        android:id="@+id/memory_button2"
+        android:id="@+id/memory_button_multiplayer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/memory_button1"
+        android:layout_below="@+id/memory_button_singleplayer"
         android:layout_marginTop="30dp"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/memory_boarder_teal"
+        android:background="@drawable/memory_boarder_blue"
         android:textSize="50sp"
         android:textColor="@color/black"
         android:textAllCaps="false"
-        android:text="30 Cards" />
-
-    <TextView
-        android:id="@+id/memory_high_score_30"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/memory_button2"
-        android:layout_centerHorizontal="true"
-        android:text="TextView" />
+        android:text="Multiplayer" />
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/memory_toolbar"

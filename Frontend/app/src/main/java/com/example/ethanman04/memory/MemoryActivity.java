@@ -42,7 +42,6 @@ public class MemoryActivity extends AppCompatActivity {
         setSound.startMusic(MemoryActivity.this);
 
         setClicks();
-        setHighScore();
     }
 
     /**
@@ -62,32 +61,32 @@ public class MemoryActivity extends AppCompatActivity {
      * cards as an extra.
      */
     private void setClicks(){
-        Button b = findViewById(R.id.memory_button1);
-        Button b2 = findViewById(R.id.memory_button2);
+        Button singleplayer = findViewById(R.id.memory_button_singleplayer);
+        Button multiplayer = findViewById(R.id.memory_button_multiplayer);
         TextView tv = findViewById(R.id.memory_welcome);
 
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
-        b.setBackground(getResources().getDrawable(sp.getInt(PreferenceKeys.MEMORY_THEME_BOARDER, R.drawable.memory_boarder_blue)));
-        b2.setBackground(getResources().getDrawable(sp.getInt(PreferenceKeys.MEMORY_THEME_BOARDER, R.drawable.memory_boarder_blue)));
+        singleplayer.setBackground(getResources().getDrawable(sp.getInt(PreferenceKeys.MEMORY_THEME_BOARDER, R.drawable.memory_boarder_blue)));
+        multiplayer.setBackground(getResources().getDrawable(sp.getInt(PreferenceKeys.MEMORY_THEME_BOARDER, R.drawable.memory_boarder_blue)));
         tv.setTextColor(getResources().getColor(sp.getInt(PreferenceKeys.MEMORY_THEME_COLOR, R.color.blue)));
 
-        b.setOnClickListener(new View.OnClickListener() {
+        singleplayer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 setSound.startButtonNoise(MemoryActivity.this);
-                Intent intent = new Intent(MemoryActivity.this, MemoryGridActivity.class);
-                intent.putExtra("size", 20);
+                Intent intent = new Intent(MemoryActivity.this, MemoryModeActivity.class);
+                intent.putExtra("multiplayer", false);
                 startActivity(intent);
 
             }
         });
 
-        b2.setOnClickListener(new View.OnClickListener() {
+        multiplayer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 setSound.startButtonNoise(MemoryActivity.this);
-                Intent intent = new Intent(MemoryActivity.this, MemoryGridActivity.class);
-                intent.putExtra("size", 30);
+                Intent intent = new Intent(MemoryActivity.this, MemoryModeActivity.class);
+                intent.putExtra("multiplayer", true);
                 startActivity(intent);
             }
         });
@@ -103,45 +102,6 @@ public class MemoryActivity extends AppCompatActivity {
         a.addCategory(Intent.CATEGORY_HOME);
         a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(a);
-    }
-
-    /**
-     * Uses shared preferences to save the high score of each game subset
-     */
-    private void setHighScore() {
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
-        long highScore30 = sp.getLong(PreferenceKeys.MEMORY_HIGH_SCORE_30, 0);
-        long highScore20 = sp.getLong(PreferenceKeys.MEMORY_HIGH_SCORE_20, 0);
-        TextView hs30 = findViewById(R.id.memory_high_score_30);
-        TextView hs20 = findViewById(R.id.memory_high_score_20);
-
-        if (highScore20 == 0.0) {
-            hs20.setText("High Score: none");
-        }
-        else {
-            String str20 = millisToString(highScore20);
-            hs20.setText(str20);
-        }
-        if (highScore30 == 0.0) {
-            hs30.setText("High Score: none");
-        }
-        else {
-            String str30 = millisToString(highScore30);
-            hs30.setText(str30);
-        }
-    }
-
-    /**
-     * Helper method to convert millis to a string value
-     * @param millis
-     * @return users time in string format
-     */
-    private String millisToString(long millis) {
-        int seconds = (int) (millis / 1000);
-        int minutes = seconds / 60;
-        seconds = seconds % 60;
-        String setTextTimer = "High Score: " + minutes + ":" + String.format(Locale.ENGLISH,"%02d", seconds);
-        return setTextTimer;
     }
 
     /**

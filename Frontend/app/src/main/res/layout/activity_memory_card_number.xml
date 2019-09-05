@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.ethanman04.memory.MemoryCardNumberActivity">
+
+    <TextView
+        android:id="@+id/memory_card_number_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="50sp"
+        android:textColor="@color/blue"
+        android:layout_above="@+id/memory_card_number_button_20"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:textAlignment="center"
+        android:text="How many \ncards?" />
+
+    <Button
+        android:id="@+id/memory_card_number_button_20"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:textSize="50sp"
+        android:background="@drawable/memory_boarder_blue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:text="20 Cards" />
+
+    <TextView
+        android:id="@+id/memory_card_number_high_score_20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/memory_card_number_button_20"
+        android:layout_centerHorizontal="true"
+        android:text="TextView" />
+
+    <Button
+        android:id="@+id/memory_card_number_button_30"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/memory_card_number_high_score_20"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/memory_boarder_blue"
+        android:textSize="50sp"
+        android:textColor="@color/black"
+        android:textAllCaps="false"
+        android:text="30 Cards" />
+
+    <TextView
+        android:id="@+id/memory_card_number_high_score_30"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/memory_card_number_button_30"
+        android:layout_centerHorizontal="true"
+        android:text="TextView" />
+
+</RelativeLayout>

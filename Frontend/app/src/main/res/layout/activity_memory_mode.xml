@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.ethanman04.memory.MemoryModeActivity">
+
+    <TextView
+        android:id="@+id/memory_mode_text_view"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="30dp"
+        android:textSize="50sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Choose\nMode"
+        android:textColor="@color/blue"
+        android:textAlignment="center"/>
+
+    <Button
+        android:id="@+id/memory_mode_button_time_20"
+        android:layout_below="@id/memory_mode_text_view"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:textSize="50sp"
+        android:background="@drawable/memory_boarder_blue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:text="Timed x20" />
+
+    <TextView
+        android:id="@+id/memory_mode_high_score_time_20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/memory_mode_button_time_20"
+        android:layout_centerHorizontal="true"
+        android:text="TextView"
+        android:visibility="invisible"/>
+
+    <Button
+        android:id="@+id/memory_mode_button_time_30"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/memory_mode_button_time_20"
+        android:layout_marginTop="40dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/memory_boarder_blue"
+        android:textSize="50sp"
+        android:textColor="@color/black"
+        android:textAllCaps="false"
+        android:text="Timed x30" />
+
+    <TextView
+        android:id="@+id/memory_mode_high_score_time_30"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/memory_mode_button_time_30"
+        android:layout_centerHorizontal="true"
+        android:text="TextView"
+        android:visibility="invisible"/>
+
+    <Button
+        android:id="@+id/memory_mode_button_moves_20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/memory_mode_button_time_30"
+        android:layout_marginTop="40dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/memory_boarder_blue"
+        android:textSize="50sp"
+        android:textColor="@color/black"
+        android:textAllCaps="false"
+        android:text="Moves x20" />
+
+    <TextView
+        android:id="@+id/memory_mode_high_score_moves_20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/memory_mode_button_moves_20"
+        android:layout_centerHorizontal="true"
+        android:text="TextView"
+        android:visibility="invisible"/>
+
+    <Button
+        android:id="@+id/memory_mode_button_moves_30"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/memory_mode_button_moves_20"
+        android:layout_marginTop="40dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/memory_boarder_blue"
+        android:textSize="50sp"
+        android:textColor="@color/black"
+        android:textAllCaps="false"
+        android:text="Moves x30" />
+
+    <TextView
+        android:id="@+id/memory_mode_high_score_moves_30"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/memory_mode_button_moves_30"
+        android:layout_centerHorizontal="true"
+        android:text="TextView"
+        android:visibility="invisible"/>
+
+</RelativeLayout>
