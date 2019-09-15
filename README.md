@@ -9,7 +9,7 @@ One day, this will be available for the public to download and most likely will 
 android play store before coding in swift will begin. 
 
 The login activity contains two seperate threads. one for logging in and one for creating an account.
-By swiping right or left or using the tabs on top, the user can navigate to the thread they need to use. 
+By swiping right or left or using the tabs on top, the user can navigate to the fragment they need to use. 
 Right now, there is one game mode that the user will have access to after logging in. 
 This mode times you as you play, and that time is the score. There is an option for 
 30 cards though making the game a bit more challenging. 
