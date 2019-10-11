@@ -1,12 +1,9 @@
 package com.example.ethanman04.memory;
 
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import com.example.ethanman04.allone.PreferenceKeys;
 import com.example.ethanman04.allone.R;
 
 import java.util.Locale;
@@ -22,7 +19,7 @@ public class MemoryModeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_memory_mode);
 
         setSound = SetSound.getInstance();
-        isMultiplayer = getIntent().getExtras().getBoolean("multiplayer");
+        isMultiplayer = getIntent().getExtras().getBoolean("com/example/ethanman04/multiplayer");
         if (isMultiplayer) getHighScore();
 
 

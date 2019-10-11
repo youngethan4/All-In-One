@@ -19,8 +19,6 @@ import com.example.ethanman04.Login.ProfileActivity;
 import com.example.ethanman04.allone.PreferenceKeys;
 import com.example.ethanman04.allone.R;
 
-import java.util.Locale;
-
 public class MemoryActivity extends AppCompatActivity {
 
     private SetSound setSound;
@@ -75,7 +73,7 @@ public class MemoryActivity extends AppCompatActivity {
             public void onClick(View v) {
                 setSound.startButtonNoise(MemoryActivity.this);
                 Intent intent = new Intent(MemoryActivity.this, MemoryModeActivity.class);
-                intent.putExtra("multiplayer", false);
+                intent.putExtra("com/example/ethanman04/multiplayer", false);
                 startActivity(intent);
 
             }
@@ -86,7 +84,7 @@ public class MemoryActivity extends AppCompatActivity {
             public void onClick(View v) {
                 setSound.startButtonNoise(MemoryActivity.this);
                 Intent intent = new Intent(MemoryActivity.this, MemoryModeActivity.class);
-                intent.putExtra("multiplayer", true);
+                intent.putExtra("com/example/ethanman04/multiplayer", true);
                 startActivity(intent);
             }
         });
