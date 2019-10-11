@@ -116,10 +116,6 @@ public class NewUserFragment extends Fragment {
      */
     private void checkFields(){
         rootView.findViewById(R.id.new_user_error).setVisibility(View.INVISIBLE);
-        EditText firstNameEditText = rootView.findViewById(R.id.new_user_first_name);
-        String firstName = firstNameEditText.getText().toString().trim();
-        EditText lastNameEditText = rootView.findViewById(R.id.new_user_last_name);
-        String lastName = lastNameEditText.getText().toString().trim();
         EditText usernameEditText = rootView.findViewById(R.id.new_user_username);
         String username = usernameEditText.getText().toString().trim();
         EditText emailEditText = rootView.findViewById(R.id.new_user_email);
@@ -128,10 +124,6 @@ public class NewUserFragment extends Fragment {
         String pass = passEditText.getText().toString();
         EditText confirm = rootView.findViewById(R.id.new_user_confirm_password);
 
-        boolean firstNameValid = accountHelper.nameSupportedChars(firstName);
-        if (!firstNameValid) displayError("Unsupported character in first name.");
-        boolean lastNameValid = accountHelper.nameSupportedChars(lastName);
-        if (!lastNameValid) displayError("Unsupported character in last name.");
         boolean usernameValid = accountHelper.usernameSupportedChars(username);
         if (!usernameValid) displayError("Unsupported character in username.");
         boolean emailValid = accountHelper.emailSupportedFormat(email);
@@ -157,10 +149,8 @@ public class NewUserFragment extends Fragment {
         }
 
         //Create a json and pass it to the sendCreateAccountRequest method.
-        if (passOK && firstNameValid && lastNameValid && usernameValid && emailValid) {
+        if (passOK && usernameValid && emailValid) {
             HashMap<String,Object> hashMap = new HashMap<>();
-            hashMap.put("firstname", firstName);
-            hashMap.put("lastname", lastName);
             hashMap.put("username", username);
             hashMap.put("email", email);
             hashMap.put("password", passHash);

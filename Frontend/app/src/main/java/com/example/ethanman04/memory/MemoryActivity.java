@@ -73,7 +73,7 @@ public class MemoryActivity extends AppCompatActivity {
             public void onClick(View v) {
                 setSound.startButtonNoise(MemoryActivity.this);
                 Intent intent = new Intent(MemoryActivity.this, MemoryModeActivity.class);
-                intent.putExtra("com/example/ethanman04/multiplayer", false);
+                intent.putExtra("multiplayer", false);
                 startActivity(intent);
 
             }
@@ -84,7 +84,7 @@ public class MemoryActivity extends AppCompatActivity {
             public void onClick(View v) {
                 setSound.startButtonNoise(MemoryActivity.this);
                 Intent intent = new Intent(MemoryActivity.this, MemoryModeActivity.class);
-                intent.putExtra("com/example/ethanman04/multiplayer", true);
+                intent.putExtra("multiplayer", true);
                 startActivity(intent);
             }
         });

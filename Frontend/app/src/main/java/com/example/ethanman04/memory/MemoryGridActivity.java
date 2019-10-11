@@ -33,6 +33,7 @@ public class MemoryGridActivity extends AppCompatActivity {
     private ImageButton cardFlip2;
     private TextView strCard1;
     private TextView strCard2;
+    private String type;
     private int numCards;
     private int points;
     private long millisecondTime;
@@ -60,7 +61,8 @@ public class MemoryGridActivity extends AppCompatActivity {
      */
     private void setCards() {
         points = 0;
-        numCards = getIntent().getExtras().getInt("size");
+        type = getIntent().getExtras().getString("type", "time20");
+        numCards = getIntent().getExtras().getInt("cards", 20);
 
         //Used later when getting the high score
         if (numCards == 30) is30 = true;
