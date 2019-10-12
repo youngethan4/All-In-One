@@ -1,14 +1,27 @@
 package com.example.ethanman04.memory;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.example.ethanman04.allone.Endpoints;
+import com.example.ethanman04.allone.PreferenceKeys;
 import com.example.ethanman04.allone.R;
+import com.example.ethanman04.allone.VolleyRequests;
 import com.example.ethanman04.multiplayer.MultiplayerActivity;
+
+import org.json.JSONObject;
 
 import java.util.Locale;
 
@@ -24,9 +37,8 @@ public class MemoryModeActivity extends AppCompatActivity {
 
         setSound = SetSound.getInstance();
         isMultiplayer = getIntent().getExtras().getBoolean("multiplayer");
-        if (isMultiplayer) getHighScore();
+        if (!isMultiplayer) getHighScore();
         setButtons();
-
     }
 
     private void setButtons(){
@@ -110,18 +122,50 @@ public class MemoryModeActivity extends AppCompatActivity {
     }
 
     private void getHighScore(){
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        int id = sp.getInt(PreferenceKeys.LOGGED_IN_USER_ID, 0);
+        String url = Endpoints.getInstance().getHighScoreEndpoint() + id;
 
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        setHighScore(response);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("request.error", error.toString());
+            }
+        });
+        VolleyRequests.getInstance(getApplicationContext()).addToRequestQueue(jsonObjectRequest);
     }
 
     /**
      * Uses shared preferences to save the high score of each game subset
      */
-    private void setHighScore() {
-
-       // TextView hsTime30 = findViewById(R.id.memory_high_score_30);
-      //  TextView hsTime20 = findViewById(R.id.memory_high_score_20);
-
-
+    private void setHighScore(JSONObject jsonObject) {
+        TextView hsTime20 = findViewById(R.id.memory_mode_high_score_time_20);
+        TextView hsTime30 = findViewById(R.id.memory_mode_high_score_time_30);
+        TextView hsMoves20 = findViewById(R.id.memory_mode_high_score_moves_20);
+        TextView hsMoves30 = findViewById(R.id.memory_mode_high_score_moves_30);
+        String hsTime20String = "";
+        String hsTime30String = "";
+        String hsMoves20String = "";
+        String hsMoves30String = "";
+        try {
+            hsTime20String ="" + jsonObject.getString("time20");
+            hsTime30String ="" + jsonObject.getString("time30");
+            hsMoves20String ="" + jsonObject.getString("moves20");
+            hsMoves30String ="" + jsonObject.getString("moves30");
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        hsTime20.setText(hsTime20String);
+        hsTime30.setText(hsTime30String);
+        hsMoves20.setText(hsMoves20String);
+        hsMoves30.setText(hsMoves30String);
     }
 
     /**

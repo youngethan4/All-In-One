@@ -4,10 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
-import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.preference.PreferenceManager;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,7 +15,6 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -246,7 +243,7 @@ public class ProfileActivity extends AppCompatActivity {
      * @param jsonObject
      */
     private void sendUpdateRequest(final JSONObject jsonObject){
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PUT, Endpoints.getInstance().updateUserProfileEndpoint(),
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PUT, Endpoints.getInstance().getEditProfileEndpoint(),
                 jsonObject, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {

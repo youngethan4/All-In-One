@@ -2,23 +2,12 @@ package com.example.ethanman04.Login;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
+import com.google.android.material.tabs.TabLayout;
+import androidx.viewpager.widget.ViewPager;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.example.ethanman04.allone.Endpoints;
-import com.example.ethanman04.allone.R;
-import com.example.ethanman04.allone.VolleyRequests;
-import com.example.ethanman04.memory.MemoryActivity;
 
-import org.json.JSONObject;
+import com.example.ethanman04.allone.R;
 
 public class LoginActivity extends AppCompatActivity implements LoginTabFragment.OnFragmentInteractionListener, NewUserFragment.OnFragmentInteractionListener {
 

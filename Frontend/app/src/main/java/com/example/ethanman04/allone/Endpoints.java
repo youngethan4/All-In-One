@@ -18,6 +18,8 @@ public class Endpoints {
     private String createUserEndpoint = url + "create/user";
     private String loginUserEndpoint = url + "login/user";
     private String editProfileEndpoint = url + "edit/profile";
+    private String updateHighScoreEndpoint = url + "edit/highscore";
+    private String highScoreEndpoint = url + "get/highscore/";
 
     final public String getCreateUserEndpoint() {
         return createUserEndpoint;
@@ -27,7 +29,15 @@ public class Endpoints {
         return loginUserEndpoint;
     }
 
-    final public String updateUserProfileEndpoint() {
+    final public String getEditProfileEndpoint() {
         return editProfileEndpoint;
+    }
+
+    final public String getUpdateHighScoreEndpoint(){
+        return updateHighScoreEndpoint;
+    }
+
+    final public String getHighScoreEndpoint() {
+        return highScoreEndpoint;
     }
 }

@@ -1,6 +1,6 @@
 package com.example.ethanman04.multiplayer;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.ethanman04.allone.R;
