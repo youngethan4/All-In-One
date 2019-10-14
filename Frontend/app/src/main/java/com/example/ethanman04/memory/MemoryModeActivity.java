@@ -37,7 +37,7 @@ public class MemoryModeActivity extends AppCompatActivity {
 
         setSound = SetSound.getInstance();
         isMultiplayer = getIntent().getExtras().getBoolean("multiplayer");
-        if (!isMultiplayer) getHighScore();
+        if (!isMultiplayer) setHighScore();
         setButtons();
     }
 
@@ -121,64 +121,38 @@ public class MemoryModeActivity extends AppCompatActivity {
         });
     }
 
-    private void getHighScore(){
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
-        int id = sp.getInt(PreferenceKeys.LOGGED_IN_USER_ID, 0);
-        String url = Endpoints.getInstance().getHighScoreEndpoint() + id;
-
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        setHighScore(response);
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.d("request.error", error.toString());
-            }
-        });
-        VolleyRequests.getInstance(getApplicationContext()).addToRequestQueue(jsonObjectRequest);
-    }
-
     /**
-     * Uses shared preferences to save the high score of each game subset
+     * Uses shared preferences to retrieve the high score of each game subset
      */
-    private void setHighScore(JSONObject jsonObject) {
+    private void setHighScore() {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
         TextView hsTime20 = findViewById(R.id.memory_mode_high_score_time_20);
         TextView hsTime30 = findViewById(R.id.memory_mode_high_score_time_30);
         TextView hsMoves20 = findViewById(R.id.memory_mode_high_score_moves_20);
         TextView hsMoves30 = findViewById(R.id.memory_mode_high_score_moves_30);
-        String hsTime20String = "";
-        String hsTime30String = "";
-        String hsMoves20String = "";
-        String hsMoves30String = "";
-        try {
-            hsTime20String ="" + jsonObject.getString("time20");
-            hsTime30String ="" + jsonObject.getString("time30");
-            hsMoves20String ="" + jsonObject.getString("moves20");
-            hsMoves30String ="" + jsonObject.getString("moves30");
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
-        hsTime20.setText(hsTime20String);
-        hsTime30.setText(hsTime30String);
-        hsMoves20.setText(hsMoves20String);
-        hsMoves30.setText(hsMoves30String);
-    }
 
-    /**
-     * Helper method to convert millis to a string value
-     * @param millis
-     * @return users time in string format
-     */
-    private String millisToString(long millis) {
-        int seconds = (int) (millis / 1000);
-        int minutes = seconds / 60;
-        seconds = seconds % 60;
-        String setTextTimer = "High Score: " + minutes + ":" + String.format(Locale.ENGLISH,"%02d", seconds);
-        return setTextTimer;
+        float T20 = sp.getFloat(PreferenceKeys.MEMORY_HIGH_SCORE_TIME_20, 0);
+        float T30 = sp.getFloat(PreferenceKeys.MEMORY_HIGH_SCORE_TIME_30,  0);
+        int M20 = sp.getInt(PreferenceKeys.MEMORY_HIGH_SCORE_MOVES_20, 0);
+        int M30 = sp.getInt(PreferenceKeys.MEMORY_HIGH_SCORE_MOVES_30, 0);
+        String ST20 = String.format(Locale.US, "%.03f", T20);
+        String ST30 = String.format(Locale.US, "%.03f", T30);
+        String SM20 = String.format(Locale.US, "%d", M20);
+        String SM30 = String.format(Locale.US, "%d", M30);
+
+        if(T20 != 0){
+            hsTime20.setText(ST20);
+        }
+        if(T30 != 0){
+            hsTime30.setText(ST30);
+        }
+        if(M20 != 0){
+            hsMoves20.setText(SM20);
+        }
+        if(M30 != 0){
+            hsMoves30.setText(SM30);
+        }
     }
 
     /**

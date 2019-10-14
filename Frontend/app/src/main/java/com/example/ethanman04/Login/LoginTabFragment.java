@@ -134,6 +134,7 @@ public class LoginTabFragment extends Fragment {
      * If the user id comes back as 0, it is not a valid login.
      */
     private void sendLoginRequest(JSONObject jsonObject){
+
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, Endpoints.getInstance().getLoginUserEndpoint(),
                 jsonObject, new Response.Listener<JSONObject>() {
             @Override
@@ -157,6 +158,7 @@ public class LoginTabFragment extends Fragment {
                     editor.putString(PreferenceKeys.LOGGED_IN_USER_USERNAME, username);
                     editor.putInt(PreferenceKeys.LOGGED_IN_USER_ICON, icon);
                     editor.apply();
+                    new GetHighScores(rootView.getContext());
                     Intent intent = new Intent(getActivity(), MemoryActivity.class);
                     startActivity(intent);
                 } else{

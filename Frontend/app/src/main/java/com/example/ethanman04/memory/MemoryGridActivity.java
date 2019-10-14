@@ -29,18 +29,19 @@ public class MemoryGridActivity extends AppCompatActivity {
     private GridView gv;
     private MyAdapter adapter;
     private static int taps;
+    private int moves;
     private ImageButton cardFlip1;
     private ImageButton cardFlip2;
     private TextView strCard1;
     private TextView strCard2;
-    private String type;
+    private enum  type{ TIME20, TIME30, MOVES20, MOVES30}
+    private type gameMode;
     private int numCards;
     private int points;
     private long millisecondTime;
     private long startTime;
     private boolean won;
     private ArrayList<Character> cards;
-    private boolean is30;
     SharedPreferences sp;
     private SetSound setSound;
 
@@ -52,21 +53,30 @@ public class MemoryGridActivity extends AppCompatActivity {
         setSound = SetSound.getInstance();
         sp = PreferenceManager.getDefaultSharedPreferences(this);
         setCards();
-        startTimer();
     }
 
     /**
-     * This is a setup method. It initializes points to 0, sets the gridview, sets the adapter,
+     * This is a setup method. It initializes points and moves to 0, sets the gridview, sets the adapter,
      * and gets the cards based on the size that is brought through the intent.
      */
     private void setCards() {
         points = 0;
-        type = getIntent().getExtras().getString("type", "time20");
+        moves = 0;
+        String mode = getIntent().getExtras().getString("type", "time20");
+        if(mode.equals("time20")){
+            gameMode = type.TIME20;
+            startTimer();
+        }
+        else if(mode.equals("time30")){
+            gameMode = type.TIME30;
+            startTimer();
+        }
+        else if(mode.equals("moves20")){
+            gameMode = type.MOVES20;
+        } else {
+            gameMode = type.MOVES30;
+        }
         numCards = getIntent().getExtras().getInt("cards", 20);
-
-        //Used later when getting the high score
-        if (numCards == 30) is30 = true;
-        else is30 = false;
 
         gv = findViewById(R.id.memory_grid_view);
         cards = new ArrayList<>();
@@ -177,8 +187,10 @@ public class MemoryGridActivity extends AppCompatActivity {
             cardFlip1 = card;
             strCard1 = chr;
             ++taps;
+            ++moves;
         } else {
             ++taps;
+            ++moves;
             cardFlip2 = card;
             strCard2 = chr;
             if (strCard1.getText().toString().trim().equals(chr.getText().toString().trim())) {
@@ -277,41 +289,57 @@ public class MemoryGridActivity extends AppCompatActivity {
         builder.setCancelable(false);
 
         //Using shared preferences for the high score. Need two based on if it is 30 or 20 cards.
-        long highScore;
+        float highScore = 0;
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
-        if (is30) {
-            highScore = sp.getLong(PreferenceKeys.MEMORY_HIGH_SCORE_30, 0);
-        }
-        else {
-            highScore = sp.getLong(PreferenceKeys.MEMORY_HIGH_SCORE_20, 0);
+        switch (gameMode){
+            case TIME20 : highScore = sp.getFloat(PreferenceKeys.MEMORY_HIGH_SCORE_TIME_20, Integer.MAX_VALUE);
+            case TIME30: highScore = sp.getFloat(PreferenceKeys.MEMORY_HIGH_SCORE_TIME_30, Integer.MAX_VALUE);
+            case MOVES20: highScore = sp.getInt(PreferenceKeys.MEMORY_HIGH_SCORE_MOVES_20, Integer.MAX_VALUE);
+            case MOVES30: highScore = sp.getInt(PreferenceKeys.MEMORY_HIGH_SCORE_MOVES_30, Integer.MAX_VALUE);
         }
 
-        millisecondTime = SystemClock.uptimeMillis() - startTime;
-        if (millisecondTime < highScore || highScore == 0.0) {
-            builder.setTitle("New High Score!!!");
-            SharedPreferences.Editor editor = sp.edit();
-            if (is30) {
-                editor.putLong(PreferenceKeys.MEMORY_HIGH_SCORE_30, millisecondTime);
+        if(gameMode == type.TIME20 || gameMode == type.TIME30){
+            float time = (float) SystemClock.uptimeMillis() - startTime;
+            if (time < highScore || highScore == 0) {
+                builder.setTitle("New High Score!!!");
+                SharedPreferences.Editor editor = sp.edit();
+                if (gameMode == type.TIME20) {
+                    editor.putFloat(PreferenceKeys.MEMORY_HIGH_SCORE_TIME_20, time);
+                }
+                else {
+                    editor.putFloat(PreferenceKeys.MEMORY_HIGH_SCORE_TIME_30, time);
+                }
+                editor.apply();
+                highScore = time;
+                new SendHighScore(getApplicationContext());   //Sends the high score to the server
             }
             else {
-                editor.putLong(PreferenceKeys.MEMORY_HIGH_SCORE_20, millisecondTime);
+                String textTitle = String.format(Locale.US, "Your Time: %.03f", time);
+                builder.setTitle(textTitle);
             }
-            editor.apply();
+            String message = String.format(Locale.US, "Your high score is: %.03f\\nWould you like to play again?", highScore);
+            builder.setMessage(message);
+        } else {
+            if (moves < highScore || moves == 0){
+                builder.setTitle("New High Score!!!");
+                SharedPreferences.Editor editor = sp.edit();
+                if(gameMode == type.MOVES20){
+                    editor.putInt(PreferenceKeys.MEMORY_HIGH_SCORE_MOVES_20, moves);
+                }
+                else{
+                    editor.putInt(PreferenceKeys.MEMORY_HIGH_SCORE_MOVES_30, moves);
+                }
+                editor.apply();
+                highScore = moves;
+                new SendHighScore(getApplicationContext());   //Sends the high score to the server
+            }
+            else{
+                String textTitle = String.format(Locale.US, "Your Score: %d", moves);
+                builder.setTitle(textTitle);
+            }
+            String message = String.format(Locale.US, "Your high score is: %d\\nWould you like to play again?", (int) highScore);
+            builder.setMessage(message);
         }
-        else {
-            String textTimer = millisToString(millisecondTime);
-            String score = "Your Time: " + textTimer;
-            builder.setTitle(score);
-        }
-        if (is30) {
-            highScore = sp.getLong(PreferenceKeys.MEMORY_HIGH_SCORE_30, 0);
-        }
-        else {
-            highScore = sp.getLong(PreferenceKeys.MEMORY_HIGH_SCORE_20, 0);
-        }
-        String highScoreTime = millisToString(highScore);
-        String message = "Your high score is: " + highScoreTime + "\nWould you like to play again?";
-        builder.setMessage(message);
 
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
@@ -333,7 +361,6 @@ public class MemoryGridActivity extends AppCompatActivity {
         dialog.show();
         dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(getResources().getColor(sp.getInt(PreferenceKeys.MEMORY_THEME_COLOR, R.color.blue)));
         dialog.getButton(DialogInterface.BUTTON_POSITIVE).setTextColor(getResources().getColor(sp.getInt(PreferenceKeys.MEMORY_THEME_COLOR, R.color.blue)));
-
     }
 
     /**
@@ -369,7 +396,7 @@ public class MemoryGridActivity extends AppCompatActivity {
         int seconds = (int) (millis / 1000);
         int minutes = seconds / 60;
         seconds = seconds % 60;
-        return "" + minutes + ":" + String.format(Locale.ENGLISH,"%02d", seconds);
+        return "" + minutes + ":" + String.format(Locale.US,"%03d", seconds);
     }
 
     /**
