@@ -34,12 +34,10 @@ app.post("/api/create/user", (req, res) => {
   	var username = jsonData.username;
   	var password = jsonData.password;
   	var email = jsonData.email;
-  	var fname = jsonData.firstname;
-  	var lname = jsonData.lastname;
 	  var icon = jsonData.icon;
 
-  	var  sql = "INSERT IGNORE INTO users (username, password, email, firstname, lastname, icon) VALUES ('";
-  	sql += username + "', '" + password + "', '" + email + "', '" + fname + "', '" + lname + "', " + icon + ")";
+  	var  sql = "INSERT IGNORE INTO users (username, password, email, icon) VALUES ('";
+  	sql += username + "', '" + password + "', '" + email + "', "  + icon + ")";
 
     var userid = null;
 
@@ -60,13 +58,13 @@ app.post("/api/create/user", (req, res) => {
       }
 
 			var wait = setTimeout( function() {
-			  sql += "INSERT INTO high_scores (userid, time20, time30, moves20, moves30) VALUES("
-				        + userid + "," + null + "," + null + "," + null +"," + null +")";
-			  console.log(sql);
+			  sqlScore = "INSERT INTO high_scores (userid, time20, time30, moves20, moves30) VALUES("
+				        + userid + "," + 0 + "," + 0 + "," + 0 +"," + 0 +")";
+			  console.log(sqlScore);
 
-        if (userid != null){
+        if (userid >= 1){
 				  try {
-					  con.query(sql, function(err, result){
+					  con.query(sqlScore, function(err, result){
 						  if(err) throw err;
 						  console.log("Setup high scores!");
 					  });
@@ -75,7 +73,7 @@ app.post("/api/create/user", (req, res) => {
 					  console.log("Setup error.");
 				  }
 			  }
-			}, 3000);
+			}, 300);
 });
 
 /**
@@ -190,11 +188,14 @@ app.put("/api/edit/profile", (req, res) => {
 	}, 3000);
 });
 
+/**
+ * Updates a users high score when they achieve a new one.
+ */
 app.put("/api/edit/highscore", (req, res) => {
 	console.log("\nUpdating an account...");
 
-	var jsonData = req.body;});
-  var type = jsonData.type;
+	var jsonData = req.body;
+        var type = jsonData.type;
 	var score = jsonData.score;
 
 	var sql = "UPDATE high_scores SET " + type + " = " + score + " WHERE UserID = " + userid;
@@ -209,3 +210,29 @@ app.put("/api/edit/highscore", (req, res) => {
 		console.log("error");
 		res.json({"update": "error"});
 	}
+});
+
+/**
+ * Retrieves the users high scores from the database.
+ */
+app.get("api/get/highscore/:id", (req, res) => {
+	var userid = req.params.id;
+	console.log(userid);
+	var sql = "SELECT * FROM high_scores WHERE UserID = " + userid;
+
+	try {
+		con.query(sql, function(err, result) {
+			if(err) throw err;
+			console.log("Sending scores.");
+			var time20 = result[0].time20;
+			var time30 = result[0].time30;
+			var moves20 = result[0].moves20;
+			var moves30 = result[0].moves30;
+			res.json({"time20": time20, "time30": time30, "moves20": moves20, "moves30": moves30});
+		});
+	}
+	catch(err){
+		console.log("Error getting scores...");
+		res.json({"time20": 0, "time30": 0, "moves20": 0, "moves30": 0});
+	}
+});
