@@ -192,13 +192,18 @@ app.put("/api/edit/profile", (req, res) => {
  * Updates a users high score when they achieve a new one.
  */
 app.put("/api/edit/highscore", (req, res) => {
-	console.log("\nUpdating an account...");
+	console.log("\nUpdating a high score...");
 
 	var jsonData = req.body;
-        var type = jsonData.type;
-	var score = jsonData.score;
+  var time20 = jsonData.time20;
+	var time30 = jsonData.time30;
+	var moves20 = jsonData.moves20;
+	var moves30 = jsonData.moves30;
+	var userid = jsonData.id;
 
-	var sql = "UPDATE high_scores SET " + type + " = " + score + " WHERE UserID = " + userid;
+	var sql = "UPDATE high_scores SET time20 = " + time20 + ", time30 = " + time30 + ", moves20 = "
+	               + moves20 + ", moves30 = " + moves30 + " WHERE UserID = " + userid;
+	console.log(sql);
 	try {
 		con.query(sql, function(err, result){
 			if(err) throw err;
@@ -215,8 +220,9 @@ app.put("/api/edit/highscore", (req, res) => {
 /**
  * Retrieves the users high scores from the database.
  */
-app.get("api/get/highscore/:id", (req, res) => {
+app.get("/api/get/highscore/:id", (req, res) => {
 	var userid = req.params.id;
+	console.log("\nGetting high scores");
 	console.log(userid);
 	var sql = "SELECT * FROM high_scores WHERE UserID = " + userid;
 
