@@ -23,6 +23,9 @@ public class GetHighScores implements Runnable {
         this.context = context;
     }
 
+    /**
+     * Retrieves the users high scores from the database.
+     */
     @Override
     public void run() {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
@@ -33,13 +36,13 @@ public class GetHighScores implements Runnable {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        float hsTime20 = 0;
-                        float hsTime30 = 0;
+                        long hsTime20 = 0;
+                        long hsTime30 = 0;
                         int hsMoves20 = 0;
                         int hsMoves30 = 0;
                         try {
-                            hsTime20 = (float) response.getDouble("time20");
-                            hsTime30 = (float) response.getDouble("time30");
+                            hsTime20 = response.getLong("time20");
+                            hsTime30 = response.getLong("time30");
                             hsMoves20 = response.getInt("moves20");
                             hsMoves30 = response.getInt("moves30");
                         }
@@ -48,8 +51,8 @@ public class GetHighScores implements Runnable {
                         }
 
                         SharedPreferences.Editor editor = sp.edit();
-                        editor.putFloat(PreferenceKeys.MEMORY_HIGH_SCORE_TIME_20, hsTime20);
-                        editor.putFloat(PreferenceKeys.MEMORY_HIGH_SCORE_TIME_30, hsTime30);
+                        editor.putLong(PreferenceKeys.MEMORY_HIGH_SCORE_TIME_20, hsTime20);
+                        editor.putLong(PreferenceKeys.MEMORY_HIGH_SCORE_TIME_30, hsTime30);
                         editor.putInt(PreferenceKeys.MEMORY_HIGH_SCORE_MOVES_20, hsMoves20);
                         editor.putInt(PreferenceKeys.MEMORY_HIGH_SCORE_MOVES_30, hsMoves30);
                         editor.apply();

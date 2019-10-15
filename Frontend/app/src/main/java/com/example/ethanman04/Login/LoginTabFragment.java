@@ -158,7 +158,8 @@ public class LoginTabFragment extends Fragment {
                     editor.putString(PreferenceKeys.LOGGED_IN_USER_USERNAME, username);
                     editor.putInt(PreferenceKeys.LOGGED_IN_USER_ICON, icon);
                     editor.apply();
-                    new GetHighScores(rootView.getContext());
+                    Thread t = new Thread( new GetHighScores(rootView.getContext()));
+                    t.start();
                     Intent intent = new Intent(getActivity(), MemoryActivity.class);
                     startActivity(intent);
                 } else{

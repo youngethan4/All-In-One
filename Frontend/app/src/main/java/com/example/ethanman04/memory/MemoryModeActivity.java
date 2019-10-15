@@ -132,27 +132,43 @@ public class MemoryModeActivity extends AppCompatActivity {
         TextView hsMoves20 = findViewById(R.id.memory_mode_high_score_moves_20);
         TextView hsMoves30 = findViewById(R.id.memory_mode_high_score_moves_30);
 
-        float T20 = sp.getFloat(PreferenceKeys.MEMORY_HIGH_SCORE_TIME_20, 0);
-        float T30 = sp.getFloat(PreferenceKeys.MEMORY_HIGH_SCORE_TIME_30,  0);
+        long T20 = sp.getLong(PreferenceKeys.MEMORY_HIGH_SCORE_TIME_20, 0);
+        long T30 = sp.getLong(PreferenceKeys.MEMORY_HIGH_SCORE_TIME_30,  0);
         int M20 = sp.getInt(PreferenceKeys.MEMORY_HIGH_SCORE_MOVES_20, 0);
         int M30 = sp.getInt(PreferenceKeys.MEMORY_HIGH_SCORE_MOVES_30, 0);
-        String ST20 = String.format(Locale.US, "%.03f", T20);
-        String ST30 = String.format(Locale.US, "%.03f", T30);
-        String SM20 = String.format(Locale.US, "%d", M20);
-        String SM30 = String.format(Locale.US, "%d", M30);
+        String ST20 = "High score : " + millisToString(T20);
+        String ST30 = "High score : " + millisToString(T30);
+        String SM20 = String.format(Locale.US, "High score : %d", M20);
+        String SM30 = String.format(Locale.US, "High score : %d", M30);
 
         if(T20 != 0){
             hsTime20.setText(ST20);
+            hsTime20.setVisibility(View.VISIBLE);
         }
         if(T30 != 0){
             hsTime30.setText(ST30);
+            hsTime30.setVisibility(View.VISIBLE);
         }
         if(M20 != 0){
             hsMoves20.setText(SM20);
+            hsMoves20.setVisibility(View.VISIBLE);
         }
         if(M30 != 0){
             hsMoves30.setText(SM30);
+            hsMoves30.setVisibility(View.VISIBLE);
         }
+    }
+
+    /**
+     * Helper method to convert millis to a string value
+     * @param millis
+     * @return users time in string format
+     */
+    private String millisToString(long millis) {
+        int seconds = (int) (millis / 1000);
+        int minutes = seconds / 60;
+        seconds = seconds % 60;
+        return "" + minutes + ":" + String.format(Locale.US, "%02d", seconds);
     }
 
     /**

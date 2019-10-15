@@ -17,20 +17,25 @@ import java.util.HashMap;
 
 public class SendHighScore implements Runnable {
 
-    Context context;
+    private Context context;
 
     public SendHighScore(Context context){
         this.context = context;
     }
 
+    /**
+     * Sends the users current high scores to the server to be put on the backend database.
+     */
     @Override
     public void run() {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+
         HashMap<String, Object> hashMap = new HashMap<>();
-        hashMap.put("time20", sp.getFloat(PreferenceKeys.MEMORY_HIGH_SCORE_TIME_20, 0));
-        hashMap.put("time30", sp.getFloat(PreferenceKeys.MEMORY_HIGH_SCORE_TIME_30, 0));
+        hashMap.put("time20", sp.getLong(PreferenceKeys.MEMORY_HIGH_SCORE_TIME_20, 0));
+        hashMap.put("time30", sp.getLong(PreferenceKeys.MEMORY_HIGH_SCORE_TIME_30, 0));
         hashMap.put("moves20", sp.getInt(PreferenceKeys.MEMORY_HIGH_SCORE_MOVES_20, 0));
         hashMap.put("moves30", sp.getInt(PreferenceKeys.MEMORY_HIGH_SCORE_MOVES_30, 0));
+        hashMap.put("id", sp.getInt(PreferenceKeys.LOGGED_IN_USER_ID, 0));
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PUT, Endpoints.getInstance().getUpdateHighScoreEndpoint(),
                 new JSONObject(hashMap), new Response.Listener<JSONObject>() {

@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
 
-        if (sp.getInt(PreferenceKeys.LOGGED_IN_USER_ID, 0) > 100){
+        if (sp.getInt(PreferenceKeys.LOGGED_IN_USER_ID, 0) > 0){
             Intent intent = new Intent(MainActivity.this, MemoryActivity.class);
             startActivity(intent);
         } else {

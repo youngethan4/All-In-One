@@ -28,16 +28,16 @@ public class MemoryGridActivity extends AppCompatActivity {
 
     private GridView gv;
     private MyAdapter adapter;
-    private static int taps;
+    private static int taps;   //Used to see when a user taps on two cards. Will be a match or flipped over.
     private int moves;
     private ImageButton cardFlip1;
     private ImageButton cardFlip2;
     private TextView strCard1;
     private TextView strCard2;
-    private enum  type{ TIME20, TIME30, MOVES20, MOVES30}
+    private enum  type{ TIME20, TIME30, MOVES20, MOVES30}  //enum based on what mode a user is currently on.
     private type gameMode;
     private int numCards;
-    private int points;
+    private int points; //How many points a user currently has.
     private long millisecondTime;
     private long startTime;
     private boolean won;
@@ -73,8 +73,10 @@ public class MemoryGridActivity extends AppCompatActivity {
         }
         else if(mode.equals("moves20")){
             gameMode = type.MOVES20;
+            startMoves();
         } else {
             gameMode = type.MOVES30;
+            startMoves();
         }
         numCards = getIntent().getExtras().getInt("cards", 20);
 
@@ -289,38 +291,41 @@ public class MemoryGridActivity extends AppCompatActivity {
         builder.setCancelable(false);
 
         //Using shared preferences for the high score. Need two based on if it is 30 or 20 cards.
-        float highScore = 0;
+        long highScore = 0;
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         switch (gameMode){
-            case TIME20 : highScore = sp.getFloat(PreferenceKeys.MEMORY_HIGH_SCORE_TIME_20, Integer.MAX_VALUE);
-            case TIME30: highScore = sp.getFloat(PreferenceKeys.MEMORY_HIGH_SCORE_TIME_30, Integer.MAX_VALUE);
+            case TIME20 : highScore = sp.getLong(PreferenceKeys.MEMORY_HIGH_SCORE_TIME_20, Integer.MAX_VALUE);
+            case TIME30: highScore = sp.getLong(PreferenceKeys.MEMORY_HIGH_SCORE_TIME_30, Integer.MAX_VALUE);
             case MOVES20: highScore = sp.getInt(PreferenceKeys.MEMORY_HIGH_SCORE_MOVES_20, Integer.MAX_VALUE);
             case MOVES30: highScore = sp.getInt(PreferenceKeys.MEMORY_HIGH_SCORE_MOVES_30, Integer.MAX_VALUE);
         }
 
+        //Sets the time as high score if the user is on a timed mode.
         if(gameMode == type.TIME20 || gameMode == type.TIME30){
-            float time = (float) SystemClock.uptimeMillis() - startTime;
+            long time = SystemClock.uptimeMillis() - startTime;
             if (time < highScore || highScore == 0) {
                 builder.setTitle("New High Score!!!");
                 SharedPreferences.Editor editor = sp.edit();
                 if (gameMode == type.TIME20) {
-                    editor.putFloat(PreferenceKeys.MEMORY_HIGH_SCORE_TIME_20, time);
+                    editor.putLong(PreferenceKeys.MEMORY_HIGH_SCORE_TIME_20, time);
                 }
                 else {
-                    editor.putFloat(PreferenceKeys.MEMORY_HIGH_SCORE_TIME_30, time);
+                    editor.putLong(PreferenceKeys.MEMORY_HIGH_SCORE_TIME_30, time);
                 }
                 editor.apply();
                 highScore = time;
-                new SendHighScore(getApplicationContext());   //Sends the high score to the server
+                Thread t = new Thread(new SendHighScore(getApplicationContext()));   //Sends the high score to the server
+                t.start();
             }
             else {
-                String textTitle = String.format(Locale.US, "Your Time: %.03f", time);
+                String textTitle = "Your Time: " + millisToString(time);
                 builder.setTitle(textTitle);
             }
-            String message = String.format(Locale.US, "Your high score is: %.03f\\nWould you like to play again?", highScore);
+            String message = "Your high score is:" + millisToString(highScore) + "\nWould you like to play again?";
             builder.setMessage(message);
-        } else {
-            if (moves < highScore || moves == 0){
+        }
+        else {              //Sets the amount of moves as the high score is the user is on such mode.
+            if (moves < highScore || highScore == 0){
                 builder.setTitle("New High Score!!!");
                 SharedPreferences.Editor editor = sp.edit();
                 if(gameMode == type.MOVES20){
@@ -331,13 +336,14 @@ public class MemoryGridActivity extends AppCompatActivity {
                 }
                 editor.apply();
                 highScore = moves;
-                new SendHighScore(getApplicationContext());   //Sends the high score to the server
+                Thread t = new Thread(new SendHighScore(getApplicationContext()));   //Sends the high score to the server
+                t.start();
             }
             else{
                 String textTitle = String.format(Locale.US, "Your Score: %d", moves);
                 builder.setTitle(textTitle);
             }
-            String message = String.format(Locale.US, "Your high score is: %d\\nWould you like to play again?", (int) highScore);
+            String message = String.format(Locale.US, "Your high score is: %d\nWould you like to play again?", (int) highScore);
             builder.setMessage(message);
         }
 
@@ -361,6 +367,25 @@ public class MemoryGridActivity extends AppCompatActivity {
         dialog.show();
         dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(getResources().getColor(sp.getInt(PreferenceKeys.MEMORY_THEME_COLOR, R.color.blue)));
         dialog.getButton(DialogInterface.BUTTON_POSITIVE).setTextColor(getResources().getColor(sp.getInt(PreferenceKeys.MEMORY_THEME_COLOR, R.color.blue)));
+    }
+
+    private void startMoves(){
+        won = false;
+        final TextView textViewTimer = findViewById(R.id.memory_timer);
+
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        textViewTimer.setTextColor(getResources().getColor(sp.getInt(PreferenceKeys.MEMORY_THEME_COLOR, R.color.blue)));
+        textViewTimer.setBackground(getResources().getDrawable(sp.getInt(PreferenceKeys.MEMORY_THEME_BOARDER, R.drawable.memory_boarder_blue)));
+
+        final Handler handler = new Handler();
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                String setText = String.format(Locale.US, "%d", moves);
+                textViewTimer.setText(setText);
+                if (!won) handler.post(this);
+            }
+        });
     }
 
     /**
@@ -396,7 +421,7 @@ public class MemoryGridActivity extends AppCompatActivity {
         int seconds = (int) (millis / 1000);
         int minutes = seconds / 60;
         seconds = seconds % 60;
-        return "" + minutes + ":" + String.format(Locale.US,"%03d", seconds);
+        return "" + minutes + ":" + String.format(Locale.US, "%02d", seconds);
     }
 
     /**
