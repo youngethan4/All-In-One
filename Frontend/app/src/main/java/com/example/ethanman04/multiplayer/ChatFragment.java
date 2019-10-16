@@ -7,8 +7,11 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
+import com.github.nkzawa.socketio.client.IO;
+import com.github.nkzawa.socketio.client.Socket;
 import com.example.ethanman04.allone.R;
+
+import java.net.URISyntaxException;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,6 +30,14 @@ public class ChatFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private Socket mSocket;
+    {
+        try {
+            mSocket = IO.socket("http://173.22.77.190:3000/api/multiplayer/chat");
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+    }
 
     private OnFragmentInteractionListener mListener;
 
@@ -55,10 +66,7 @@ public class ChatFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        mSocket.connect();
     }
 
     @Override

@@ -23,7 +23,10 @@
         android:id="@+id/memory_options_sound"
         android:title="Mute Sound"
         android:checkable="true"
-        android:buttonTint="@color/teal"
-        />
+        android:buttonTint="@color/teal" />
+
+    <item
+        android:id="@+id/memory_options_logout"
+        android:title="Logout" />
 
 </menu>

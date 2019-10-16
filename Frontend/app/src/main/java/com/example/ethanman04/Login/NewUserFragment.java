@@ -191,8 +191,8 @@ public class NewUserFragment extends Fragment {
                 editor.putInt(PreferenceKeys.LOGGED_IN_USER_ID, userID);
 
                 //Fill in 0 for all high scores to eliminate a null pointer exception
-                editor.putFloat(PreferenceKeys.MEMORY_HIGH_SCORE_TIME_20, 0);
-                editor.putFloat(PreferenceKeys.MEMORY_HIGH_SCORE_TIME_30, 0);
+                editor.putLong(PreferenceKeys.MEMORY_HIGH_SCORE_TIME_20, 0);
+                editor.putLong(PreferenceKeys.MEMORY_HIGH_SCORE_TIME_30, 0);
                 editor.putInt(PreferenceKeys.MEMORY_HIGH_SCORE_MOVES_20, 0);
                 editor.putInt(PreferenceKeys.MEMORY_HIGH_SCORE_MOVES_30, 0);
 

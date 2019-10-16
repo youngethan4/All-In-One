@@ -145,7 +145,7 @@ public class MemoryGridActivity extends AppCompatActivity {
     }
 
     /**
-     * The view holder for each card.
+     * The view holder for each card. If the user has flipped over two cards, calls the setTaps method
      */
     private class ViewHolder {
         ImageButton ib;
@@ -294,10 +294,18 @@ public class MemoryGridActivity extends AppCompatActivity {
         long highScore = 0;
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         switch (gameMode){
-            case TIME20 : highScore = sp.getLong(PreferenceKeys.MEMORY_HIGH_SCORE_TIME_20, Integer.MAX_VALUE);
-            case TIME30: highScore = sp.getLong(PreferenceKeys.MEMORY_HIGH_SCORE_TIME_30, Integer.MAX_VALUE);
-            case MOVES20: highScore = sp.getInt(PreferenceKeys.MEMORY_HIGH_SCORE_MOVES_20, Integer.MAX_VALUE);
-            case MOVES30: highScore = sp.getInt(PreferenceKeys.MEMORY_HIGH_SCORE_MOVES_30, Integer.MAX_VALUE);
+            case TIME20 :
+                highScore = sp.getLong(PreferenceKeys.MEMORY_HIGH_SCORE_TIME_20, Integer.MAX_VALUE);
+                break;
+            case TIME30:
+                highScore = sp.getLong(PreferenceKeys.MEMORY_HIGH_SCORE_TIME_30, Integer.MAX_VALUE);
+                break;
+            case MOVES20:
+                highScore = sp.getInt(PreferenceKeys.MEMORY_HIGH_SCORE_MOVES_20, Integer.MAX_VALUE);
+                break;
+            case MOVES30:
+                highScore = sp.getInt(PreferenceKeys.MEMORY_HIGH_SCORE_MOVES_30, Integer.MAX_VALUE);
+                break;
         }
 
         //Sets the time as high score if the user is on a timed mode.

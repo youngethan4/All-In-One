@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.ethanman04.Login.ProfileActivity;
+import com.example.ethanman04.allone.MainActivity;
 import com.example.ethanman04.allone.PreferenceKeys;
 import com.example.ethanman04.allone.R;
 
@@ -127,8 +128,10 @@ public class MemoryActivity extends AppCompatActivity {
     /**
      * Sets what happens when a user selects a menu item. For mute music and sound, updates the shared
      * preferences.
-     * @param item
-     * @return
+     * The options menu alloys for profile editing, theme editing, music muting, sound muting, and
+     * logging out.
+     * @param item Item that will be selected by the user.
+     * @return Item that was selected.
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -174,6 +177,11 @@ public class MemoryActivity extends AppCompatActivity {
                     editor.putBoolean(PreferenceKeys.MEMORY_SOUND_CHECKED, true);
                 }
                 break;
+            case R.id.memory_options_logout:
+                setSound.startButtonNoise(MemoryActivity.this);
+                editor.putInt(PreferenceKeys.LOGGED_IN_USER_ID, 0);
+                Intent main = new Intent(MemoryActivity.this, MainActivity.class);
+                startActivity(main);
         }
         editor.apply();
         return super.onOptionsItemSelected(item);
