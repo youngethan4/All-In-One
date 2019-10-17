@@ -22,13 +22,11 @@ public class LoginActivity extends AppCompatActivity implements LoginTabFragment
     }
 
     private void setupTabs() {
-        ViewPager viewPager = (ViewPager) findViewById(R.id.login_view_pager);
+        ViewPager viewPager = findViewById(R.id.login_view_pager);
         myPagerAdapter = new MyPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(myPagerAdapter);
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.login_tab_layout);
+        TabLayout tabLayout = findViewById(R.id.login_tab_layout);
         tabLayout.setupWithViewPager(viewPager);
-
-
     }
 
     /**

@@ -53,29 +53,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ebb59b51-973f-448f-ab03-c1ff7d930bb1" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_nkzawa_engine_io_client_0_6_0_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_nkzawa_socket_io_client_0_6_0_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_okhttp_okhttp_2_4_0_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_okhttp_okhttp_ws_2_4_0_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_okio_okio_1_4_0_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_json_json_20090211_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/layout_chat_received.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/layout_chat_sent.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/classAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/Login/NewUserFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/Login/NewUserFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/memory/MemoryActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/memory/MemoryActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/memory/MemoryGridActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/memory/MemoryGridActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/menu/menu_memory_options.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/menu/menu_memory_options.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/Login/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/Login/LoginActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/Login/MyPagerAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/Login/MyPagerAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/memory/MemoryModeActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/memory/MemoryModeActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/memory/SetSound.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/memory/SetSound.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/multiplayer/MultiPagerAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/multiplayer/MultiPagerAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/multiplayer/MultiplayerActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/multiplayer/MultiplayerActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_multiplayer.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_multiplayer.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_chat.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_chat.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -107,49 +104,52 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/memory/MemoryModeActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="662">
-              <caret line="149" column="49" selection-start-line="149" selection-start-column="49" selection-end-line="149" selection-end-column="49" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/memory/SendHighScore.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="26" column="91" selection-start-line="26" selection-start-column="91" selection-end-line="26" selection-end-column="91" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/allone/Endpoints.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="22" selection-start-line="22" selection-end-line="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/Login/GetHighScores.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="26" column="57" selection-start-line="26" selection-start-column="57" selection-end-line="26" selection-end-column="57" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/memory/MemoryGridActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="309" selection-start-line="309" selection-end-line="309" />
+            <state relative-caret-position="217">
+              <caret line="117" column="8" lean-forward="true" selection-start-line="117" selection-start-column="8" selection-end-line="117" selection-end-column="102" />
               <folding>
-                <element signature="docComment;method#onPause#0;class#MemoryGridActivity#0" />
-                <element signature="method#onPause#0;class#MemoryGridActivity#0" />
-                <element signature="docComment;method#onResume#0;class#MemoryGridActivity#0" />
-                <element signature="method#onResume#0;class#MemoryGridActivity#0" />
+                <element signature="class#1672:2060" />
+                <element signature="class#2101:2489" />
+                <element signature="class#2531:2919" />
+                <element signature="class#2961:3348" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/Login/LoginTabFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1564">
+              <caret line="160" selection-start-line="160" selection-end-line="160" />
+              <folding>
+                <element signature="method#onButtonPressed#0;class#LoginTabFragment#0" />
+                <element signature="method#onDetach#0;class#LoginTabFragment#0" />
+                <element signature="docComment;class#OnFragmentInteractionListener#0;class#LoginTabFragment#0" />
+                <element signature="class#OnFragmentInteractionListener#0;class#LoginTabFragment#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/Login/LoginActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="530">
+              <caret line="42" selection-start-line="42" selection-end-line="44" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/multiplayer/MultiplayerActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="867">
+              <caret line="99" column="5" selection-start-line="99" selection-start-column="5" selection-end-line="99" selection-end-column="5" />
+              <folding>
+                <element signature="method#onBackPressed#0;class#MultiplayerActivity#0" />
+                <element signature="method#showAlertBackPress#0;class#MultiplayerActivity#0" />
+                <element signature="method#onPause#0;class#MultiplayerActivity#0" />
+                <element signature="method#onResume#0;class#MultiplayerActivity#0" />
               </folding>
             </state>
           </provider>
@@ -158,51 +158,56 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/multiplayer/ChatFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="35" column="82" lean-forward="true" selection-start-line="35" selection-start-column="82" selection-end-line="35" selection-end-column="82" />
+            <state relative-caret-position="-922">
+              <caret line="54" lean-forward="true" selection-start-line="54" selection-end-line="54" />
+              <folding>
+                <element signature="e#3291#3292#0" expanded="true" />
+                <element signature="e#3333#3334#0" expanded="true" />
+                <element signature="e#3408#3409#0" expanded="true" />
+                <element signature="e#3457#3458#0" expanded="true" />
+                <element signature="e#5696#5697#0" expanded="true" />
+                <element signature="e#5751#5752#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/build.gradle">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="612">
-              <caret line="36" column="61" selection-start-line="36" selection-start-column="61" selection-end-line="36" selection-end-column="61" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/memory/MemoryActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="478">
-              <caret line="132" column="58" selection-start-line="132" selection-start-column="58" selection-end-line="132" selection-end-column="58" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/menu_memory_options.xml">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/layout_chat_received.xml">
           <provider editor-type-id="android-designer2" />
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="31" column="7" selection-start-line="31" selection-start-column="7" selection-end-line="31" selection-end-column="7" />
+            <state relative-caret-position="425">
+              <caret line="25" column="41" lean-forward="true" selection-start-line="25" selection-start-column="41" selection-end-line="25" selection-end-column="41" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/Login/NewUserFragment.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/layout_chat_sent.xml">
+          <provider editor-type-id="android-designer2" />
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="188" column="40" selection-start-line="188" selection-start-column="40" selection-end-line="188" selection-end-column="40" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="method#onAttach#0;class#NewUserFragment#0" />
-                <element signature="method#onDetach#0;class#NewUserFragment#0" />
-                <element signature="docComment;class#OnFragmentInteractionListener#0;class#NewUserFragment#0" />
-              </folding>
+            <state relative-caret-position="323">
+              <caret line="19" column="62" selection-start-line="19" selection-start-column="62" selection-end-line="19" selection-end-column="62" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_chat.xml">
+          <provider editor-type-id="android-designer2" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="16" column="42" lean-forward="true" selection-start-line="16" selection-start-column="42" selection-end-line="16" selection-end-column="42" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_multiplayer.xml">
+          <provider editor-type-id="android-designer2" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="12" column="45" lean-forward="true" selection-start-line="12" selection-start-column="45" selection-end-line="12" selection-end-column="45" />
             </state>
           </provider>
         </entry>
@@ -215,6 +220,7 @@
         <option value="resourceFile" />
         <option value="layoutResourceFile" />
         <option value="Class" />
+        <option value="layoutResourceFile_vertical" />
       </list>
     </option>
   </component>
@@ -224,12 +230,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/res/drawable/memory_boarder_lime.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/drawable/memory_boarder_orange.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/drawable/memory_boarder_pink.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/drawable/memory_boarder_purple.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/drawable/memory_boarder_purplespotted.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/drawable/memory_boarder_rainbow.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/memory_boarder_whitegreen.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/memory_boarder_spinner.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_memory_grid.xml" />
@@ -243,16 +243,13 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/allone/VolleyRequests.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/allone/LoginActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/Login/MyPagerAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_login_tab.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/Login/AccountHelper.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/Login/LoginActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_profile.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/layout_edit_profile.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/memory/SetSound.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/Login/ProfileActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/memory/MemoryCardNumberActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
@@ -260,13 +257,11 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_memory.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_memory_mode.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/allone/ThemeSetter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/multiplayer/MultiplayerActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_new_user.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/allone/Endpoints.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/allone/PreferenceKeys.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/allone/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/Login/LoginTabFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/memory/MemoryModeActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/memory/SendHighScore.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/Login/GetHighScores.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/Login/NewUserFragment.java" />
@@ -274,6 +269,17 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/memory/MemoryActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/memory/MemoryGridActivity.java" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/Login/MyPagerAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/multiplayer/MultiPagerAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/memory/SetSound.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/Login/LoginActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_multiplayer.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/memory/MemoryModeActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/multiplayer/MultiplayerActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_chat.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/layout_chat_sent.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/layout_chat_recieved.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/layout_chat_received.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/multiplayer/ChatFragment.java" />
       </list>
     </option>
@@ -294,6 +300,7 @@
     <panes>
       <pane id="PackagesPane" />
       <pane id="ProjectPane" />
+      <pane id="Scope" />
       <pane id="AndroidView">
         <subPane>
           <expand>
@@ -340,11 +347,21 @@
               <item name="ethanman04" type="cbb59c9e:AndroidPsiDirectoryNode" />
               <item name="multiplayer" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="Frontend" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="res" type="d4f16f75:AndroidResFolderNode" />
+            </path>
+            <path>
+              <item name="Frontend" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="res" type="d4f16f75:AndroidResFolderNode" />
+              <item name="layout" type="ddeffd01:AndroidResFolderTypeNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -503,16 +520,16 @@
       <window_info id="Resources Explorer" order="8" weight="0.3294621" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4987775" weight="0.3275862" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.6284648" weight="0.18959913" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.6279318" weight="0.18959913" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49733475" weight="0.19393283" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49520257" weight="0.3261105" />
       <window_info anchor="bottom" id="Logcat" order="7" sideWeight="0.49307036" weight="0.32502708" />
       <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49573562" weight="0.32502708" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.38006395" side_tool="true" visible="true" weight="0.1603467" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.37206823" side_tool="true" visible="true" weight="0.1603467" />
       <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.4978678" weight="0.32719395" />
-      <window_info anchor="bottom" id="Build" order="11" sideWeight="0.61993605" visible="true" weight="0.1603467" />
+      <window_info anchor="bottom" id="Build" order="11" sideWeight="0.619403" weight="0.1603467" />
       <window_info anchor="bottom" id="Android Profiler" order="12" sideWeight="0.4989339" weight="0.32827735" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -587,23 +604,22 @@
           <properties />
           <option name="timeStamp" value="5" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/memory/MemoryModeActivity.java</url>
+          <line>73</line>
+          <properties />
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/memory/MemoryModeActivity.java</url>
+          <line>72</line>
+          <properties />
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_launcher_background.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-v24/ic_launcher_foreground.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="33" column="9" selection-start-line="33" selection-start-column="9" selection-end-line="33" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -661,24 +677,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/Login/MyPagerAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="24" column="38" selection-start-line="24" selection-start-column="38" selection-end-line="24" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#582#583#0" expanded="true" />
-            <element signature="e#606#607#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_multiplayer.xml" />
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/multiplayer/MultiplayerActivity.java" />
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/multiplayer/MultiPagerAdapter.java" />
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_game.xml" />
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/multiplayer/GameFragment.java" />
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_chat.xml" />
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/memory/MemoryCardNumberActivity.java" />
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_new_user.xml">
       <provider editor-type-id="android-designer2" />
@@ -699,21 +698,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/allone/ThemeSetter.java" />
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_login_tab.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="38" column="40" selection-start-line="38" selection-start-column="40" selection-end-line="38" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/memory/SetSound.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="501">
-          <caret line="106" column="32" selection-start-line="106" selection-start-column="32" selection-end-line="106" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/memory/SetCards.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -797,30 +781,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/Login/LoginActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/Login/LoginTabFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2278">
-          <caret line="160" selection-start-line="160" selection-end-line="160" />
-          <folding>
-            <element signature="method#onButtonPressed#0;class#LoginTabFragment#0" />
-            <element signature="method#onAttach#0;class#LoginTabFragment#0" />
-            <element signature="method#onDetach#0;class#LoginTabFragment#0" />
-            <element signature="docComment;class#OnFragmentInteractionListener#0;class#LoginTabFragment#0" />
-            <element signature="class#OnFragmentInteractionListener#0;class#LoginTabFragment#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/memory/SendHighScore.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -842,23 +802,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/memory/MemoryModeActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="662">
-          <caret line="149" column="49" selection-start-line="149" selection-start-column="49" selection-end-line="149" selection-end-column="49" />
+        <state relative-caret-position="612">
+          <caret line="36" column="61" selection-start-line="36" selection-start-column="61" selection-end-line="36" selection-end-column="61" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/Login/NewUserFragment.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/memory/MemoryActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="188" column="40" selection-start-line="188" selection-start-column="40" selection-end-line="188" selection-end-column="40" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#onAttach#0;class#NewUserFragment#0" />
-            <element signature="method#onDetach#0;class#NewUserFragment#0" />
-            <element signature="docComment;class#OnFragmentInteractionListener#0;class#NewUserFragment#0" />
-          </folding>
+        <state relative-caret-position="1938">
+          <caret line="132" column="58" selection-start-line="132" selection-start-column="58" selection-end-line="132" selection-end-column="58" />
         </state>
       </provider>
     </entry>
@@ -870,17 +824,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/memory/MemoryActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/Login/NewUserFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="478">
-          <caret line="132" column="58" selection-start-line="132" selection-start-column="58" selection-end-line="132" selection-end-column="58" />
+        <state relative-caret-position="2754">
+          <caret line="188" column="40" selection-start-line="188" selection-start-column="40" selection-end-line="188" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#onAttach#0;class#NewUserFragment#0" />
+            <element signature="method#onDetach#0;class#NewUserFragment#0" />
+            <element signature="docComment;class#OnFragmentInteractionListener#0;class#NewUserFragment#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/multiplayer/MultiPagerAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" selection-start-line="18" selection-end-line="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#127#128#0" expanded="true" />
+            <element signature="e#152#153#0" expanded="true" />
+            <element signature="e#421#422#0" expanded="true" />
+            <element signature="e#445#446#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/memory/SetSound.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="28" column="12" selection-start-line="28" selection-start-column="12" selection-end-line="28" selection-end-column="12" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/memory/MemoryGridActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="309" selection-start-line="309" selection-end-line="309" />
+        <state relative-caret-position="306">
+          <caret line="52" column="42" lean-forward="true" selection-start-line="52" selection-start-column="42" selection-end-line="52" selection-end-column="42" />
           <folding>
             <element signature="docComment;method#onPause#0;class#MemoryGridActivity#0" />
             <element signature="method#onPause#0;class#MemoryGridActivity#0" />
@@ -890,17 +871,131 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/Login/MyPagerAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="36" column="61" selection-start-line="36" selection-start-column="61" selection-end-line="36" selection-end-column="61" />
+        <state relative-caret-position="102">
+          <caret line="6" column="61" selection-start-line="6" selection-start-column="36" selection-end-line="6" selection-end-column="61" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#290#291#0" expanded="true" />
+            <element signature="e#315#316#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" selection-start-line="10" selection-end-line="23" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_multiplayer.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="45" lean-forward="true" selection-start-line="12" selection-start-column="45" selection-end-line="12" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_login_tab.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="38" column="40" selection-start-line="38" selection-start-column="40" selection-end-line="38" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/multiplayer/GameFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="83" selection-start-line="83" selection-end-line="83" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/Login/LoginActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="530">
+          <caret line="42" selection-start-line="42" selection-end-line="44" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_chat.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="42" lean-forward="true" selection-start-line="16" selection-start-column="42" selection-end-line="16" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/multiplayer/MultiplayerActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="867">
+          <caret line="99" column="5" selection-start-line="99" selection-start-column="5" selection-end-line="99" selection-end-column="5" />
+          <folding>
+            <element signature="method#onBackPressed#0;class#MultiplayerActivity#0" />
+            <element signature="method#showAlertBackPress#0;class#MultiplayerActivity#0" />
+            <element signature="method#onPause#0;class#MultiplayerActivity#0" />
+            <element signature="method#onResume#0;class#MultiplayerActivity#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/layout_chat_received.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="41" lean-forward="true" selection-start-line="25" selection-start-column="41" selection-end-line="25" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/layout_chat_sent.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="62" selection-start-line="19" selection-start-column="62" selection-end-line="19" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/Login/LoginTabFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1564">
+          <caret line="160" selection-start-line="160" selection-end-line="160" />
+          <folding>
+            <element signature="method#onButtonPressed#0;class#LoginTabFragment#0" />
+            <element signature="method#onDetach#0;class#LoginTabFragment#0" />
+            <element signature="docComment;class#OnFragmentInteractionListener#0;class#LoginTabFragment#0" />
+            <element signature="class#OnFragmentInteractionListener#0;class#LoginTabFragment#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/memory/MemoryModeActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="217">
+          <caret line="117" column="8" lean-forward="true" selection-start-line="117" selection-start-column="8" selection-end-line="117" selection-end-column="102" />
+          <folding>
+            <element signature="class#1672:2060" />
+            <element signature="class#2101:2489" />
+            <element signature="class#2531:2919" />
+            <element signature="class#2961:3348" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ethanman04/multiplayer/ChatFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="35" column="82" lean-forward="true" selection-start-line="35" selection-start-column="82" selection-end-line="35" selection-end-column="82" />
+        <state relative-caret-position="-922">
+          <caret line="54" lean-forward="true" selection-start-line="54" selection-end-line="54" />
+          <folding>
+            <element signature="e#3291#3292#0" expanded="true" />
+            <element signature="e#3333#3334#0" expanded="true" />
+            <element signature="e#3408#3409#0" expanded="true" />
+            <element signature="e#3457#3458#0" expanded="true" />
+            <element signature="e#5696#5697#0" expanded="true" />
+            <element signature="e#5751#5752#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -52,16 +52,10 @@ public class MemoryModeActivity extends AppCompatActivity {
             public void onClick(View view) {
                 setSound.startButtonNoise(MemoryModeActivity.this);
                 if (isMultiplayer){
-                    Intent intent = new Intent(MemoryModeActivity.this, MultiplayerActivity.class);
-                    intent.putExtra("type", "time20");
-                    intent.putExtra("cards", 20);
-                    startActivity(intent);
+                    launchMultiplayer("time20", 20);
                 }
                 else {
-                    Intent intent = new Intent(MemoryModeActivity.this, MemoryGridActivity.class);
-                    intent.putExtra("type", "time20");
-                    intent.putExtra("cards", 20);
-                    startActivity(intent);
+                    launchSingleplayer("time20", 20);
                 }
             }
         });
@@ -70,16 +64,10 @@ public class MemoryModeActivity extends AppCompatActivity {
             public void onClick(View view) {
                 setSound.startButtonNoise(MemoryModeActivity.this);
                 if (isMultiplayer){
-                    Intent intent = new Intent(MemoryModeActivity.this, MultiplayerActivity.class);
-                    intent.putExtra("type", "time30");
-                    intent.putExtra("cards", 30);
-                    startActivity(intent);
+                    launchMultiplayer("time30", 30);
                 }
                 else {
-                    Intent intent = new Intent(MemoryModeActivity.this, MemoryGridActivity.class);
-                    intent.putExtra("type", "time30");
-                    intent.putExtra("cards", 30);
-                    startActivity(intent);
+                    launchSingleplayer("time30", 30);
                 }
             }
         });
@@ -88,16 +76,10 @@ public class MemoryModeActivity extends AppCompatActivity {
             public void onClick(View view) {
                 setSound.startButtonNoise(MemoryModeActivity.this);
                 if (isMultiplayer){
-                    Intent intent = new Intent(MemoryModeActivity.this, MultiplayerActivity.class);
-                    intent.putExtra("type", "moves20");
-                    intent.putExtra("cards", 20);
-                    startActivity(intent);
+                    launchMultiplayer("moves20", 20);
                 }
                 else {
-                    Intent intent = new Intent(MemoryModeActivity.this, MemoryGridActivity.class);
-                    intent.putExtra("type", "moves20");
-                    intent.putExtra("cards", 20);
-                    startActivity(intent);
+                    launchSingleplayer("moves20", 20);
                 }
             }
         });
@@ -106,19 +88,27 @@ public class MemoryModeActivity extends AppCompatActivity {
             public void onClick(View view) {
                 setSound.startButtonNoise(MemoryModeActivity.this);
                 if (isMultiplayer){
-                    Intent intent = new Intent(MemoryModeActivity.this, MultiplayerActivity.class);
-                    intent.putExtra("type", "moves30");
-                    intent.putExtra("cards", 30);
-                    startActivity(intent);
+                    launchMultiplayer("moves30", 30);
                 }
                 else {
-                    Intent intent = new Intent(MemoryModeActivity.this, MemoryGridActivity.class);
-                    intent.putExtra("type", "moves30");
-                    intent.putExtra("cards", 30);
-                    startActivity(intent);
+                    launchSingleplayer("moves30", 30);
                 }
             }
         });
+    }
+
+    private void launchMultiplayer(String type, int numCards){
+        Intent intent = new Intent(MemoryModeActivity.this, MultiplayerActivity.class);
+        intent.putExtra("type", type);
+        intent.putExtra("cards", numCards);
+        startActivity(intent);
+    }
+
+    private void launchSingleplayer(String type, int numCards){
+        Intent intent = new Intent(MemoryModeActivity.this, MemoryGridActivity.class);
+        intent.putExtra("type", type);
+        intent.putExtra("cards", numCards);
+        startActivity(intent);
     }
 
     /**

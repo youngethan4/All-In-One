@@ -26,7 +26,7 @@ public class SetSound {
      * Plays a tapping sound based on if the shared preference to mute noise is not true.
      * @param context
      */
-     void startButtonNoise(Context context){
+     public void startButtonNoise(Context context){
          SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
          if (!sp.getBoolean(PreferenceKeys.MEMORY_SOUND_CHECKED, false)) {
              final MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.tap_long);
@@ -44,7 +44,7 @@ public class SetSound {
      * Plays a card sound based on if the shared preference to mute noise is not true.
      * @param context
      */
-    void startCardNoise(Context context){
+    public void startCardNoise(Context context){
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
         if (!sp.getBoolean(PreferenceKeys.MEMORY_SOUND_CHECKED, false)) {
             final MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.possible_card_tap);
@@ -62,7 +62,7 @@ public class SetSound {
      * Plays a card match sound based on if the shared preference to mute noise is not true.
      * @param context
      */
-    void startMatchNoise(Context context){
+    public void startMatchNoise(Context context){
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
         if (!sp.getBoolean(PreferenceKeys.MEMORY_SOUND_CHECKED, false)) {
             final MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.maybe_match);
@@ -81,7 +81,7 @@ public class SetSound {
      * to mute noise is not true.
      * @param context
      */
-    void startNonMatchNoise(Context context){
+    public void startNonMatchNoise(Context context){
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
         if (!sp.getBoolean(PreferenceKeys.MEMORY_SOUND_CHECKED, false)) {
             final MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.card_fail);
@@ -100,7 +100,7 @@ public class SetSound {
      * to mute noise is not true.
      * @param context
      */
-    void startWinningNoise(Context context){
+     void startWinningNoise(Context context){
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
         if (!sp.getBoolean(PreferenceKeys.MEMORY_MUSIC_CHECKED, false)) {
             final MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.win);

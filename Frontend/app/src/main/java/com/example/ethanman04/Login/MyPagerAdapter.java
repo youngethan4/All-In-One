@@ -8,7 +8,8 @@ public class MyPagerAdapter extends FragmentStatePagerAdapter {
     public MyPagerAdapter(FragmentManager fm){
         super(fm);
     }
-    @Override    public Fragment getItem(int position) {
+    @Override
+    public Fragment getItem(int position) {
         switch (position){
             case 0: return new LoginTabFragment();
             case 1: return new NewUserFragment();
