@@ -1,5 +1,6 @@
-var  express = require('express');
-var  app = express();
+var  app = require('express')();
+var http = require('http').createServer(app);
+var io = require('socket.io')(http);
 var  port = 3000;
 var  mysql = require('mysql');
 var  bodyParser = require('body-parser');
@@ -21,7 +22,7 @@ connectDB();
 //Try this later once I get a feel of node js.
 //require('./app/routes/user.routes.js')(app, con);
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+http.listen(port, () => console.log(`App listening on port ${port}!`))
 
 /**
  *Request to create a new user.
@@ -242,3 +243,35 @@ app.get("/api/get/highscore/:id", (req, res) => {
 		res.json({"time20": 0, "time30": 0, "moves20": 0, "moves30": 0});
 	}
 });
+
+var chat = io
+	  .of('/api/multiplayer/chat')
+  	.on('connection', (socket) => {
+			console.log('user connected');
+
+    	socket.on('join', (username) => {
+        	console.log(username +" has joined the chat.");
+
+					socket.username = username;
+					//Lets everyone else know a new user has joined.
+        	socket.broadcast.emit('userjoined', socket.username + " : has joined the chat.");
+    	});
+
+			socket.on('new message', (message) => {
+				console.log(socket.username + " : " + message);
+
+		 	//sendMessage object
+		 	let  sendMessage = {"message" : message, "username" : socket.username}
+
+      	//send the message to the client side
+				chat.emit('new message', sendMessage);
+		 	});
+
+    	socket.on('disconnect', () => {
+	 	   		console.log(socket.username + ' has left');
+
+					//Lets everyone else know a user has left.
+	 	  		socket.broadcast.emit('userleft', socket.username + ' has left');
+	  	});
+
+		});
