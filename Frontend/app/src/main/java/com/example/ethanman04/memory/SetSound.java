@@ -103,6 +103,7 @@ public class SetSound {
      void startWinningNoise(Context context){
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
         if (!sp.getBoolean(PreferenceKeys.MEMORY_MUSIC_CHECKED, false)) {
+            music.pause();
             final MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.win);
             mediaPlayer.start();
             final MediaPlayer mediaPlayer2 = MediaPlayer.create(context, R.raw.cheer);

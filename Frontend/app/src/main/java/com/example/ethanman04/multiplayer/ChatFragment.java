@@ -15,12 +15,18 @@ import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.ethanman04.allone.PreferenceKeys;
 import com.github.nkzawa.socketio.client.IO;
 import com.github.nkzawa.socketio.client.Socket;
 import com.example.ethanman04.allone.R;
+import com.github.nkzawa.emitter.Emitter;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -50,8 +56,9 @@ public class ChatFragment extends Fragment {
     private Socket mSocket;
     private LinearLayoutManager lm;
     private RecyclerView rv;
-    private ArrayList<OtherCardData> cardData;
-    private OtherAdapter adapt;
+    private ArrayList<MessageCardData> cardData;
+    private MessageAdapter adapt;
+    private SharedPreferences sp;
 
     public ChatFragment() { }
 
@@ -76,11 +83,7 @@ public class ChatFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        try {
-            mSocket = IO.socket("http://173.22.77.190:3000/api/multiplayer/chat");
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
+
     }
 
     @Override
@@ -88,53 +91,118 @@ public class ChatFragment extends Fragment {
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_chat, container, false);
         ini();
+        setSocket();
         return rootView;
     }
 
-    private void ini(){
-        rv = rootView.findViewById(R.id.multiplayer_chat_rv);
-        cardData = new ArrayList<>();
-        lm = new LinearLayoutManager(getContext());
-        rv.setLayoutManager(lm);
-        adapt = new OtherAdapter(cardData);
-        rv.setAdapter(adapt);
+    /**
+     * Sets up the socket and creates a listener for incoming messages.
+     */
+    private void setSocket(){
+        try {
+            mSocket = IO.socket("http://173.22.77.190:3000/api/multiplayer/chat");
+            mSocket.connect();
+            mSocket.emit("join", sp.getString(PreferenceKeys.LOGGED_IN_USER_USERNAME, ""));
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+
+        Emitter.Listener onNewMessage = new Emitter.Listener() {
+            @Override
+            public void call(Object... args) {
+                try{
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            JSONObject data = (JSONObject) args[0];
+                            String username = "";
+                            String message = "";
+                            try {
+                                username = data.getString("username");
+                                message = data.getString("message");
+                                System.out.println(message);
+                            } catch (JSONException e){
+                                e.printStackTrace();
+                            }
+                            cardData.add(new MessageCardData(username, message));
+                            adapt.notifyDataSetChanged();
+                            rv.refreshDrawableState();
+                        }
+                    });
+                } catch(NullPointerException e){
+                    e.printStackTrace();
+                }
+            }
+        };
+        mSocket.on("new message", onNewMessage);
 
     }
 
     /**
-     * class for holding other card data
+     * Initializes the recycler view, shared preference, card data, layout manager, and adapter.
      */
-    class OtherCardData  {
-        private String poster;
+    private void ini(){
+        sp = PreferenceManager.getDefaultSharedPreferences(getContext());
+        rv = rootView.findViewById(R.id.multiplayer_chat_rv);
+        cardData = new ArrayList<>();
+        lm = new LinearLayoutManager(getContext());
+        rv.setLayoutManager(lm);
+        adapt = new MessageAdapter(cardData);
+        rv.setAdapter(adapt);
+        setSend();
+    }
+
+    /**
+     * Sets the send button to emit the message text to the socket.
+     * Also resets the message text back to nothing and refreshes the recycler view.
+     */
+    private void setSend(){
+        Button send = rootView.findViewById(R.id.multiplayer_chat_send);
+        EditText message = rootView.findViewById(R.id.multiplayer_chat_message);
+
+        send.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String sendMessage = message.getText().toString().trim();
+                message.setText("");
+                mSocket.emit("new message", sendMessage);
+            }
+        });
+    }
+
+    /**
+     * class for holding message card data
+     */
+    class MessageCardData {
+        private String username;
         private String message;
 
-        public OtherCardData(String poster, String message)  {
-            this.poster = poster;
+        MessageCardData(String username, String message)  {
+            this.username = username;
             this.message = message;
         }
     }
 
     /**
-     * Creates an adapter for the recycler view
+     * Creates an adapter for the recycler view with a received and sent view holder.
      */
-    class OtherAdapter extends RecyclerView.Adapter<ChatFragment.OtherAdapter.MyViewHolder> {
-        ArrayList<ChatFragment.OtherCardData> ocd;
+    class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageViewHolder> {
+        ArrayList<MessageCardData> mcd;
 
-        OtherAdapter(ArrayList<OtherCardData> data) {
-            ocd = data;
+        MessageAdapter(ArrayList<MessageCardData> data) {
+            mcd = data;
         }
 
         @Override
         public int getItemCount()
         {
-            return ocd.size();
+            return mcd.size();
         }
 
         @Override
         public int getItemViewType(int position)
         {
-            SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getContext());
-            if (ocd.get(position).poster.equals(sp.getString(PreferenceKeys.LOGGED_IN_USER_USERNAME, ""))) {
+            if (mcd.get(position).username.equals(sp.getString(PreferenceKeys.LOGGED_IN_USER_USERNAME, ""))) {
                 return R.layout.layout_chat_sent;
             }
             return R.layout.layout_chat_received;
@@ -142,51 +210,51 @@ public class ChatFragment extends Fragment {
 
         @NonNull
         @Override
-        public ChatFragment.OtherAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
+        public MessageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
         {
             if (viewType == R.layout.layout_chat_sent) {
                 View v = null;
-                ChatFragment.OtherAdapter.MyViewHolder viewHolder = null;
+                MessageViewHolder viewHolder = null;
                 v = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_chat_sent, parent, false);
-                viewHolder = new ChatFragment.OtherAdapter.UserViewHolder(v);
+                viewHolder = new SentViewHolder(v);
                 return viewHolder;
             }
             View v = null;
-            ChatFragment.OtherAdapter.MyViewHolder viewHolder = null;
+            MessageViewHolder viewHolder = null;
             v = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_chat_received, parent, false);
-            viewHolder = new ChatFragment.OtherAdapter.OtherViewHolder(v);
+            viewHolder = new ReceivedViewHolder(v);
             return viewHolder;
         }
 
         @Override
-        public void onBindViewHolder(@NonNull ChatFragment.OtherAdapter.MyViewHolder baseHolder, int position) {
+        public void onBindViewHolder(@NonNull MessageViewHolder baseHolder, int position) {
             if(getItemViewType(position) == R.layout.layout_chat_sent)
             {
-                ChatFragment.OtherAdapter.UserViewHolder holder = (ChatFragment.OtherAdapter.UserViewHolder) baseHolder;
-                holder.messageUser.setText(ocd.get(position).message);
+                SentViewHolder holder = (SentViewHolder) baseHolder;
+                holder.messageUser.setText(mcd.get(position).message);
             }
             else {
-                ChatFragment.OtherAdapter.OtherViewHolder holder = (ChatFragment.OtherAdapter.OtherViewHolder) baseHolder;
-                holder.posterOther.setText(ocd.get(position).poster);
-                holder.messageOther.setText(ocd.get(position).message);
+                ReceivedViewHolder holder = (ReceivedViewHolder) baseHolder;
+                holder.posterOther.setText(mcd.get(position).username);
+                holder.messageOther.setText(mcd.get(position).message);
             }
         }
 
-        abstract class MyViewHolder extends RecyclerView.ViewHolder
+        abstract class MessageViewHolder extends RecyclerView.ViewHolder
         {
-            public MyViewHolder(View itemView)
+            MessageViewHolder(View itemView)
             {
                 super(itemView);
             }
         }
 
-        class OtherViewHolder extends ChatFragment.OtherAdapter.MyViewHolder {
+        class ReceivedViewHolder extends MessageViewHolder {
 
             CardView receivedCard;
             TextView posterOther;
             TextView messageOther;
 
-            public OtherViewHolder(View itemView){
+            ReceivedViewHolder(View itemView){
                 super(itemView);
 
                 receivedCard = itemView.findViewById(R.id.multiplayer_chat_received_card);
@@ -195,12 +263,12 @@ public class ChatFragment extends Fragment {
             }
         }
 
-        class UserViewHolder extends ChatFragment.OtherAdapter.MyViewHolder {
+        class SentViewHolder extends MessageViewHolder {
 
             CardView sentCard;
             TextView messageUser;
 
-            public UserViewHolder(View itemView){
+            SentViewHolder(View itemView){
                 super(itemView);
 
                 sentCard = itemView.findViewById(R.id.multiplayer_chat_sent_card);
@@ -232,6 +300,7 @@ public class ChatFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+        mSocket.disconnect();
     }
 
     /**
