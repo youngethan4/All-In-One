@@ -1,12 +1,8 @@
 # All-In-One
 The main purpose of this app was to make a lot of little single player fun apps and games. 
-Then I decided, why not make the one "little" game, a memory game, multiplayer.
-With this being said, I am now working on implementing a multiplayer version of the game.
-I have created the database, user profiles, and am going to move high scores onto the database.
-I plan to implement oath2.0 for users to login with facebook and google.
-Unfortuanatly, this is now going very slow as I have just resumed my computer engineering studies. 
-One day, this will be available for the public to download and most likely will be thrown onto the
-android play store before coding in swift will begin. 
+Then I decided, why not make the one "little" game, a memory game, the whole app with many features?
+With this being said, I have created the database, user profiles, high scores, and started on implementing multiplayer for this game.
+Unfortunetly I now have lost interest in resuming the game and have focused my time on more apps than games.
 
 The login activity contains two seperate threads. one for logging in and one for creating an account.
 By swiping right or left or using the tabs on top, the user can navigate to the fragment they need to use. 
